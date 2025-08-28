@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Akkende · Diseño que comunica</title>
+
+<!-- Tipografía -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --brand:#8B004B;        /* Bordó Akkende */
+  --text:#3a3a3a;
+  --muted:#707070;
+  --bg:#FAFAFA;
+  --white:#fff;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto;
+  color:var(--text); background:var(--bg);
+}
+
+/* Navegación */
+.nav{
+  position:sticky; top:0; z-index:50; background:var(--white);
+  border-bottom:1px solid #eee; backdrop-filter:saturate(180%) blur(6px);
+}
+.nav__inner{
+  max-width:1180px; margin:auto; display:flex; align-items:center; gap:18px;
+  padding:12px 20px;
+}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none}
+.brand__logo{
+  width:36px; height:36px; border-radius:50%; background:var(--brand);
+  display:grid; place-items:center; color:#fff; font-weight:700;
+  box-shadow:var(--shadow);
+}
+.brand__name{font-weight:700; color:var(--brand); letter-spacing:.2px}
+.nav__links{margin-left:auto; display:flex; gap:18px; flex-wrap:wrap}
+.nav__links a{
+  text-decoration:none; color:var(--text); font-weight:600; font-size:.95rem;
+}
+.nav__links a:hover{color:var(--brand)}
+
+/* Secciones genéricas */
+.section{padding:70px 20px}
+.wrap{max-width:1180px; margin:auto}
+
+/* Hero */
+.hero{
+  padding:90px 20px 60px; background:linear-gradient(180deg, #fff 0%, #fff 55%, #fafafa 100%);
+}
+.hero__grid{
+  display:grid; grid-template-columns:1.2fr .8fr; gap:34px; align-items:center;
+}
+.hero h1{
+  font-size:clamp(32px, 5vw, 54px); line-height:1.05; margin:0 0 12px;
+  color:#1d1d1d;
+}
+.hero__tag{
+  display:inline-block; background:rgba(139,0,75,.08); color:var(--brand);
+  padding:6px 12px; border-radius:999px; font-weight:600; font-size:.9rem; margin-bottom:14px;
+}
+.hero p{color:var(--muted); font-size:1.05rem; margin:0 0 18px}
+.cta{
+  display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
+  padding:12px 20px; border-radius:12px; font-weight:700; box-shadow:var(--shadow);
+}
+.cta--ghost{
+  background:transparent; color:var(--brand); border:2px solid var(--brand);
+  margin-left:10px;
+}
+.hero__card{
+  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:22px;
+}
+.hero__list{list-style:none; padding:0; margin:16px 0 0}
+.hero__list li{display:flex; gap:10px; margin:10px 0; color:#4a4a4a}
+.badge{font-size:.8rem; color:#888}
+
+/* Sección servicios */
+.sec-title{
+  text-align:center; margin-bottom:10px; font-size:clamp(24px,3.6vw,36px);
+  color:#1d1d1d;
+}
+.sec-sub{ text-align:center; color:var(--muted); margin:0 auto 26px; max-width:760px}
+.grid{
+  display:grid; gap:20px; grid-template-columns:repeat(3, 1fr);
+}
+.card{
+  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.card:hover{transform:translateY(-6px); box-shadow:0 16px 34px rgba(0,0,0,.12)}
+.card h3{margin:6px 0 8px; color:#1d1d1d}
+.card p{margin:0; color:#5a5a5a}
+
+/* Paquetes */
+.pricing{ grid-template-columns:repeat(3, 1fr); }
+.tier .price{font-size:32px; font-weight:800; color:var(--brand); margin:6px 0 12px}
+.tier ul{margin:0; padding-left:18px; color:#4a4a4a}
+.tier .cta{margin-top:16px}
+
+/* Portafolio (placeholders) */
+.portfolio{ grid-template-columns:repeat(3, 1fr); }
+.thumb{
+  aspect-ratio: 4/3; border-radius:16px; overflow:hidden; background:linear-gradient(135deg, #f1e3ea, #ffffff);
+  display:grid; place-items:center; color:#9a3e6b; font-weight:700; letter-spacing:.4px;
+  box-shadow:var(--shadow);
+}
+
+/* Sobre */
+.about{
+  display:grid; gap:28px; grid-template-columns:1.1fr .9fr; align-items:center;
+}
+.kicker{color:var(--brand); font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:.8rem}
+.story{color:#4a4a4a; line-height:1.7}
+
+/* Contacto */
+.contact{
+  display:grid; gap:24px; grid-template-columns:1.1fr .9fr; align-items:start;
+}
+.panel{
+  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px;
+}
+.contact a{color:var(--brand); text-decoration:none; font-weight:700}
+
+/* Footer */
+.footer{
+  background:#1a0c14; color:#d9cfd3; padding:28px 20px; text-align:center; margin-top:30px;
+}
+.footer a{color:#fff; text-decoration:none}
+
+/* Responsivo */
+@media (max-width: 980px){
+  .hero__grid, .grid, .pricing, .portfolio, .about, .contact{ grid-template-columns:1fr; }
+  .nav__links{width:100%; justify-content:center}
+  .cta--ghost{display:block; margin:10px 0 0}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#inicio">
+      <div class="brand__logo">A</div>
+      <div class="brand__name">Akkende</div>
+    </a>
+    <div class="nav__links">
+      <a href="#servicios">Servicios</a>
+      <a href="#paquetes">Paquetes</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="inicio" class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="hero__tag">Diseño que comunica • Marketing que conecta</span>
+      <h1>Diseño profesional para marcas que quieren destacar hoy y crecer mañana</h1>
+      <p>Nos enfocamos en <strong>branding e identidad visual</strong> y lo complementamos con <strong>diseño publicitario</strong> y contenido para redes. Creatividad humana + herramientas de IA para prototipar rápido y entregar con calidad.</p>
+      <div>
+        <a class="cta" href="#contacto">Solicitar propuesta</a>
+        <a class="cta cta--ghost" href="#portafolio">Ver portafolio</a>
+      </div>
+      <div class="badge" style="margin-top:10px">Colombia · Atención personalizada</div>
+    </div>
+
+    <div class="hero__card">
+      <strong>Lo que hacemos</strong>
+      <ul class="hero__list">
+        <li>• Identidad visual y manual de marca</li>
+        <li>• Diseño publicitario (digital e impreso)</li>
+        <li>• Piezas para redes sociales y reels</li>
+        <li>• Asesoría en marketing visual</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="section">
+  <div class="wrap">
+    <h2 class="sec-title">Servicios</h2>
+    <p class="sec-sub">Branding primero; listos para escalar a marketing cuando tu marca esté sólida.</p>
+
+    <div class="grid">
+      <article class="card">
+        <h3>Branding & Identidad Visual</h3>
+        <p>Logo, paleta, tipografías y guía de estilo. Entrega lista para usar en web, redes e impresión.</p>
+      </article>
+      <article class="card">
+        <h3>Diseño Publicitario</h3>
+        <p>Banners, flyers, catálogos y campañas visuales con foco en claridad y recordación.</p>
+      </article>
+      <article class="card">
+        <h3>Redes: Piezas & Creatividad</h3>
+        <p>Plantillas y piezas mensuales para mantener una presencia coherente y atractiva.</p>
+      </article>
+      <article class="card">
+        <h3>Motion & Reels</h3>
+        <p>Microanimaciones y videos cortos para mejorar alcance e interacción.</p>
+      </article>
+      <article class="card">
+        <h3>Consultoría Visual</h3>
+        <p>Diagnóstico y plan de acción: cómo verse y comunicarse para vender mejor.</p>
+      </article>
+      <article class="card">
+        <h3>IA como Aliada</h3>
+        <p>Prototipado ágil con supervisión creativa humana para acelerar tiempos sin perder calidad.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PAQUETES -->
+<section id="paquetes" class="section">
+  <div class="wrap">
+    <h2 class="sec-title">Paquetes para Emprendedores</h2>
+    <p class="sec-sub">Opciones claras para arrancar y crecer. Puedes personalizar cualquier plan.</p>
+
+    <div class="grid pricing">
+      <article class="card tier">
+        <h3>Despega</h3>
+        <div class="price">Branding inicial</div>
+        <ul>
+          <li>Logo (3 propuestas + revisiones)</li>
+          <li>Paleta & tipografías</li>
+          <li>Manual básico de marca (PDF)</li>
+          <li>5 plantillas para redes</li>
+          <li>Asesoría 1 hora</li>
+        </ul>
+        <a class="cta" href="#contacto">Quiero este</a>
+      </article>
+
+      <article class="card tier" style="border:2px solid var(--brand)">
+        <h3>Presencia Digital</h3>
+        <div class="price">Branding + Redes</div>
+        <ul>
+          <li>Todo en “Despega”</li>
+          <li>Estrategia inicial de contenidos</li>
+          <li>12 publicaciones + copies (1 mes)</li>
+          <li>Optimización de perfiles</li>
+          <li>1 campaña básica en Meta Ads*</li>
+        </ul>
+        <p class="badge">*Inversión publicitaria no incluida</p>
+        <a class="cta" href="#contacto">Empezar</a>
+      </article>
+
+      <article class="card tier">
+        <h3>Acelera Ventas</h3>
+        <div class="price">Branding + Redes + Ads</div>
+        <ul>
+          <li>Todo en “Presencia Digital”</li>
+          <li>2 campañas avanzadas (Meta o Google)</li>
+          <li>20 publicaciones/mes + 4 reels</li>
+          <li>Reporte mensual de resultados</li>
+          <li>Sesión estratégica mensual</li>
+        </ul>
+        <a class="cta" href="#contacto">Hablemos</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PORTAFOLIO -->
+<section id="portafolio" class="section">
+  <div class="wrap">
+    <h2 class="sec-title">Portafolio</h2>
+    <p class="sec-sub">Una muestra rápida. Sustituye los cuadros por tus imágenes.</p>
+
+    <div class="portfolio grid">
+      <div class="thumb">Branding · Restaurante</div>
+      <div class="thumb">Campaña · Gimnasio</div>
+      <div class="thumb">Packaging · Café</div>
+      <div class="thumb">Rediseño · Moda</div>
+      <div class="thumb">Evento · Cultura</div>
+      <div class="thumb">Social Ads · Retail</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="section">
+  <div class="wrap about">
+    <div>
+      <div class="kicker">Nuestra historia</div>
+      <h2 class="sec-title" style="text-align:left">Akkende</h2>
+      <p class="story">
+        Akkende nació con una idea simple: el diseño no es solo estética; es comunicación que conecta.
+        En una industria transformada por la tecnología, unimos <strong>creatividad humana</strong> con
+        <strong>herramientas de IA</strong> para entregar identidad, claridad y velocidad.
+        Empezamos por donde todo comienza: <strong>branding sólido</strong>. Luego, escalamos hacia campañas
+        y marketing cuando tu marca está lista para crecer.
+      </p>
+    </div>
+    <div class="panel">
+      <strong>Quiénes somos y qué tenemos</strong>
+      <ul class="hero__list">
+        <li>• Experiencia en diseño & marketing</li>
+        <li>• Dominio de tendencias y herramientas digitales</li>
+        <li>• Portafolio y casos de éxito</li>
+        <li>• Red de aliados creativos</li>
+      </ul>
+      <div class="badge">Atención personalizada · Seguimiento y reportes · Soporte postventa</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="section">
+  <div class="wrap contact">
+    <div class="panel">
+      <h2 class="sec-title" style="text-align:left">Contacto</h2>
+      <p>Cuéntanos tu idea y armamos una propuesta a tu medida.</p>
+      <p><strong>Email:</strong> <a href="mailto:akkendeagencia@gmail.com">akkendeagencia@gmail.com</a></p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/573132117013" target="_blank" rel="noopener">+57 3132117013</a></p>
+      <p><strong>Ubicación:</strong> Colombia</p>
+      <a class="cta" href="mailto:akkendeagencia@gmail.com?subject=Proyecto%20Akkende">Solicitar propuesta</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  © <span id="y"></span> Akkende · Diseño que comunica, marketing que conecta
+</footer>
+
+<script>
+  // Año del footer
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
