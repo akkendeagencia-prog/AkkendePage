@@ -36,15 +36,21 @@ body{
 }
 .brand{display:flex; align-items:center; gap:10px; text-decoration:none}
 .brand__logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
   display: flex;
   align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
 }
 
 .brand__logo img {
-  height: 40px; /* ajusta según el tamaño que quieras */
-  width: auto;  /* mantiene proporción */
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* o cover, según prefieras */
 }
-
 
 .brand__name{font-weight:700; color:var(--brand); letter-spacing:.2px}
 .nav__links{margin-left:auto; display:flex; gap:18px; flex-wrap:wrap}
@@ -128,17 +134,40 @@ body{
 .story{color:#4a4a4a; line-height:1.7}
 
 /* Contacto */
-.contact{
-  display:grid; gap:24px; grid-template-columns:1.1fr .9fr; align-items:start;
+.contacto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* centra el texto */
+  padding: 60px 20px;
 }
-.panel{
-  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px;
-}
-.contact a{color:var(--brand); text-decoration:none; font-weight:700}
 
-/* Footer */
-.footer{
-  background:#1a0c14; color:#d9cfd3; padding:28px 20px; text-align:center; margin-top:30px;
+/* Caja del contacto */
+.contacto-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Botón estilo Akkende */
+.btn-contacto {
+  display: inline-block;
+  background-color: #8B004B; /* vino tinto */
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s ease;
+}
+
+.btn-contacto:hover {
+  background-color: #a30057; /* un poco más claro al pasar el mouse */
 }
 .footer a{color:#fff; text-decoration:none}
 
@@ -157,8 +186,8 @@ body{
   <div class="nav__inner">
     <a class="brand" href="#inicio">
       <div class="brand__logo">
-        <img src="img/logo.png" alt="Logo Akkende">
-      </div>
+  <img src="img/logo.png" alt="Logo Akkende">
+</div>
 
       <div class="brand__name">Akkende</div>
     </a>
@@ -328,19 +357,19 @@ body{
 </section>
 
 <!-- CONTACTO -->
-<section id="contacto" class="section">
-  <div class="wrap contact">
-    <div class="panel">
-      <h2 class="sec-title" style="text-align:left">Contacto</h2>
-      <p>Cuéntanos tu idea y armamos una propuesta a tu medida.</p>
-      <p><strong>Email:</strong> <a href="mailto:akkendeagencia@gmail.com">akkendeagencia@gmail.com</a></p>
-      <p><strong>WhatsApp:</strong> <a href="https://wa.me/573132117013" target="_blank" rel="noopener">+57 3132117013</a></p>
-      <p><strong>Ubicación:</strong> Colombia</p>
-      <a class="cta" href="mailto:akkendeagencia@gmail.com?subject=Proyecto%20Akkende">Solicitar propuesta</a>
-    </div>
+<section id="contacto" class="contacto">
+  <div class="contacto-container">
+    <h2>Contacto</h2>
+    <p>Cuéntanos tu idea y armamos una propuesta a tu medida.</p>
+    <p><strong>Email:</strong> <a href="mailto:akkendeagencia@gmail.com">akkendeagencia@gmail.com</a></p>
+    <p><strong>WhatsApp:</strong> <a href="https://wa.me/573132117013" target="_blank">+57 3132117013</a></p>
+    <p><strong>Ubicación:</strong> Colombia</p>
+    <a href="https://wa.me/573132117013" target="_blank" class="btn-contacto">
+  Comencemos
+</a>
+
   </div>
 </section>
-
 <footer class="footer">
   © <span id="y"></span> Akkende · Diseño que comunica, marketing que conecta
 </footer>
