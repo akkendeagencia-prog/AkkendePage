@@ -140,19 +140,24 @@ body{
 
 .btn-contacto {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 12px 25px;
   background-color: var(--brand);
-  color: #fff;
+  color: #fff !important;   /* 👈 Esto fuerza el blanco */
+  font-size: 16px;
+  font-weight: 600;
   border-radius: 8px;
-  text-decoration: none;   /* sin subrayado */
-  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
   transition: background 0.3s ease;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
+
 .btn-contacto:hover {
-  background-color: #a30059;
+  background-color: #a0004d;
+  color: #fff !important;   /* 👈 también blanco en hover */
 }
+
 
 /* Links de email y WhatsApp */
 .contacto-container a {
