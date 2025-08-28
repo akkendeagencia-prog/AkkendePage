@@ -45,13 +45,11 @@ body{
   justify-content: center;
   box-shadow: var(--shadow);
 }
-
 .brand__logo img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* o cover, según prefieras */
+  object-fit: contain;
 }
-
 .brand__name{font-weight:700; color:var(--brand); letter-spacing:.2px}
 .nav__links{margin-left:auto; display:flex; gap:18px; flex-wrap:wrap}
 .nav__links a{
@@ -118,7 +116,7 @@ body{
 .tier ul{margin:0; padding-left:18px; color:#4a4a4a}
 .tier .cta{margin-top:16px}
 
-/* Portafolio (placeholders) */
+/* Portafolio */
 .portfolio{ grid-template-columns:repeat(3, 1fr); }
 .thumb{
   aspect-ratio: 4/3; border-radius:16px; overflow:hidden; background:linear-gradient(135deg, #f1e3ea, #ffffff);
@@ -141,8 +139,8 @@ body{
   padding: 60px 20px;
 }
 
-.contacto-container h2 {
-  text-align: center; /* solo el título */
+.contacto-container {
+  text-align: center; /* centra título y botón */
 }
 
 .btn-contacto {
@@ -151,10 +149,10 @@ body{
   background-color: var(--brand);
   color: #fff;
   border-radius: 8px;
-  text-decoration: none;   /* elimina subrayado */
+  text-decoration: none;   /* sin subrayado */
   font-weight: bold;
   transition: background 0.3s ease;
-  margin-top: 15px;        /* separa un poco del texto */
+  margin-top: 15px;
 }
 
 .btn-contacto:hover {
@@ -164,14 +162,15 @@ body{
 /* Links de email y WhatsApp */
 .contacto-container a {
   color: var(--brand);
-  text-decoration: none;   /* elimina subrayado */
+  text-decoration: none;   /* sin subrayado */
   font-weight: 500;
 }
 
 .contacto-container a:hover {
   text-decoration: underline;
 }
-
+</style>
+</head>
 <body>
 
 <!-- NAV -->
@@ -179,9 +178,8 @@ body{
   <div class="nav__inner">
     <a class="brand" href="#inicio">
       <div class="brand__logo">
-  <img src="img/logo.png" alt="Logo Akkende">
-</div>
-
+        <img src="img/logo.png" alt="Logo Akkende">
+      </div>
       <div class="brand__name">Akkende</div>
     </a>
     <div class="nav__links">
@@ -358,11 +356,11 @@ body{
     <p><strong>WhatsApp:</strong> <a href="https://wa.me/573132117013" target="_blank">+57 3132117013</a></p>
     <p><strong>Ubicación:</strong> Colombia</p>
     <a href="https://wa.me/573132117013" target="_blank" class="btn-contacto">
-  Comencemos
-</a>
-
+      Comencemos
+    </a>
   </div>
 </section>
+
 <footer class="footer">
   © <span id="y"></span> Akkende · Diseño que comunica, marketing que conecta
 </footer>
