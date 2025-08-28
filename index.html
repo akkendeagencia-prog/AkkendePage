@@ -45,11 +45,13 @@ body{
   justify-content: center;
   box-shadow: var(--shadow);
 }
+
 .brand__logo img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain; /* o cover, según prefieras */
 }
+
 .brand__name{font-weight:700; color:var(--brand); letter-spacing:.2px}
 .nav__links{margin-left:auto; display:flex; gap:18px; flex-wrap:wrap}
 .nav__links a{
@@ -116,7 +118,7 @@ body{
 .tier ul{margin:0; padding-left:18px; color:#4a4a4a}
 .tier .cta{margin-top:16px}
 
-/* Portafolio */
+/* Portafolio (placeholders) */
 .portfolio{ grid-template-columns:repeat(3, 1fr); }
 .thumb{
   aspect-ratio: 4/3; border-radius:16px; overflow:hidden; background:linear-gradient(135deg, #f1e3ea, #ffffff);
@@ -136,38 +138,44 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center; /* centra el texto */
   padding: 60px 20px;
 }
 
+/* Caja del contacto */
 .contacto-container {
-  text-align: center; /* centra título y botón */
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 500px;
+  width: 100%;
 }
 
+/* Botón estilo Akkende */
 .btn-contacto {
   display: inline-block;
-  padding: 10px 20px;
-  background-color: var(--brand);
+  background-color: #8B004B; /* vino tinto */
   color: #fff;
-  border-radius: 8px;
-  text-decoration: none;   /* sin subrayado */
-  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
   transition: background 0.3s ease;
-  margin-top: 15px;
 }
 
 .btn-contacto:hover {
-  background-color: #a30059;
+  background-color: #a30057; /* un poco más claro al pasar el mouse */
 }
+.footer a{color:#fff; text-decoration:none}
 
-/* Links de email y WhatsApp */
-.contacto-container a {
-  color: var(--brand);
-  text-decoration: none;   /* sin subrayado */
-  font-weight: 500;
-}
-
-.contacto-container a:hover {
-  text-decoration: underline;
+/* Responsivo */
+@media (max-width: 980px){
+  .hero__grid, .grid, .pricing, .portfolio, .about, .contact{ grid-template-columns:1fr; }
+  .nav__links{width:100%; justify-content:center}
+  .cta--ghost{display:block; margin:10px 0 0}
 }
 </style>
 </head>
@@ -178,8 +186,9 @@ body{
   <div class="nav__inner">
     <a class="brand" href="#inicio">
       <div class="brand__logo">
-        <img src="img/logo.png" alt="Logo Akkende">
-      </div>
+  <img src="img/logo.png" alt="Logo Akkende">
+</div>
+
       <div class="brand__name">Akkende</div>
     </a>
     <div class="nav__links">
@@ -356,11 +365,11 @@ body{
     <p><strong>WhatsApp:</strong> <a href="https://wa.me/573132117013" target="_blank">+57 3132117013</a></p>
     <p><strong>Ubicación:</strong> Colombia</p>
     <a href="https://wa.me/573132117013" target="_blank" class="btn-contacto">
-      Comencemos
-    </a>
+  Comencemos
+</a>
+
   </div>
 </section>
-
 <footer class="footer">
   © <span id="y"></span> Akkende · Diseño que comunica, marketing que conecta
 </footer>
