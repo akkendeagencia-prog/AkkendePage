@@ -120,21 +120,40 @@ body{
 
 /* Portafolio */
 /* Portafolio */
-.portfolio.grid {margin-top:20px;}
-.thumb{
-  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow);
-  padding:10px; text-align:center;
+.portfolio.grid {
+  margin-top:20px;
+  display:grid;
+  grid-template-columns: repeat(5, 1fr); /* 👈 5 logos por línea */
+  gap:20px;
 }
-.thumb img{
-  max-width:100%; height:auto; border-radius:10px;
+
+.thumb {
+  background:#fff;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between; /* texto abajo */
+  align-items:center;            /* centra logo horizontal */
+  text-align:center;
+  height:220px;                  /* 👈 ajusta la altura fija */
 }
-.thumb p{margin-top:6px; font-size:.9rem; color:var(--muted)}
-/* Sobre */
-.about{
-  display:grid; gap:28px; grid-template-columns:1.1fr .9fr; align-items:center;
+
+.thumb img {
+  max-width:120px;   /* 👈 tamaño máximo del logo */
+  max-height:120px;  /* 👈 altura máxima */
+  object-fit:contain; 
+  margin:auto;       /* centra vertical */
+  flex-grow:1;       /* ocupa espacio central */
 }
-.kicker{color:var(--brand); font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:.8rem}
-.story{color:#4a4a4a; line-height:1.7}
+
+.thumb p {
+  margin-top:8px;
+  font-size:.85rem;
+  color:var(--muted);
+}
+
 
 /* Sobre */
 .about{
