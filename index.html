@@ -97,12 +97,95 @@ body{
 .card p{margin:0; color:#5a5a5a}
 
 /* Paquetes */
-.pricing{ grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); }
-.tier .price{font-size:32px; font-weight:800; color:var(--brand); margin:6px 0 12px}
-.tier ul{margin:0; padding-left:18px; color:#4a4a4a}
-.tier .cta{margin-top:32px}
-.tier {display:flex; flex-direction:column; justify-content:space-between; align-items:center; height:100%;}
-.tier .cta {margin-top:auto; align-self:center;}
+/* Sección Paquetes */
+.paquetes {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.paquetes h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.paquetes .subtitulo {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.contenedor-paquetes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.paquete {
+  background: #fff;
+  border-radius: 15px;
+  padding: 30px 25px;
+  width: 300px;
+  text-align: left;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.paquete h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.paquete h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #8a004f; /* Color principal */
+  margin-bottom: 20px;
+}
+
+.paquete ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.paquete ul li {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.paquete small {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.paquete .btn {
+  background: #8a004f;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.paquete .btn:hover {
+  background: #a3005f;
+}
+
+/* Paquete central destacado */
+.paquete.destacado {
+  border: 2px solid #f1d9e5;
+}
+
 
 /* Portafolio */
 .portfolio.grid {margin-top:20px;}
@@ -178,20 +261,55 @@ body{
 </header>
 
 <!-- SERVICIOS -->
-<section id="servicios" class="section">
-  <div class="wrap">
-    <h2 class="sec-title">Servicios</h2>
-    <p class="sec-sub">Branding primero; listos para escalar a marketing cuando tu marca esté sólida.</p>
-    <div class="grid">
-      <article class="card"><h3>Branding & Identidad Visual</h3><p>Logo, paleta, tipografías y guía de estilo.</p></article>
-      <article class="card"><h3>Diseño Publicitario</h3><p>Banners, flyers, catálogos y campañas visuales.</p></article>
-      <article class="card"><h3>Redes: Piezas & Creatividad</h3><p>Plantillas y piezas mensuales para redes.</p></article>
-      <article class="card"><h3>Motion & Reels</h3><p>Microanimaciones y videos cortos.</p></article>
-      <article class="card"><h3>Consultoría Visual</h3><p>Diagnóstico y plan de acción.</p></article>
-      <article class="card"><h3>IA como Aliada</h3><p>Prototipado ágil con supervisión creativa.</p></article>
+<section class="paquetes">
+  <h2>Paquetes para Emprendedores</h2>
+  <p class="subtitulo">Opciones claras para arrancar y crecer. Puedes personalizar cualquier plan.</p>
+
+  <div class="contenedor-paquetes">
+    <!-- Paquete 1 -->
+    <div class="paquete">
+      <h3>Despega</h3>
+      <h4>Branding inicial</h4>
+      <ul>
+        <li>Logo (3 propuestas + revisiones)</li>
+        <li>Paleta & tipografías</li>
+        <li>Manual básico de marca (PDF)</li>
+        <li>5 plantillas para redes</li>
+        <li>Asesoría 1 hora</li>
+      </ul>
+      <button class="btn">Quiero este</button>
+    </div>
+
+    <!-- Paquete 2 -->
+    <div class="paquete destacado">
+      <h3>Presencia Digital</h3>
+      <h4>Branding + Redes</h4>
+      <ul>
+        <li>Todo en “Despega”</li>
+        <li>Estrategia inicial de contenidos</li>
+        <li>12 publicaciones + copies (1 mes)</li>
+        <li>Optimización de perfiles</li>
+        <li>1 campaña básica en Meta Ads <br><small>*Inversión publicitaria no incluida</small></li>
+      </ul>
+      <button class="btn">Empezar</button>
+    </div>
+
+    <!-- Paquete 3 -->
+    <div class="paquete">
+      <h3>Acelera Ventas</h3>
+      <h4>Branding + Redes + Ads</h4>
+      <ul>
+        <li>Todo en “Presencia Digital”</li>
+        <li>2 campañas avanzadas (Meta o Google)</li>
+        <li>20 publicaciones/mes + 4 reels</li>
+        <li>Reporte mensual de resultados</li>
+        <li>Sesión estratégica mensual</li>
+      </ul>
+      <button class="btn">Hablemos</button>
     </div>
   </div>
 </section>
+
 
 <!-- PAQUETES -->
 <section id="paquetes" class="section">
