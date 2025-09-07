@@ -35,11 +35,7 @@ body{
   padding:12px 20px;
 }
 .brand{display:flex; align-items:center; gap:10px; text-decoration:none}
-.brand__logo {
-  display: flex;
-  align-items: center;
-}
-
+.brand__logo {display:flex; align-items:center;}
 .brand__name{font-weight:700; color:var(--brand); letter-spacing:.2px}
 .nav__links{margin-left:auto; display:flex; gap:18px; flex-wrap:wrap}
 .nav__links a{
@@ -90,7 +86,7 @@ body{
 }
 .sec-sub{ text-align:center; color:var(--muted); margin:0 auto 26px; max-width:760px}
 .grid{
-  display:grid; gap:20px; grid-template-columns:repeat(3, 1fr);
+  display:grid; gap:20px; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
 }
 .card{
   background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px;
@@ -101,99 +97,23 @@ body{
 .card p{margin:0; color:#5a5a5a}
 
 /* Paquetes */
-.pricing{ grid-template-columns:repeat(3, 1fr); }
+.pricing{ grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); }
 .tier .price{font-size:32px; font-weight:800; color:var(--brand); margin:6px 0 12px}
 .tier ul{margin:0; padding-left:18px; color:#4a4a4a}
 .tier .cta{margin-top:32px}
-.tier {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* reparte el espacio */
-  align-items: center;            /* centra el contenido horizontal */
-  height: 100%;                   /* asegura que todas las cards tengan la misma altura */
-}
-
-.tier .cta {
-  margin-top: auto;      /* empuja el botón hacia abajo */
-  align-self: center;    /* centra el botón horizontalmente */
-}
+.tier {display:flex; flex-direction:column; justify-content:space-between; align-items:center; height:100%;}
+.tier .cta {margin-top:auto; align-self:center;}
 
 /* Portafolio */
-<!-- PORTAFOLIO -->
-<section id="portafolio" class="section">
-  <div class="wrap">
-    <h2 class="sec-title">Portafolio</h2>
-    <p class="sec-sub">Algunos de los logos que hemos diseñado para distintas industrias.</p>
-
-    <!-- Categoría: Ambiental y Sostenible -->
-    <h3>🌱 Ambiental y Sostenible</h3>
-    <div class="portfolio grid">
-      <img class="thumb" src="img/logos/Logo-Asfrisan.png" alt="Asofrisan">
-      <img class="thumb" src="img/logos/Logo-Asvalle.png" alt="Asvalle">
-      <img class="thumb" src="img/logos/Logo-CentinelasAmbientales.png" alt="Centinelas Ambientales">
-      <img class="thumb" src="img/logos/Logo-Achika.png" alt="Áchika">
-      <img class="thumb" src="img/logos/Logo-Aguavivela.png" alt="Agua Vívela">
-      <img class="thumb" src="img/logos/Logo-Asoamazonia.png" alt="Asoamazonia">
-      <img class="thumb" src="img/logos/Logo-Sucuri.png" alt="Sucurí">
-      <img class="thumb" src="img/logos/Logo-PlanetBio.png" alt="Planet Bio">
-      <img class="thumb" src="img/logos/Logo-SurVerde.png" alt="Sur Verde">
-    </div>
-
-    <!-- Categoría: Salud y Bienestar -->
-    <h3>⚕️ Salud y Bienestar</h3>
-    <div class="portfolio grid">
-      <img class="thumb" src="img/logos/Logo-Ladipets.png" alt="Ladipets">
-      <img class="thumb" src="img/logos/Logo-MedHouse.png" alt="Med & House">
-      <img class="thumb" src="img/logos/Logo-Cosmaisol.png" alt="Cosmaisol">
-      <img class="thumb" src="img/logos/Logo-CorazonVisible.png" alt="Corazón Visible">
-      <img class="thumb" src="img/logos/Logo-Ayen.png" alt="Ayén Bienestar Ancestral">
-    </div>
-
-    <!-- Categoría: Educación e Investigación -->
-    <h3>📚 Educación e Investigación</h3>
-    <div class="portfolio grid">
-      <img class="thumb" src="img/logos/Logo-ITP.png" alt="Instituto Tecnológico del Putumayo">
-      <img class="thumb" src="img/logos/Logo-IRCAM.png" alt="IRCAM">
-      <img class="thumb" src="img/logos/Logo-MingaGrupoInvestigacion.png" alt="Minga Grupo de Investigación">
-    </div>
-
-    <!-- Categoría: Servicios y Negocios -->
-    <h3>🏢 Servicios y Negocios</h3>
-    <div class="portfolio grid">
-      <img class="thumb" src="img/logos/Logo-LuisArturoPortilla.png" alt="Luis Arturo Portilla">
-      <img class="thumb" src="img/logos/Logo-HouseLawyers.png" alt="House Lawyers">
-      <img class="thumb" src="img/logos/Logo-JT-Ingenieria.png" alt="JT Ingeniería">
-      <img class="thumb" src="img/logos/Logo-Oficopias.png" alt="Oficopias">
-    </div>
-
-    <!-- Categoría: Cultura, Arte y Creatividad -->
-    <h3>🎨 Cultura, Arte y Creatividad</h3>
-    <div class="portfolio grid">
-      <img class="thumb" src="img/logos/Logo-Sachamates2022.png" alt="Sachamates 2022">
-      <img class="thumb" src="img/logos/Logo-Upa.png" alt="Upa">
-      <img class="thumb" src="img/logos/Logo-IndiIako.png" alt="Indi Iako">
-      <img class="thumb" src="img/logos/Logo-LaKye.png" alt="LaKye">
-      <img class="thumb" src="img/logos/Logo-LaUnik.png" alt="La Únik 102.3">
-      <img class="thumb" src="img/logos/Logo-Paillahuen.png" alt="Paillahuen">
-      <img class="thumb" src="img/logos/Logo-Plumarte.png" alt="Plumarte">
-      <img class="thumb" src="img/logos/Logo-PuntoLocura.png" alt="Punto Locura">
-      <img class="thumb" src="img/logos/Logo-Sachamates.png" alt="Sachamates">
-      <img class="thumb" src="img/logos/Logo-SachamatesTipo.png" alt="Sachamates Tipografía">
-      <img class="thumb" src="img/logos/Logo-SibundoyArtesano.png" alt="Sibundoy Artesano">
-      <img class="thumb" src="img/logos/Logo-Orix.png" alt="Orix Parallel Design">
-    </div>
-
-    <!-- Categoría: Gastronomía y Comercio -->
-    <h3>🍴 Gastronomía y Comercio</h3>
-    <div class="portfolio grid">
-      <img class="thumb" src="img/logos/Logo-Quanto.png" alt="Quanto">
-      <img class="thumb" src="img/logos/Logo-GrandesVallenato.png" alt="Grandes del Vallenato">
-      <img class="thumb" src="img/logos/Logo-Tabanokan.png" alt="Tabanokan">
-    </div>
-  </div>
-</section>
-
-
+.portfolio.grid {margin-top:20px;}
+.thumb{
+  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:10px; text-align:center;
+}
+.thumb img{
+  max-width:100%; height:auto; border-radius:10px;
+}
+.thumb p{margin-top:6px; font-size:.9rem; color:var(--muted)}
 /* Sobre */
 .about{
   display:grid; gap:28px; grid-template-columns:1.1fr .9fr; align-items:center;
@@ -202,48 +122,16 @@ body{
 .story{color:#4a4a4a; line-height:1.7}
 
 /* Contacto */
-.contacto {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 60px 20px;
-}
-
-.contacto-container {
-  text-align: center; /* centra título y botón */
-}
-
+.contacto {display:flex; justify-content:center; align-items:center; padding:60px 20px;}
+.contacto-container {text-align:center;}
 .btn-contacto {
-  display: inline-block;
-  padding: 12px 25px;
-  background-color: var(--brand);
-  color: #fff !important;   /* 👈 Esto fuerza el blanco */
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 8px;
-  text-decoration: none;
-  text-align: center;
-  transition: background 0.3s ease;
-  margin-top: 20px;
+  display:inline-block; padding:12px 25px; background-color:var(--brand); color:#fff !important;
+  font-size:16px; font-weight:600; border-radius:8px; text-decoration:none;
+  text-align:center; transition:background .3s ease; margin-top:20px;
 }
-
-
-.btn-contacto:hover {
-  background-color: #a0004d;
-  color: #fff !important;   /* 👈 también blanco en hover */
-}
-
-
-/* Links de email y WhatsApp */
-.contacto-container a {
-  color: var(--brand);
-  text-decoration: none;   /* sin subrayado */
-  font-weight: 500;
-}
-
-.contacto-container a:hover {
-  text-decoration: underline;
-}
+.btn-contacto:hover {background-color:#a0004d; color:#fff !important;}
+.contacto-container a {color:var(--brand); text-decoration:none; font-weight:500;}
+.contacto-container a:hover {text-decoration:underline;}
 </style>
 </head>
 <body>
@@ -254,8 +142,6 @@ body{
 	<a class="brand" href="#inicio">
   		<img src="img/LogoAkkendePNG.png" alt="Akkende" style="height:40px; object-fit:contain;">
 	</a>
-
-
     <div class="nav__links">
       <a href="#servicios">Servicios</a>
       <a href="#paquetes">Paquetes</a>
@@ -272,14 +158,13 @@ body{
     <div>
       <span class="hero__tag">Diseño que comunica • Marketing que conecta</span>
       <h1>Diseño profesional para marcas que quieren destacar hoy y crecer mañana</h1>
-      <p>Nos enfocamos en <strong>branding e identidad visual</strong> y lo complementamos con <strong>diseño publicitario</strong> y contenido para redes. Creatividad humana + herramientas de IA para prototipar rápido y entregar con calidad.</p>
+      <p>Nos enfocamos en <strong>branding e identidad visual</strong> y lo complementamos con <strong>diseño publicitario</strong> y contenido para redes.</p>
       <div>
         <a class="cta" href="#contacto">Solicitar propuesta</a>
         <a class="cta cta--ghost" href="#portafolio">Ver portafolio</a>
       </div>
       <div class="badge" style="margin-top:10px">Colombia · Atención personalizada</div>
     </div>
-
     <div class="hero__card">
       <strong>Lo que hacemos</strong>
       <ul class="hero__list">
@@ -297,32 +182,13 @@ body{
   <div class="wrap">
     <h2 class="sec-title">Servicios</h2>
     <p class="sec-sub">Branding primero; listos para escalar a marketing cuando tu marca esté sólida.</p>
-
     <div class="grid">
-      <article class="card">
-        <h3>Branding & Identidad Visual</h3>
-        <p>Logo, paleta, tipografías y guía de estilo. Entrega lista para usar en web, redes e impresión.</p>
-      </article>
-      <article class="card">
-        <h3>Diseño Publicitario</h3>
-        <p>Banners, flyers, catálogos y campañas visuales con foco en claridad y recordación.</p>
-      </article>
-      <article class="card">
-        <h3>Redes: Piezas & Creatividad</h3>
-        <p>Plantillas y piezas mensuales para mantener una presencia coherente y atractiva.</p>
-      </article>
-      <article class="card">
-        <h3>Motion & Reels</h3>
-        <p>Microanimaciones y videos cortos para mejorar alcance e interacción.</p>
-      </article>
-      <article class="card">
-        <h3>Consultoría Visual</h3>
-        <p>Diagnóstico y plan de acción: cómo verse y comunicarse para vender mejor.</p>
-      </article>
-      <article class="card">
-        <h3>IA como Aliada</h3>
-        <p>Prototipado ágil con supervisión creativa humana para acelerar tiempos sin perder calidad.</p>
-      </article>
+      <article class="card"><h3>Branding & Identidad Visual</h3><p>Logo, paleta, tipografías y guía de estilo.</p></article>
+      <article class="card"><h3>Diseño Publicitario</h3><p>Banners, flyers, catálogos y campañas visuales.</p></article>
+      <article class="card"><h3>Redes: Piezas & Creatividad</h3><p>Plantillas y piezas mensuales para redes.</p></article>
+      <article class="card"><h3>Motion & Reels</h3><p>Microanimaciones y videos cortos.</p></article>
+      <article class="card"><h3>Consultoría Visual</h3><p>Diagnóstico y plan de acción.</p></article>
+      <article class="card"><h3>IA como Aliada</h3><p>Prototipado ágil con supervisión creativa.</p></article>
     </div>
   </div>
 </section>
@@ -331,48 +197,10 @@ body{
 <section id="paquetes" class="section">
   <div class="wrap">
     <h2 class="sec-title">Paquetes para Emprendedores</h2>
-    <p class="sec-sub">Opciones claras para arrancar y crecer. Puedes personalizar cualquier plan.</p>
-
     <div class="grid pricing">
-      <article class="card tier">
-        <h3>Despega</h3>
-        <div class="price">Branding inicial</div>
-        <ul>
-          <li>Logo (3 propuestas + revisiones)</li>
-          <li>Paleta & tipografías</li>
-          <li>Manual básico de marca (PDF)</li>
-          <li>5 plantillas para redes</li>
-          <li>Asesoría 1 hora</li>
-        </ul>
-        <a class="cta" href="#contacto">Quiero este</a>
-      </article>
-
-      <article class="card tier" style="border:2px solid var(--brand)">
-        <h3>Presencia Digital</h3>
-        <div class="price">Branding + Redes</div>
-        <ul>
-          <li>Todo en “Despega”</li>
-          <li>Estrategia inicial de contenidos</li>
-          <li>12 publicaciones + copies (1 mes)</li>
-          <li>Optimización de perfiles</li>
-          <li>1 campaña básica en Meta Ads*</li>
-        </ul>
-        <p class="badge">*Inversión publicitaria no incluida</p>
-        <a class="cta" href="#contacto">Empezar</a>
-      </article>
-
-      <article class="card tier">
-        <h3>Acelera Ventas</h3>
-        <div class="price">Branding + Redes + Ads</div>
-        <ul>
-          <li>Todo en “Presencia Digital”</li>
-          <li>2 campañas avanzadas (Meta o Google)</li>
-          <li>20 publicaciones/mes + 4 reels</li>
-          <li>Reporte mensual de resultados</li>
-          <li>Sesión estratégica mensual</li>
-        </ul>
-        <a class="cta" href="#contacto">Hablemos</a>
-      </article>
+      <article class="card tier"><h3>Despega</h3><div class="price">Branding inicial</div></article>
+      <article class="card tier" style="border:2px solid var(--brand)"><h3>Presencia Digital</h3><div class="price">Branding + Redes</div></article>
+      <article class="card tier"><h3>Acelera Ventas</h3><div class="price">Branding + Redes + Ads</div></article>
     </div>
   </div>
 </section>
@@ -381,15 +209,19 @@ body{
 <section id="portafolio" class="section">
   <div class="wrap">
     <h2 class="sec-title">Portafolio</h2>
-    <p class="sec-sub">Una muestra rápida. Sustituye los cuadros por tus imágenes.</p>
+    <p class="sec-sub">Algunos de los logos que hemos diseñado para distintas industrias.</p>
 
+    <h3>📚 Educación e Investigación</h3>
     <div class="portfolio grid">
-      <div class="thumb">Branding · Restaurante</div>
-      <div class="thumb">Campaña · Gimnasio</div>
-      <div class="thumb">Packaging · Café</div>
-      <div class="thumb">Rediseño · Moda</div>
-      <div class="thumb">Evento · Cultura</div>
-      <div class="thumb">Social Ads · Retail</div>
+      <div class="thumb"><img src="img/logos/Logo-ITP.png" alt="ITP"><p>Instituto Tecnológico del Putumayo</p></div>
+      <div class="thumb"><img src="img/logos/Logo-IRCAM.png" alt="IRCAM"><p>IRCAM</p></div>
+      <div class="thumb"><img src="img/logos/Logo-MingaGrupoInvestigacion.png" alt="Minga"><p>Minga Grupo de Investigación</p></div>
+    </div>
+
+    <h3>🎨 Cultura, Arte y Creatividad</h3>
+    <div class="portfolio grid">
+      <div class="thumb"><img src="img/logos/Logo-Orix.png" alt="Orix"><p>Orix Parallel Design</p></div>
+      <div class="thumb"><img src="img/logos/Logo-Sachamates.png" alt="Sachamates"><p>Sachamates</p></div>
     </div>
   </div>
 </section>
@@ -400,23 +232,7 @@ body{
     <div>
       <div class="kicker">Nuestra historia</div>
       <h2 class="sec-title" style="text-align:left">Akkende</h2>
-      <p class="story">
-        Akkende nació con una idea simple: el diseño no es solo estética; es comunicación que conecta.
-        En una industria transformada por la tecnología, unimos <strong>creatividad humana</strong> con
-        <strong>herramientas de IA</strong> para entregar identidad, claridad y velocidad.
-        Empezamos por donde todo comienza: <strong>branding sólido</strong>. Luego, escalamos hacia campañas
-        y marketing cuando tu marca está lista para crecer.
-      </p>
-    </div>
-    <div class="panel">
-      <strong>Quiénes somos y qué tenemos</strong>
-      <ul class="hero__list">
-        <li>• Experiencia en diseño & marketing</li>
-        <li>• Dominio de tendencias y herramientas digitales</li>
-        <li>• Portafolio y casos de éxito</li>
-        <li>• Red de aliados creativos</li>
-      </ul>
-      <div class="badge">Atención personalizada · Seguimiento y reportes · Soporte postventa</div>
+      <p class="story">Akkende nació con una idea simple: el diseño no es solo estética; es comunicación que conecta.</p>
     </div>
   </div>
 </section>
@@ -425,24 +241,13 @@ body{
 <section id="contacto" class="contacto">
   <div class="contacto-container">
     <h2>Contacto</h2>
-    <p>Cuéntanos tu idea y armamos una propuesta a tu medida.</p>
     <p><strong>Email:</strong> <a href="mailto:akkendeagencia@gmail.com">akkendeagencia@gmail.com</a></p>
     <p><strong>WhatsApp:</strong> <a href="https://wa.me/573132117013" target="_blank">+57 3132117013</a></p>
-    <p><strong>Ubicación:</strong> Colombia</p>
-    <a href="https://wa.me/573132117013" target="_blank" class="btn-contacto">
-      Comencemos
-    </a>
+    <a href="https://wa.me/573132117013" target="_blank" class="btn-contacto">Comencemos</a>
   </div>
 </section>
 
-<footer class="footer">
-  © <span id="y"></span> Akkende · Diseño que comunica, marketing que conecta
-</footer>
-
-<script>
-  // Año del footer
-  document.getElementById('y').textContent = new Date().getFullYear();
-</script>
-
+<footer class="footer">© <span id="y"></span> Akkende · Diseño que comunica</footer>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
