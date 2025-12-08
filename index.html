@@ -1,360 +1,385 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akkende Estudio – Diseño & Branding</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Akkende · Diseño que comunica</title>
 
-  <!-- ====== ESTILOS ====== -->
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Inter", sans-serif;
-    }
+<!-- Tipografía -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    body {
-      color: #222;
-      background: #fafafa;
-      line-height: 1.6;
-    }
+<style>
+/* ============================================================
+   VARIABLES
+============================================================ */
+:root{
+  --brand:#8B004B;
+  --text:#3a3a3a;
+  --muted:#707070;
+  --bg:#FAFAFA;
+  --white:#fff;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+  --radius:18px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto;
+  color:var(--text); background:var(--bg);
+}
 
-    header {
-      background: white;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid #eee;
-    }
+/* ============================================================
+   NAV
+============================================================ */
+.nav{
+  position:sticky; top:0; z-index:50; background:var(--white);
+  border-bottom:1px solid #eee; backdrop-filter:saturate(180%) blur(6px);
+}
+.nav__inner{
+  max-width:1180px; margin:auto; display:flex; align-items:center; gap:18px;
+  padding:12px 20px;
+}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+.brand__name{font-weight:700; color:var(--brand); letter-spacing:.2px}
+.nav__links{
+  margin-left:auto; display:flex; gap:18px; flex-wrap:wrap;
+}
+.nav__links a{
+  text-decoration:none; color:var(--text); font-weight:600; font-size:.95rem;
+}
+.nav__links a:hover,
+.nav__links a.active{
+  color:var(--brand);
+}
 
-    header nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #333;
-      font-weight: 600;
-    }
+/* ------ Hamburguesa ------ */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:4px;
+  cursor:pointer;
+}
+.hamburger div{
+  width:26px;
+  height:3px;
+  background:var(--brand);
+  border-radius:3px;
+}
 
-    /* ===== HERO ===== */
-    .hero {
-      padding: 100px 40px;
-      text-align: center;
-      background: #ffffff;
-    }
+/* Menú móvil */
+@media(max-width:900px){
+  .hamburger{display:flex;}
+  .nav__links{
+    position:absolute; top:60px; right:0;
+    background:white;
+    flex-direction:column;
+    padding:20px;
+    gap:15px;
+    box-shadow:var(--shadow);
+    border-radius:0 0 12px 12px;
+    display:none;
+  }
+  .nav__links.open{display:flex;}
+}
 
-    .hero h1 {
-      font-size: 56px;
-      font-weight: 800;
-      margin-bottom: 20px;
-    }
+/* ============================================================
+   SECCIONES / HERO
+============================================================ */
+.section{padding:70px 20px;}
+.wrap{max-width:1180px; margin:auto;}
 
-    .hero p {
-      font-size: 20px;
-      color: #555;
-      max-width: 700px;
-      margin: 0 auto;
-    }
+.hero{
+  padding:90px 20px 60px; background:linear-gradient(180deg, #fff 0%, #fff 55%, #fafafa 100%);
+}
+.hero__grid{
+  display:grid; grid-template-columns:1.2fr .8fr; gap:34px; align-items:center;
+}
+.hero h1{
+  font-size:clamp(32px, 5vw, 54px); line-height:1.05; margin:0 0 12px;
+  color:#1d1d1d;
+}
+.hero__tag{
+  display:inline-block; background:rgba(139,0,75,.08); color:var(--brand);
+  padding:6px 12px; border-radius:999px; font-weight:600; font-size:.9rem; margin-bottom:14px;
+}
+.hero p{color:var(--muted); font-size:1.05rem; margin:0 0 18px}
+.cta{
+  display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
+  padding:12px 20px; border-radius:12px; font-weight:700; box-shadow:var(--shadow);
+}
+.cta--ghost{
+  background:transparent; color:var(--brand); border:2px solid var(--brand);
+  margin-left:10px;
+}
+.hero__card{
+  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:22px;
+}
+.hero__list{list-style:none; padding:0; margin:16px 0 0}
+.hero__list li{display:flex; gap:10px; margin:10px 0; color:#4a4a4a}
+.badge{font-size:.8rem; color:#888}
 
-    /* ===== SECCIONES ===== */
-    section {
-      padding: 80px 40px;
-    }
+/* ============================================================
+   SERVICIOS
+============================================================ */
+.sec-title{
+  text-align:center; margin-bottom:10px; font-size:clamp(24px,3.6vw,36px);
+  color:#1d1d1d;
+}
+.sec-sub{ text-align:center; color:var(--muted); margin:0 auto 26px; max-width:760px}
+.grid{
+  display:grid; gap:20px; grid-template-columns:repeat(3, 1fr);
+}
+.card{
+  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.card:hover{transform:translateY(-6px); box-shadow:0 16px 34px rgba(0,0,0,.12)}
+.card h3{margin:6px 0 8px; color:#1d1d1d}
+.card p{margin:0; color:#5a5a5a}
 
-    h2 {
-      font-size: 40px;
-      font-weight: 800;
-      margin-bottom: 40px;
-      text-align: center;
-    }
+/* ============================================================
+   PAQUETES
+============================================================ */
+.pricing{ grid-template-columns:repeat(3, 1fr); }
+.tier .price{font-size:32px; font-weight:800; color:var(--brand); margin:6px 0 12px}
+.tier ul{margin:0; padding-left:18px; color:#4a4a4a}
+.tier .cta{margin-top:32px}
+.tier {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.tier .cta {
+  margin-top: auto;
+  align-self: center;
+}
 
-    p {
-      max-width: 800px;
-      margin-bottom: 16px;
-    }
+/* ============================================================
+   PORTAFOLIO
+============================================================ */
+.portfolio.grid {
+  margin-top:20px;
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap:20px;
+}
+.thumb {
+  background:#fff;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  text-align:center;
+  height:220px;
+}
+.thumb img {
+  max-width:120px;
+  max-height:120px;
+  object-fit:contain; 
+  margin:auto;
+  flex-grow:1;
+}
+.thumb p {
+  margin-top:8px;
+  font-size:.85rem;
+  color:var(--muted);
+}
 
-    /* ===== SOBRE ===== */
-    .sobre {
-      display: grid;
-      gap: 30px;
-      max-width: 1000px;
-      margin: auto;
-    }
+/* ============================================================
+   SOBRE
+============================================================ */
+.about{
+  display:grid; gap:28px; grid-template-columns:1.1fr .9fr; align-items:center;
+}
+.kicker{color:var(--brand); font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:.8rem}
+.story{color:#4a4a4a; line-height:1.7}
 
-    /* ===== SERVICIOS ===== */
-    .servicios-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      max-width: 1100px;
-      margin: auto;
-    }
+/* ============================================================
+   CONTACTO
+============================================================ */
+.contacto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+.contacto-container { text-align:center; }
+.btn-contacto {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: var(--brand);
+  color: #fff !important;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  margin-top: 20px;
+}
+.btn-contacto:hover {
+  background-color: #a0004d;
+  color: #fff !important;
+}
 
-    .servicio {
-      background: #fff;
-      border: 1px solid #eee;
-      padding: 30px;
-      border-radius: 12px;
-      transition: 0.3s ease;
-    }
+/* ============================================================
+   BOTÓN VOLVER ARRIBA
+============================================================ */
+#backTop {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  background: var(--brand);
+  color: white;
+  padding: 12px 14px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  display: none;
+  z-index: 60;
+}
+#backTop:hover {
+  background: #a0004d;
+}
 
-    .servicio:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-    }
-
-    .servicio h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    /* ===== PORTAFOLIO ===== */
-    .portfolio-filters {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .portfolio-filters button {
-      background: #eee;
-      border: none;
-      padding: 10px 18px;
-      margin: 5px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.3s ease;
-    }
-
-    .portfolio-filters button.active {
-      background: #222;
-      color: #fff;
-    }
-
-    .portfolio-category {
-      display: none; /* Ocultamos todo por defecto */
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .portfolio-category h3 {
-      margin-top: 40px;
-      margin-bottom: 20px;
-      font-size: 26px;
-      font-weight: 700;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .thumb {
-      width: 100%;
-      height: 180px;
-      background: #ddd;
-      border-radius: 12px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      background: #111;
-      color: white;
-      margin-top: 60px;
-    }
-  </style>
+/* ============================================================
+   RESPONSIVE GRID PORTAFOLIO
+============================================================ */
+@media(max-width:1100px){
+  .portfolio.grid{
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media(max-width:900px){
+  .portfolio.grid{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media(max-width:600px){
+  .portfolio.grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- ================= HEADER ================= -->
-  <header>
-    <div class="logo">
-      <strong>Akkende</strong>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#inicio">
+      <img src="img/AkkendePNG.png" style="height:40px;">
+    </a>
+
+    <!-- Botón hamburguesa -->
+    <div class="hamburger" id="hamburger">
+      <div></div><div></div><div></div>
     </div>
-    <nav>
-      <a href="#sobre">Sobre</a>
+
+    <!-- Links -->
+    <div class="nav__links" id="navLinks">
       <a href="#servicios">Servicios</a>
+      <a href="#paquetes">Paquetes</a>
       <a href="#portafolio">Portafolio</a>
+      <a href="#sobre">Sobre</a>
       <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
-
-  <!-- ================= HERO ================= -->
-  <section class="hero">
-    <h1>Diseño que impulsa tu marca</h1>
-    <p>Branding, diseño gráfico, ilustración y estrategia visual para negocios que quieren destacar con una identidad sólida, moderna y memorable.</p>
-  </section>
-
-  <!-- ================= SOBRE ================= -->
-  <section id="sobre">
-    <h2>Sobre nosotros</h2>
-    <div class="sobre">
-      <p>
-        Somos un estudio creativo especializado en <strong>branding, diseño editorial, ilustración y comunicación visual estratégica</strong>.
-        Creamos identidades visuales con propósito, estética y enfoque comercial.
-      </p>
-      <p>
-        Combinamos diseño, psicología del consumidor y storytelling para construir marcas que se sienten profesionales, coherentes y memorables.
-      </p>
-
-      <h3>¿Qué nos hace diferentes?</h3>
-      <ul>
-        <li>✔ Branding funcional y adaptable</li>
-        <li>✔ Diseño editorial profesional</li>
-        <li>✔ Ilustración aplicada a marcas</li>
-        <li>✔ Dominio de tendencias y consistencia visual</li>
-      </ul>
     </div>
-  </section>
-
-  <!-- ================= SERVICIOS ================= -->
-  <section id="servicios">
-    <h2>Servicios</h2>
-
-    <div class="servicios-grid">
-
-      <div class="servicio">
-        <h3>Branding & Identidad Visual</h3>
-        <p>Logotipos profesionales, construcción de marca, paleta de color, tipografía y guías visuales.</p>
-      </div>
-
-      <div class="servicio">
-        <h3>Diseño Editorial</h3>
-        <p>Revistas, catálogos, informes, presentaciones y maquetación profesional.</p>
-      </div>
-
-      <div class="servicio">
-        <h3>Ilustración & Personajes</h3>
-        <p>Diseño de personajes, infografías ilustradas y gráficos personalizados.</p>
-      </div>
-
-      <div class="servicio">
-        <h3>Diseño para Redes</h3>
-        <p>Packs de contenido, templates, visuales publicitarios, optimización social media.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= PORTAFOLIO ================= -->
-  <section id="portafolio">
-    <h2>Portafolio</h2>
-
-    <!-- FILTROS -->
-    <div class="portfolio-filters">
-      <button data-filter="logos">Logos</button>
-      <button data-filter="editorial">Editorial</button>
-      <button data-filter="personajes">Personajes</button>
-      <button data-filter="infografias">Infografías</button>
-    </div>
-
-    <!-- ===== LOGOS ===== -->
-    <div class="portfolio-category" data-category="logos">
-
-    <!-- 1. Sector ambiental y sostenible -->
-    <h3>🌱 Empresas del sector ambiental y sostenible</h3>
-    <div class="portfolio grid">
-      <div class="thumb"><img src="img/Logo-AguaVívela.png" alt="Agua Vívela"><p>Agua Vívela</p></div>
-      <div class="thumb"><img src="img/Logo-Asoamazonia.png" alt="Asoamazonía"><p>Asoamazonía</p></div>
-      <div class="thumb"><img src="img/a-Logo-Asvalle.png" alt="Asvalle"><p>Asvalle</p></div>
-      <div class="thumb"><img src="img/Logo-Balastreras-y-Triturados.png" alt="Balastreras y Triturados"><p>Balastreras y Triturados</p></div>
-	 <div class="thumb"><img src="img/a-Logo-Asofrisan.png" alt="Asofrisan"><p>Asofrisan</p></div>
-		<div class="thumb"><img src="img/Logo-Indi Iako.png" alt="Indi Iako"><p>Indi Iako</p></div>
-		<div class="thumb"><img src="img/a-Logo-CentinelasAmbientales.png" alt="Centinelas Ambientales"><p>Centinelas Ambientales</p></div>
-		<div class="thumb"><img src="img/Logo-Áchika.png" alt="Áchika"><p>Áchika</p></div>
-		<div class="thumb"><img src="img/a-Logo-Sucurí.png" alt="Sucurí"><p>Sucurí</p></div>
-		<div class="thumb"><img src="img/Logo-PlanetBio.png" alt="Planet Bio"><p>Planet Bio</p></div>
-		<div class="thumb"><img src="img/LogoSurVerde.png" alt="Sur Verde"><p>Sur Verde</p></div>
-    </div>
-
-    <!-- 2. Salud, ciencia y bienestar -->
-    <h3>🧬 Salud, ciencia y bienestar</h3>
-    <div class="portfolio grid">
-      <div class="thumb"><img src="img/Logo-CorazónVisible.png" alt="Corazón Visible"><p>Corazón Visible</p></div>
-      <div class="thumb"><img src="img/Logo-Cosmaisol.png" alt="Cosmaisol"><p>Cosmaisol</p></div>
-		<div class="thumb"><img src="img/a-Logo-Med&House.png" alt="Med&House"><p>Med&House</p></div>
-		<div class="thumb"><img src="img/a-Logo-Ladipets.png" alt="Ladipets"><p>Ladipets</p></div>
-      <div class="thumb"><img src="img/Logo-Ayén.png" alt="Ayén"><p>Ayén</p></div>
-    	<div class="thumb"><img src="img/Logo-Paillahuen.png" alt="Paillahuen"><p>Paillahuen</p></div>
-	<div class="thumb"><img src="img/a-Logo-CatheringSolarte.png" alt="Paillahuen"><p>Paillahuen</p></div>
-	</div>
-
-    <!-- 3. Educación y conocimiento -->
-    <h3>📚 Educación y conocimiento</h3>
-    <div class="portfolio grid">
-      <div class="thumb"><img src="img/Logo-IRCAM.png" alt="IRCAM"><p>IRCAM</p></div>
-      <div class="thumb"><img src="img/Logo-MInga-GrupoInvestigación.png" alt="Minga Grupo de Investigación"><p>Minga Grupo de Investigación</p></div>
-      <div class="thumb"><img src="img/a-Logo-ITP.png" alt="ITP"><p>ITP</p></div>
-    </div>
-
-    <!-- 4. Servicios y negocios -->
-    <h3>💼 Empresas de servicios y negocios</h3>
-    <div class="portfolio grid">
-      <div class="thumb"><img src="img/Logo-HouseLawyers.png" alt="House Lawyers"><p>House Lawyers</p></div>
-      <div class="thumb"><img src="img/Logo-JT-Ingeniería.png" alt="JT Ingeniería"><p>JT Ingeniería</p></div>
-      <div class="thumb"><img src="img/Logo-Oficopias.png" alt="Oficopias"><p>Oficopias</p></div>
-		<div class="thumb"><img src="img/Logo-Orix.png" alt="Orix Parallel Design"><p>Orix Parallel Design</p></div>
-    	<div class="thumb"><img src="img/a-Logo-LuisArturoPortillaLópez.png" alt="Luis Arturo Portilla López"><p>Luis Arturo Portilla López</p></div>
-		<div class="thumb"><img src="img/LogoPuntoLocura.png" alt="Punto Locura"><p>Punto Locura</p></div>
-		<div class="thumb"><img src="img/Logo-Tabanokan.png" alt="Tabanokan"><p>Tabanokan</p></div>
-	     <div class="thumb"><img src="img/Logo-LaKaye.png" alt="La Kaye"><p>La Kaye</p></div>
-		<div class="thumb"><img src="img/a-Logo-Quanto.png" alt="Quanto"><p>Quanto</p></div>
-	</div>
-
-    <!-- 5. Cultura, arte y entretenimiento -->
-    <h3>🎨 Cultura, arte y entretenimiento</h3>
-    <div class="portfolio grid">
-		<div class="thumb"><img src="img/Logo-LaÚnik.png" alt="La Únik"><p>La Únik</p></div>
-		<div class="thumb"><img src="img/a-Logo-Upa.png" alt="Upa"><p>Upa</p></div>
-		<div class="thumb"><img src="img/Logo-SachamatesTypo.png" alt="Sachamates Typo"><p>Sachamates Typo</p></div>
-     	<div class="thumb"><img src="img/a-LogoSachamates2022.png" alt="Sachamates 2022"><p>Sachamates 2022</p></div>
-		<div class="thumb"><img src="img/Logo-Plumarte.png" alt="Plumarte"><p>Plumarte</p></div>
-		<div class="thumb"><img src="img/Logo-SibundoyArtesano.png" alt="Sibundoy Artesano"><p>Sibundoy Artesano</p></div>
-         <div class="thumb"><img src="img/Logo-Grandes-del-Vallenato.png" alt="Grandes del Vallenato"><p>Grandes del Vallenato</p></div>
-	</div>
-
   </div>
+</nav>
+
+<!-- HERO (Recortado para ahorrar espacio en la respuesta) -->
+<header id="inicio" class="hero">
+  <!-- Tu contenido original -->
+</header>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="section">
+  <!-- Tu contenido original -->
 </section>
 
-  <!-- ================= CONTACTO ================= -->
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p style="text-align:center;">Escríbenos para comenzar tu proyecto.</p>
-  </section>
+<!-- PAQUETES -->
+<section id="paquetes" class="section">
+  <!-- Tu contenido original -->
+</section>
 
-  <!-- ================= FOOTER ================= -->
-  <footer>
-    © 2025 Akkende Estudio — Diseño & Branding
-  </footer>
+<!-- PORTAFOLIO -->
+<section id="portafolio" class="section">
+  <!-- Tu contenido original -->
+</section>
 
-  <!-- ================= SCRIPT ================= -->
-  <script>
-    const buttons = document.querySelectorAll(".portfolio-filters button");
-    const categories = document.querySelectorAll(".portfolio-category");
+<!-- SOBRE -->
+<section id="sobre" class="section">
+  <!-- Tu contenido original -->
+</section>
 
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
+<!-- CONTACTO -->
+<section id="contacto" class="contacto">
+  <!-- Tu contenido original -->
+</section>
 
-        // Activar botón
-        document.querySelector(".portfolio-filters button.active")?.classList.remove("active");
-        btn.classList.add("active");
+<!-- BOTÓN SUBIR -->
+<div id="backTop">↑</div>
 
-        const filtro = btn.dataset.filter;
+<script>
+/* ==========================================
+   MENÚ HAMBURGUESA
+========================================== */
+const hamb = document.getElementById("hamburger");
+const navLinks = document.getElementById("navLinks");
 
-        // Ocultar todas
-        categories.forEach(cat => cat.style.display = "none");
+hamb.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
 
-        // Mostrar solo la seleccionada
-        const seleccionada = document.querySelector(`.portfolio-category[data-category="${filtro}"]`);
-        if (seleccionada) seleccionada.style.display = "block";
-      });
-    });
-  </script>
+/* Cerrar menú al hacer clic en un link */
+document.querySelectorAll(".nav__links a").forEach(a=>{
+  a.addEventListener("click", ()=> navLinks.classList.remove("open"));
+});
+
+/* ==========================================
+   BOTÓN VOLVER ARRIBA
+========================================== */
+const backTop = document.getElementById("backTop");
+
+window.addEventListener("scroll", () => {
+  if(window.scrollY > 500) backTop.style.display = "block";
+  else backTop.style.display = "none";
+});
+
+backTop.addEventListener("click", () => {
+  window.scrollTo({top:0, behavior:"smooth"});
+});
+
+/* ==========================================
+   ACTIVAR LINK SEGÚN SCROLL
+========================================== */
+const sections = document.querySelectorAll("section, header");
+const navItems = document.querySelectorAll(".nav__links a");
+
+const options = {
+  threshold: 0.4
+};
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navItems.forEach(a=>a.classList.remove("active"));
+      let id = entry.target.id;
+      let activeLink = document.querySelector(`.nav__links a[href="#${id}"]`);
+      if(activeLink) activeLink.classList.add("active");
+    }
+  });
+}, options);
+
+sections.forEach(sec=>observer.observe(sec));
+</script>
 
 </body>
 </html>
