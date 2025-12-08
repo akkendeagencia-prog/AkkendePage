@@ -518,44 +518,82 @@ body{
 </footer>
 
 <script>
-  // Año del footer
-  document.getElementById('y').textContent = new Date().getFullYear();
+// Año del footer
+document.getElementById('y').textContent = new Date().getFullYear();
 </script>
+
 <script>
-function setupToggle(buttonId, contentId, labelOn, labelOff) {
-    const btn = document.getElementById(buttonId);
-    const content = document.getElementById(contentId);
+// Todas las secciones y botones
+const sections = {
+    toggleLogos: {
+        btn: "toggleLogos",
+        content: "logosContent",
+        labelOn: "Logos",
+        labelOff: "Ocultar logos"
+    },
+    toggleCartillas: {
+        btn: "toggleCartillas",
+        content: "cartillasContent",
+        labelOn: "Editorial",
+        labelOff: "Ocultar sección"
+    },
+    togglePersonajes: {
+        btn: "togglePersonajes",
+        content: "personajesContent",
+        labelOn: "Ilustración",
+        labelOff: "Ocultar ilustración"
+    },
+    toggleInfografias: {
+        btn: "toggleInfografias",
+        content: "infografiasContent",
+        labelOn: "Diagramación",
+        labelOff: "Ocultar sección"
+    }
+};
 
-    let isOpen = false;
 
-    btn.addEventListener("click", () => {
-        isOpen = !isOpen;
+// 🔥 Cierra TODAS las secciones menos la activa
+function closeAllExcept(activeKey) {
+    for (const key in sections) {
+        if (key === activeKey) continue;
 
-        if (isOpen) {
-            content.classList.add("show");
-            btn.textContent = labelOff;
-            btn.classList.add("cta--ghost");
-        } else {
-            content.classList.remove("show");
-            btn.textContent = labelOn;
-            btn.classList.remove("cta--ghost");
-        }
-    });
+        const { btn, content, labelOn } = sections[key];
+
+        document.getElementById(content).classList.remove("show");
+
+        const b = document.getElementById(btn);
+        b.textContent = labelOn;
+        b.classList.remove("cta--ghost");
+    }
 }
 
-// Botón Logos
-setupToggle("toggleLogos", "logosContent", "Logos", "Ocultar logos");
 
-// Botones nuevos
-setupToggle("toggleCartillas", "cartillasContent",
-            "Editorial", "Ocultar sección");
+// 🔥 Activa cada botón con cierre automático del resto
+for (const key in sections) {
+    const { btn, content, labelOn, labelOff } = sections[key];
+    const button = document.getElementById(btn);
+    const contentDiv = document.getElementById(content);
 
-setupToggle("togglePersonajes", "personajesContent",
-            "Ilustración", "Ocultar ilustración");
+    button.addEventListener("click", () => {
+        // Si ya estaba abierto → cerrarlo
+        if (contentDiv.classList.contains("show")) {
+            contentDiv.classList.remove("show");
+            button.textContent = labelOn;
+            button.classList.remove("cta--ghost");
+            return;
+        }
 
-setupToggle("toggleInfografias", "infografiasContent",
-            "Diagramación", "Ocultar sección");
+        // 1. Cerrar todas las demás secciones
+        closeAllExcept(key);
+
+        // 2. Abrir la actual
+        contentDiv.classList.add("show");
+        button.textContent = labelOff;
+        button.classList.add("cta--ghost");
+    });
+}
 </script>
+
 
 </body>
 </html>
