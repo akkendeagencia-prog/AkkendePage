@@ -83,9 +83,10 @@ body{
 	font-size:1rem;
 }
 
-.cta--ghost{
-  background:transparent; color:var(--brand); border:2px solid var(--brand);
-  margin-left:10px;
+.cta--ghost {
+  background: #fff;               /* fondo blanco */
+  color: var(--brand);            /* texto bordó */
+  border: 2px solid var(--brand); /* borde bordó */
 }
 
 .hero__card{
@@ -487,7 +488,7 @@ body{
     logos.style.display = isHidden ? "block" : "none";
 
     if (isHidden) {
-      btn.textContent = "Ocultar logos"; // texto al abrir
+      btn.textContent = "Logos"; // texto al abrir
       // Mantenemos SOLO el estilo .cta
       btn.classList.remove("cta--ghost");
     } else {
