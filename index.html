@@ -345,7 +345,7 @@ body{
 <section id="portafolio" class="section">
   <div class="wrap">
     <h2 class="sec-title">Portafolio</h2>
-	  <button id="toggleLogos" class="cta cta--ghost" style="margin: 10px auto 25px; display:block;">
+	  <button id="toggleLogos" class="cta" style="margin: 10px auto 25px; display:block;">
  		 Logos
 	</button>
 
@@ -473,10 +473,21 @@ body{
 
   btn.addEventListener("click", () => {
     const isHidden = logos.style.display === "none" || logos.style.display === "";
+
     logos.style.display = isHidden ? "block" : "none";
-    btn.textContent = isHidden ? "Ocultar logos" : "Logos";
+
+    if (isHidden) {
+      // Cuando se despliegan (estado "Ocultar logos")
+      btn.textContent = "Ocultar logos";
+      btn.classList.add("cta--ghost");
+    } else {
+      // Cuando se ocultan (estado inicial "Logos")
+      btn.textContent = "Logos";
+      btn.classList.remove("cta--ghost");
+    }
   });
 </script>
+
 
 </body>
 </html>
