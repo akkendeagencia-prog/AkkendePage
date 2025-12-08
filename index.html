@@ -359,6 +359,18 @@ body{
 	  <button id="toggleLogos" class="cta" style="margin: 10px auto 25px; display:block;">
  		 Logos
 	</button>
+	<button id="toggleCartillas" class="cta" style="margin: 10px auto 10px; display:block;">
+	  Editorial
+	</button>
+	
+	<button id="togglePersonajes" class="cta" style="margin: 10px auto 10px; display:block;">
+	  Ilustración
+	</button>
+	
+	<button id="toggleInfografias" class="cta" style="margin: 10px auto 25px; display:block;">
+	  Diagramación
+	</button>
+
 
 <div id="logosContent">
 	 <p class="sec-sub">Algunos de los logos que hemos diseñado para distintas organizaciones.</p>
@@ -426,6 +438,18 @@ body{
   </div>
 </div>
 </div>
+<div id="cartillasContent" style="display:none;">
+  <p class="sec-sub">Contenido de cartillas, libros, portafolios y facturas aquí.</p>
+</div>
+
+<div id="personajesContent" style="display:none;">
+  <p class="sec-sub">Contenido de diseño de personaje aquí.</p>
+</div>
+
+<div id="infografiasContent" style="display:none;">
+  <p class="sec-sub">Contenido de infografías y guías aquí.</p>
+</div>
+
 </section>
 
 
@@ -479,28 +503,38 @@ body{
   document.getElementById('y').textContent = new Date().getFullYear();
 </script>
 <script>
-  const btn = document.getElementById("toggleLogos");
-  const logos = document.getElementById("logosContent");
+function setupToggle(buttonId, contentId, labelOn, labelOff) {
+    const btn = document.getElementById(buttonId);
+    const content = document.getElementById(contentId);
 
-  btn.addEventListener("click", () => {
-    const isHidden = logos.style.display === "none" || logos.style.display === "";
+    btn.addEventListener("click", () => {
+        const isHidden = content.style.display === "none" || content.style.display === "";
 
-    logos.style.display = isHidden ? "block" : "none";
+        content.style.display = isHidden ? "block" : "none";
 
-    if (isHidden) {
-      // Logos aparecieron → convertir a estilo ghost
-      btn.textContent = "Ocultar logos";
-      btn.classList.add("cta--ghost");      // <- ESTO ES LO IMPORTANTE
-    } else {
-      // Logos se ocultaron → volver al estilo normal .cta
-      btn.textContent = "Logos";
-      btn.classList.remove("cta--ghost");   // <- QUITA EL ESTILO GHOST
-    }
-  });
+        if (isHidden) {
+            btn.textContent = labelOff;
+            btn.classList.add("cta--ghost");
+        } else {
+            btn.textContent = labelOn;
+            btn.classList.remove("cta--ghost");
+        }
+    });
+}
+
+// Botón existente (Logos)
+setupToggle("toggleLogos", "logosContent", "Logos", "Ocultar logos");
+
+// Nuevos botones
+setupToggle("toggleCartillas", "cartillasContent",
+            "Cartillas, libros, portafolios, facturas", "Ocultar sección");
+
+setupToggle("togglePersonajes", "personajesContent",
+            "Diseño de personaje", "Ocultar personajes");
+
+setupToggle("toggleInfografias", "infografiasContent",
+            "Infografía y guías", "Ocultar infografías");
 </script>
-
-
-
 
 </body>
 </html>
