@@ -70,18 +70,13 @@ body{
   padding:6px 12px; border-radius:999px; font-weight:600; font-size:.9rem; margin-bottom:14px;
 }
 .hero p{color:var(--muted); font-size:1.05rem; margin:0 0 18px}
-.cta {
-  background: #8B004B;
-  color: #fff;
-  border: 2px solid #8B004B;   /* 🔥 Borde del color indicado */
-  border-radius: 8px;          /* Esquinas redondeadas */
+.cta{
+  display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
+  padding:12px 20px; border-radius:12px; font-weight:700; box-shadow:var(--shadow);
 }
-
-.cta--ghost {
-  background: transparent;
-  color: #8B004B;
-  border: 2px solid #8B004B;   /* 🔥 Borde igual en el estado ghost */
-  border-radius: 8px;
+.cta--ghost{
+  background:transparent; color:var(--brand); border:2px solid var(--brand);
+  margin-left:10px;
 }
 
 .hero__card{
