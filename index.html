@@ -356,7 +356,7 @@ body{
 <section id="portafolio" class="section">
   <div class="wrap">
     <h2 class="sec-title">Portafolio</h2>
-	  <button id="toggleLogos" class="cta cta--ghost" style="margin: 10px auto 25px; display:block;">
+	  <button id="toggleLogos" class="cta" style="margin: 10px auto 25px; display:block;">
  		 Logos
 	</button>
 
@@ -488,15 +488,17 @@ body{
     logos.style.display = isHidden ? "block" : "none";
 
     if (isHidden) {
-      btn.textContent = "Logos"; // texto al abrir
-      // Mantenemos SOLO el estilo .cta
-      btn.classList.remove("cta--ghost");
+      // Logos aparecieron → convertir a estilo ghost
+      btn.textContent = "Ocultar logos";
+      btn.classList.add("cta--ghost");      // <- ESTO ES LO IMPORTANTE
     } else {
-      btn.textContent = "Logos"; // texto al cerrar
-      btn.classList.remove("cta--ghost");
+      // Logos se ocultaron → volver al estilo normal .cta
+      btn.textContent = "Logos";
+      btn.classList.remove("cta--ghost");   // <- QUITA EL ESTILO GHOST
     }
   });
 </script>
+
 
 
 
