@@ -71,9 +71,16 @@ body{
 }
 .hero p{color:var(--muted); font-size:1.05rem; margin:0 0 18px}
 .cta{
-  display:inline-block; background:var(--brand); color:#fff; text-decoration:none;
-  padding:12px 20px; border-radius:12px; font-weight:700; box-shadow:var(--shadow);
+  display:inline-block; 
+  background:var(--brand); 
+  color:#fff; 
+  text-decoration:none;
+  padding:12px 20px; 
+  border-radius:12px; 
+  font-weight:700; 
+  box-shadow:var(--shadow);
 }
+
 .cta--ghost{
   background:transparent; color:var(--brand); border:2px solid var(--brand);
   margin-left:10px;
@@ -320,9 +327,9 @@ body{
           <li>Estrategia inicial de contenidos</li>
           <li>12 publicaciones + copies (1 mes)</li>
           <li>Optimización de perfiles</li>
-          <li>1 campaña básica en Meta Ads</li>
+          <li>1 campaña básica en Meta Ads*</li>
         </ul>
-        <p class="badge">Inversión publicitaria no incluida</p>
+        <p class="badge">*Inversión publicitaria no incluida</p>
         <a class="cta" href="#contacto">Empezar</a>
       </article>
 
@@ -346,7 +353,7 @@ body{
 <section id="portafolio" class="section">
   <div class="wrap">
     <h2 class="sec-title">Portafolio</h2>
-	  <button id="toggleLogos" class="cta" href="#contacto">
+	  <button id="toggleLogos" class="cta" style="margin: 10px auto 25px; display:block;">
  		 Logos
 	</button>
 
@@ -478,16 +485,16 @@ body{
     logos.style.display = isHidden ? "block" : "none";
 
     if (isHidden) {
-      // Cuando se despliegan (estado "Logos")
-      btn.textContent = "Logos";
-      btn.classList.add("cta--ghost");
+      btn.textContent = "Ocultar logos"; // texto al abrir
+      // Mantenemos SOLO el estilo .cta
+      btn.classList.remove("cta--ghost");
     } else {
-      // Cuando se ocultan (estado inicial "Logos")
-      btn.textContent = "Logos";
+      btn.textContent = "Logos"; // texto al cerrar
       btn.classList.remove("cta--ghost");
     }
   });
 </script>
+
 
 
 </body>
