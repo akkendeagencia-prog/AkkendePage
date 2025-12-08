@@ -219,6 +219,35 @@ body{
 .contacto-container a:hover {
   text-decoration: underline;
 }
+/* ─────────────────────────────── */
+/*   BOTONES HORIZONTALES PORTAFOLIO */
+/* ─────────────────────────────── */
+.portfolio-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0 35px;
+  flex-wrap: wrap;
+}
+
+/* Animación slide + fade */
+.toggle-section {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition:
+    opacity .4s ease,
+    max-height .45s ease,
+    transform .45s ease;
+}
+
+.toggle-section.show {
+  opacity: 1;
+  max-height: 5000px; /* suficiente para cualquier contenido */
+  transform: translateY(0);
+}
+
 </style>
 </head>
 <body>
@@ -356,23 +385,15 @@ body{
 <section id="portafolio" class="section">
   <div class="wrap">
     <h2 class="sec-title">Portafolio</h2>
-	  <button id="toggleLogos" class="cta" style="margin: 10px auto 25px; display:block;">
- 		 Logos
-	</button>
-	<button id="toggleCartillas" class="cta" style="margin: 10px auto 10px; display:block;">
-	  Editorial
-	</button>
-	
-	<button id="togglePersonajes" class="cta" style="margin: 10px auto 10px; display:block;">
-	  Ilustración
-	</button>
-	
-	<button id="toggleInfografias" class="cta" style="margin: 10px auto 25px; display:block;">
-	  Diagramación
-	</button>
+	<div class="portfolio-buttons">
+	  <button id="toggleLogos" class="cta">Logos</button>
+	  <button id="toggleCartillas" class="cta">Editorial</button>
+	  <button id="togglePersonajes" class="cta">Ilustración</button>
+	  <button id="toggleInfografias" class="cta">Diagramación</button>
+	</div>
 
 
-<div id="logosContent">
+<div id="logosContent" class="toggle-section">
 	 <p class="sec-sub">Algunos de los logos que hemos diseñado para distintas organizaciones.</p>
     <!-- 1. Sector ambiental y sostenible -->
     <h3>🌱 Empresas del sector ambiental y sostenible</h3>
@@ -438,16 +459,16 @@ body{
   </div>
 </div>
 </div>
-<div id="cartillasContent" style="display:none;">
-  <p class="sec-sub">Contenido de cartillas, libros, portafolios y facturas aquí.</p>
+<div id="cartillasContent" class="toggle-section">
+  <p class="sec-sub">Contenido editorial aquí.</p>
 </div>
 
-<div id="personajesContent" style="display:none;">
-  <p class="sec-sub">Contenido de diseño de personaje aquí.</p>
+<div id="personajesContent" class="toggle-section">
+  <p class="sec-sub">Contenido de ilustración aquí.</p>
 </div>
 
-<div id="infografiasContent" style="display:none;">
-  <p class="sec-sub">Contenido de infografías y guías aquí.</p>
+<div id="infografiasContent" class="toggle-section">
+  <p class="sec-sub">Contenido de diagramación aquí.</p>
 </div>
 
 </section>
@@ -507,33 +528,35 @@ function setupToggle(buttonId, contentId, labelOn, labelOff) {
     const btn = document.getElementById(buttonId);
     const content = document.getElementById(contentId);
 
+    let isOpen = false;
+
     btn.addEventListener("click", () => {
-        const isHidden = content.style.display === "none" || content.style.display === "";
+        isOpen = !isOpen;
 
-        content.style.display = isHidden ? "block" : "none";
-
-        if (isHidden) {
+        if (isOpen) {
+            content.classList.add("show");
             btn.textContent = labelOff;
             btn.classList.add("cta--ghost");
         } else {
+            content.classList.remove("show");
             btn.textContent = labelOn;
             btn.classList.remove("cta--ghost");
         }
     });
 }
 
-// Botón existente (Logos)
+// Botón Logos
 setupToggle("toggleLogos", "logosContent", "Logos", "Ocultar logos");
 
-// Nuevos botones
+// Botones nuevos
 setupToggle("toggleCartillas", "cartillasContent",
-            "Cartillas, libros, portafolios, facturas", "Ocultar sección");
+            "Editorial", "Ocultar sección");
 
 setupToggle("togglePersonajes", "personajesContent",
-            "Diseño de personaje", "Ocultar personajes");
+            "Ilustración", "Ocultar ilustración");
 
 setupToggle("toggleInfografias", "infografiasContent",
-            "Infografía y guías", "Ocultar infografías");
+            "Diagramación", "Ocultar sección");
 </script>
 
 </body>
