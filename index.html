@@ -171,24 +171,32 @@ body{
   font-size:.85rem;
   color:var(--muted);
 }
-/* --- Editorial: 4 por fila + imágenes más grandes --- */
+/* --- Editorial: 4 por fila --- */
 #cartillasContent {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 👈 4 por línea */
+  grid-template-columns: repeat(4, 1fr); /* 👈 4 columnas fijas */
   gap: 22px;
   margin-top: 20px;
 }
 
+/* Cada tarjeta con misma altura */
 #cartillasContent .thumb {
-  height: 260px;            /* 👈 más alto */
+  height: 260px;       /* 👈 MISMA altura para todos */
   padding: 14px;
+  border-radius: 12px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Imagen a su tamaño original pero adaptada a la altura */
 #cartillasContent .thumb img {
-  max-width: 180px;         /* 👈 imágenes más grandes */
-  max-height: 180px;
-  object-fit: cover;
+  height: 100%;         /* 👈 usa la altura disponible */
+  width: auto;          /* 👈 conserva proporción */
+  object-fit: contain;  /* 👈 no corta ni deforma */
 }
+
 
 
 
@@ -589,7 +597,7 @@ const sections = {
 };
 
 
-// 🔥 Cierra TODAS las secciones menos la activa
+// Cierra TODAS las secciones menos la activa
 function closeAllExcept(activeKey) {
     for (const key in sections) {
         if (key === activeKey) continue;
@@ -605,7 +613,7 @@ function closeAllExcept(activeKey) {
 }
 
 
-// 🔥 Activa cada botón con cierre automático del resto
+// Activa cada botón con cierre automático del resto
 for (const key in sections) {
     const { btn, content, labelOn, labelOff } = sections[key];
     const button = document.getElementById(btn);
