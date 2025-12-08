@@ -171,6 +171,25 @@ body{
   font-size:.85rem;
   color:var(--muted);
 }
+/* --- Editorial: 4 por fila + imágenes más grandes --- */
+#cartillasContent {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 👈 4 por línea */
+  gap: 22px;
+  margin-top: 20px;
+}
+
+#cartillasContent .thumb {
+  height: 260px;            /* 👈 más alto */
+  padding: 14px;
+}
+
+#cartillasContent .thumb img {
+  max-width: 180px;         /* 👈 imágenes más grandes */
+  max-height: 180px;
+  object-fit: cover;
+}
+
 
 
 /* Sobre */
@@ -469,7 +488,7 @@ body{
     <div class="thumb"><img src="img/editorial/CICAM-Cartilla_-.jpg" alt="CICAM"><p>CICAM</p></div>
     <div class="thumb"><img src="img/editorial/CentinelasAmbientales-Cartilla_-.jpg" alt="Centinelas Ambientales"><p>Centinelas Ambientales</p></div>
     <div class="thumb"><img src="img/editorial/Cómo-Mejorar-el-Uso-del-Español-Hablado-Libro_-.jpg" alt="Cómo-Mejorar-el-Uso-del-Español-Hablado-Libro"><p>Cómo Mejorar el Uso del Español Hablado Libro</p></div>
-	<div class="thumb"><img src="img/editorial/Diagnóstico-y-Estudio-de-Mercado-Oferta-Productiva-Piedemonte-Amazónico-y-Costa-Nariñense" alt="Diagnóstico-y-Estudio-de-Mercado-Oferta-Productiva-Piedemonte-Amazónico-y-Costa-Nariñense"><p>Diagnóstico y Estudio de Mercado Oferta Productiva Piedemonte Amazónico y Costa Nariñense</p></div>
+	<div class="thumb"><img src="img/editorial/Diagnóstico-y-Estudio-de-Mercado-Oferta-Productiva-Piedemonte-Amazónico-y-Costa-Nariñense.jpg" alt="Diagnóstico-y-Estudio-de-Mercado-Oferta-Productiva-Piedemonte-Amazónico-y-Costa-Nariñense"><p>Diagnóstico y Estudio de Mercado Oferta Productiva Piedemonte Amazónico y Costa Nariñense</p></div>
 	<div class="thumb"><img src="img/editorial/FacturaUsuarioASVALLE_-.jpg" alt="FacturaUsuarioASVALLE"><p>Factura Usuario ASVALLE</p></div>
 	<div class="thumb"><img src="img/editorial/FundaciónCultural-del-Putumayo-Portafolio_-.jpg" alt="FundaciónCultural-del-Putumayo-Portafolio"><p>Fundación Cultural del Putumayo Portafolio</p></div>
 	<div class="thumb"><img src="img/editorial/He-Visto-la-Muerte-Libro.jpg" alt="He-Visto-la-Muerte-Libro"><p>He Visto la Muerte Libro</p></div>
