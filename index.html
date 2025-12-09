@@ -304,19 +304,14 @@ body{
   border-radius: 4px;
 }
 
-.toggle-section {
-  display: none;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity .3s ease, transform .3s ease;
+.toggle-section.show {
+  opacity: 1;
+  max-height: 5000px; /* Para permitir contenido largo */
+  transform: translateY(0);
+  display: block;
 }
 
-.toggle-section.show {
-  display: grid; /* o block, según lo que uses */
-  opacity: 1;
-  transform: translateY(0);
-}
-────────────────────── */
+/*────────────────────── */
 /*   EDITORIAL TIPO SLIDER       */
 /* ───────────────────────────── */
 	
