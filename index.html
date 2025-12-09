@@ -553,9 +553,10 @@ body{
 </div>
 </div>
 
-<p class="sec-sub">Contenido editorial aquí.</p>
+
 <!-- EDITORIAL -->
 <div id="cartillasContent" class="toggle-section slider-editorial">
+	<p class="sec-sub">Contenido editorial aquí.</p>
 	<div class="slider-container">
   		<div class="slider-horizontal">
     <div class="thumb"><img src="img/editorial/Asoamazonia_-.jpg" alt="Asoamazonia"><p>Asoamazonia</p></div>
@@ -646,7 +647,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { btn: "toggleInfografias", content: "infografiasContent", labelOn: "Ocultar diagramación", labelOff: "Diagramación" },
     ];
 
-    // 🔥 Al cargar: ocultar todas
+    // Ocultar todos al cargar
     sections.forEach(s => {
         document.getElementById(s.content).classList.remove("show", "slider-editorial");
     });
@@ -658,19 +659,21 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", () => {
             const isOpen = content.classList.contains("show");
 
-            // Cerrar todas
+            // Cerrar todas antes de abrir otra
             sections.forEach(s => {
-                document.getElementById(s.content).classList.remove("show", "slider-editorial");
+                const c = document.getElementById(s.content);
                 const b = document.getElementById(s.btn);
+
+                c.classList.remove("show", "slider-editorial");
                 b.textContent = s.labelOff;
                 b.classList.add("cta--ghost");
             });
 
-            // Si estaba cerrada, abrimos la seleccionada
+            // Si estaba cerrada, abrir la seleccionada
             if (!isOpen) {
                 content.classList.add("show");
 
-                // Activar slider horizontal SOLO para editorial
+                // Si es "Editorial", activar comportamiento de slider
                 if (section.btn === "toggleCartillas") {
                     content.classList.add("slider-editorial");
                 }
@@ -680,40 +683,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
 });
 </script>
 
-
-
-
-
-        closeAllExcept(key);
-
-if (!isOpen) {
-    contentEl.classList.add("show");
-
-    // Si es la sección editorial, mantenemos la clase especial
-    if (content === "cartillasContent") {
-        contentEl.classList.add("slider-editorial");
-    }
-
-    button.textContent = labelOff;
-    button.classList.add("cta--ghost");
-} else {
-    contentEl.classList.remove("show");
-
-    if (content === "cartillasContent") {
-        contentEl.classList.remove("slider-editorial");
-    }
-
-    button.textContent = labelOn;
-    button.classList.remove("cta--ghost");
-}
-
-    });
-}
-
-</script>
 
 </body>
 </html>
