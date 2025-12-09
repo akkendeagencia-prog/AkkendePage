@@ -315,25 +315,22 @@ body{
 /*   EDITORIAL TIPO SLIDER       */
 /* ───────────────────────────── */
 	
+/* EDITORIAL – Imágenes grandes manteniendo proporción */
 #cartillasContent .thumb {
-  flex: 0 0 480px;       /* 👈 Cada tarjeta más grande */
-  height: 380px;         /* 👈 Más altura */
-  scroll-snap-align: start;
+  flex: 0 0 650px;   /* tamaño del cuadro */
+  height: 650px;     /* altura del cuadro */
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background: white;
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 16px;
+  justify-content: center;
+  padding: 20px;
 }
 
 #cartillasContent .thumb img {
-  width: auto;
-  height: 85%;           /* 👈 Se adapta sin deformarse */
-  object-fit: cover;
-	border-radius: 18px;
+  max-height: 95%;   /* la imagen crece hasta 90% de la tarjeta */
+  max-width: 95%;    /* evita que se salga horizontalmente */
+  width: auto;       /* mantiene proporción */
+  height: auto;      /* mantiene proporción */
+  object-fit: contain; /* muy importante: NO deforma */
 }
 
 
