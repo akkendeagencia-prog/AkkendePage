@@ -670,60 +670,50 @@ document.getElementById('y').textContent = new Date().getFullYear();
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-    const wrapper = document.querySelector("#portafolio .wrap");  // contenedor completo del portafolio
-    const buttonsContainer = document.querySelector(".portfolio-buttons");
-
     const sections = [
-        { btn: "toggleLogos", content: "logosContent", labelOn: "Ocultar logos", labelOff: "Logos" },
-        { btn: "toggleCartillas", content: "cartillasContent", labelOn: "Ocultar editorial", labelOff: "Editorial" },
-        { btn: "togglePersonajes", content: "personajesContent", labelOn: "Ocultar ilustración", labelOff: "Ilustración" },
-        { btn: "toggleInfografias", content: "infografiasContent", labelOn: "Ocultar diagramación", labelOff: "Diagramación" },
+        { 
+            btnId: "toggleLogos", 
+            contentId: "logosContent",
+            labelOff: "Logos",
+            labelOn: "Ocultar logos"
+        },
+        { 
+            btnId: "toggleCartillas", 
+            contentId: "cartillasContent",
+            labelOff: "Editorial",
+            labelOn: "Ocultar editorial"
+        },
+        { 
+            btnId: "togglePersonajes", 
+            contentId: "personajesContent",
+            labelOff: "Ilustración",
+            labelOn: "Ocultar ilustración"
+        },
+        { 
+            btnId: "toggleInfografias", 
+            contentId: "infografiasContent",
+            labelOff: "Diagramación",
+            labelOn: "Ocultar diagramación"
+        }
     ];
 
-    // Ocultar todos al cargar
-    sections.forEach(s => {
-        document.getElementById(s.content).classList.remove("show", "slider-editorial");
-    });
+    sections.forEach(sec => {
+        const btn = document.getElementById(sec.btnId);
+        const content = document.getElementById(sec.contentId);
 
-    sections.forEach(section => {
-        const button = document.getElementById(section.btn);
-        const content = document.getElementById(section.content);
+        btn.addEventListener("click", () => {
+            
+            // Alternar visibilidad
+            const visible = content.classList.toggle("show");
 
-        button.addEventListener("click", () => {
-            const isOpen = content.classList.contains("show");
-
-            // Cerrar todas antes de abrir otra
-            sections.forEach(s => {
-                const c = document.getElementById(s.content);
-                const b = document.getElementById(s.btn);
-
-                c.classList.remove("show", "slider-editorial");
-                b.textContent = s.labelOff;
-                b.classList.add("cta--ghost");
-            });
-
-            // Siempre mostrar contenedor de botones al cerrar
-            buttonsContainer.style.display = "flex";
-
-            // Si estaba cerrada, abrirla
-            if (!isOpen) {
-                content.classList.add("show");
-
-                if (section.btn === "toggleCartillas") {
-                    content.classList.add("slider-editorial");
-                }
-
-                button.textContent = section.labelOn;
-                button.classList.remove("cta--ghost");
-
-                // 🔥 OCULTA TODA LA SECCIÓN DEL PORTAFOLIO (botones y todo lo demás)
-                buttonsContainer.style.display = "none";
-            }
+            // Cambiar texto del botón
+            btn.textContent = visible ? sec.labelOn : sec.labelOff;
         });
     });
 
 });
 </script>
+
 
 
 
