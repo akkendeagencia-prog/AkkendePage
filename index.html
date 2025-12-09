@@ -679,6 +679,10 @@ document.getElementById('y').textContent = new Date().getFullYear();
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* ────────────────────────────────
+       SISTEMA DE BOTONES Y SECCIONES
+    ───────────────────────────────── */
+
     const sections = [
         { btnId: "toggleLogos", contentId: "logosContent", labelOff: "Logos", labelOn: "Ocultar logos" },
         { btnId: "toggleCartillas", contentId: "cartillasContent", labelOff: "Editorial", labelOn: "Ocultar editorial" },
@@ -686,40 +690,56 @@ document.addEventListener("DOMContentLoaded", () => {
         { btnId: "toggleInfografias", contentId: "infografiasContent", labelOff: "Diagramación", labelOn: "Ocultar diagramación" }
     ];
 
-    let activeSection = null;
+    const closeAll = () => {
+        sections.forEach(s => {
+            const btn = document.getElementById(s.btnId);
+            const content = document.getElementById(s.contentId);
+            btn.classList.remove("cta--active");
+            btn.textContent = s.labelOff;
+            content.classList.remove("show");
+        });
+    };
 
-    sections.forEach(section => {
-        const btn = document.getElementById(section.btnId);
-        const content = document.getElementById(section.contentId);
+    sections.forEach(s => {
+        const btn = document.getElementById(s.btnId);
+        const content = document.getElementById(s.contentId);
 
         btn.addEventListener("click", () => {
-
-            // Si esta sección está ACTIVA → se oculta
-            if (activeSection === section) {
-                content.classList.remove("show");
-                btn.textContent = section.labelOff;
-                btn.classList.remove("cta--active");
-                activeSection = null;
-                return;
+            const isOpen = content.classList.contains("show");
+            closeAll();
+            if (!isOpen) {
+                content.classList.add("show");
+                btn.classList.add("cta--active");
+                btn.textContent = s.labelOn;
             }
-
-            // Si otra sección está abierta, se cierra y se le quita el estilo activo
-            if (activeSection !== null) {
-                const prevBtn = document.getElementById(activeSection.btnId);
-                const prevContent = document.getElementById(activeSection.contentId);
-                prevContent.classList.remove("show");
-                prevBtn.textContent = activeSection.labelOff;
-                prevBtn.classList.remove("cta--active");
-            }
-
-            // Abrir sección actual
-            content.classList.add("show");
-            btn.textContent = section.labelOn;
-            btn.classList.add("cta--active");
-            activeSection = section;
         });
     });
+
+    /* ────────────────────────────────
+          SLIDER HORIZONTAL EDITORIAL
+    ───────────────────────────────── */
+
+    const slider = document.getElementById("editorialSlider");
+    const arrowLeft = document.getElementById("arrowLeft");
+    const arrowRight = document.getElementById("arrowRight");
+
+    arrowLeft.addEventListener("click", () => {
+        slider.scrollBy({
+            left: -500,
+            behavior: "smooth"
+        });
+    });
+
+    arrowRight.addEventListener("click", () => {
+        slider.scrollBy({
+            left: 500,
+            behavior: "smooth"
+        });
+    });
+
 });
+</script>
+
 
 
 
