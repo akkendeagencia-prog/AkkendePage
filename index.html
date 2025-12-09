@@ -630,78 +630,47 @@ document.getElementById('y').textContent = new Date().getFullYear();
 
 
 <script>
-// Todas las secciones y botones
-const sections = {
-    toggleLogos: {
-        btn: "toggleLogos",
-        content: "logosContent",
-        labelOn: "Logos",
-        labelOff: "Ocultar logos"
-    },
-    toggleCartillas: {
-        btn: "toggleCartillas",
-        content: "cartillasContent",
-        labelOn: "Editorial",
-        labelOff: "Ocultar sección"
-    },
-    togglePersonajes: {
-        btn: "togglePersonajes",
-        content: "personajesContent",
-        labelOn: "Ilustración",
-        labelOff: "Ocultar ilustración"
-    },
-    toggleInfografias: {
-        btn: "toggleInfografias",
-        content: "infografiasContent",
-        labelOn: "Diagramación",
-        labelOff: "Ocultar sección"
-    }
-};
+document.addEventListener("DOMContentLoaded", () => {
+    const sections = [
+        { btn: "toggleLogos", content: "logosContent", labelOn: "Ocultar logos", labelOff: "Logos" },
+        { btn: "toggleCartillas", content: "cartillasContent", labelOn: "Ocultar editorial", labelOff: "Editorial" },
+        { btn: "togglePersonajes", content: "personajesContent", labelOn: "Ocultar ilustración", labelOff: "Ilustración" },
+        { btn: "toggleInfografias", content: "infografiasContent", labelOn: "Ocultar diagramación", labelOff: "Diagramación" },
+    ];
 
-// Cierra todas las secciones menos la activa
-function closeAllExcept(activeKey) {
-    for (const key in sections) {
-        if (key === activeKey) continue;
+    sections.forEach(section => {
+        const button = document.getElementById(section.btn);
+        const content = document.getElementById(section.content);
 
-        const { btn, content, labelOn } = sections[key];
+        button.addEventListener("click", () => {
+            const isOpen = content.classList.contains("show");
 
-        document.getElementById(content).classList.remove("show");
+            // Cerrar todo
+            sections.forEach(s => {
+                document.getElementById(s.content).classList.remove("show", "slider-editorial");
+                const b = document.getElementById(s.btn);
+                b.textContent = s.labelOff;
+                b.classList.add("cta--ghost");
+            });
 
-        const b = document.getElementById(btn);
-        b.textContent = labelOn;
-        b.classList.remove("cta--ghost");
-    }
-}
+            // Reabrir si estaba cerrado
+            if (!isOpen) {
+                content.classList.add("show");
 
-// Activa cada botón con cierre automático del resto
-for (const key in sections) {
-    const { btn, content, labelOn, labelOff } = sections[key];
-    const button = document.getElementById(btn);
+                // Solo Editorial activa slider horizontal especial
+                if (section.btn === "toggleCartillas") {
+                    content.classList.add("slider-editorial");
+                }
 
-    button.addEventListener("click", () => {
-    const contentEl = document.getElementById(content);
-    const isOpen = contentEl.classList.contains("show");
-
-    closeAllExcept(key);
-
-    if (!isOpen) {
-        contentEl.classList.add("show");
-
-        if (key === "toggleCartillas") {
-            contentEl.classList.add("slider-editorial");
-        }
-    } else {
-        contentEl.classList.remove("show");
-
-        if (key === "toggleCartillas") {
-            contentEl.classList.remove("slider-editorial");
-        }
-    }
-
-    button.textContent = isOpen ? labelOn : labelOff;
-    button.classList.toggle("cta--ghost", !isOpen);
+                button.textContent = section.labelOn;
+                button.classList.remove("cta--ghost");
+            }
+        });
     });
-}
+});
+</script>
+
+
 
 
         closeAllExcept(key);
