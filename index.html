@@ -209,6 +209,35 @@ body{
   height: 100%;
   object-fit: cover;
 }
+/* FLECHAS DEL SLIDER */
+.slider-arrows {
+  position: relative;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--brand);
+  z-index: 20;
+}
+
+.slider-arrow:hover {
+  background: var(--brand);
+  color: white;
+}
+
+.slider-arrow.left { left: -20px; }
+.slider-arrow.right { right: -20px; }
 
 /* Sobre */
 .about{
@@ -553,8 +582,13 @@ body{
 <!-- EDITORIAL -->
 <div id="cartillasContent" class="toggle-section slider-editorial">
 	<p class="sec-sub">Contenido editorial aquí.</p>
-	<div class="slider-container">
-  		<div class="slider-horizontal">
+<div class="slider-container slider-arrows">
+
+  <button class="slider-arrow left" id="arrowLeft">‹</button>
+  <button class="slider-arrow right" id="arrowRight">›</button>
+
+  <div class="slider-horizontal" id="editorialSlider">
+
     <div class="thumb"><img src="img/editorial/Asoamazonia_-.jpg" alt="Asoamazonia"><p>Asoamazonia</p></div>
     <div class="thumb"><img src="img/editorial/CICAM-Cartilla_-.jpg" alt="CICAM"><p>CICAM</p></div>
     <div class="thumb"><img src="img/editorial/CentinelasAmbientales-Cartilla_-.jpg" alt="Centinelas Ambientales"><p>Centinelas Ambientales</p></div>
@@ -677,6 +711,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 button.textContent = section.labelOn;
                 button.classList.remove("cta--ghost");
             }
+			document.addEventListener("DOMContentLoaded", () => {
+
+  const slider = document.getElementById("editorialSlider");
+  const btnLeft = document.getElementById("arrowLeft");
+  const btnRight = document.getElementById("arrowRight");
+
+  // Distancia de scroll (tamaño de una tarjeta)
+  const scrollAmount = 650 + 22; // 650 ancho + 22 de gap
+
+  btnLeft.addEventListener("click", () => {
+    slider.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+
+  btnRight.addEventListener("click", () => {
+    slider.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  });
+
+});
         });
     });
 
