@@ -304,12 +304,19 @@ body{
   border-radius: 4px;
 }
 
+.toggle-section {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .3s ease, transform .3s ease;
+}
+
 .toggle-section.show {
+  display: grid; /* o block, según lo que uses */
   opacity: 1;
-  max-height: 5000px; /* suficiente para cualquier contenido */
   transform: translateY(0);
 }
-/* ───────────────────────────── */
+────────────────────── */
 /*   EDITORIAL TIPO SLIDER       */
 /* ───────────────────────────── */
 	
@@ -631,12 +638,18 @@ document.getElementById('y').textContent = new Date().getFullYear();
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
     const sections = [
         { btn: "toggleLogos", content: "logosContent", labelOn: "Ocultar logos", labelOff: "Logos" },
         { btn: "toggleCartillas", content: "cartillasContent", labelOn: "Ocultar editorial", labelOff: "Editorial" },
         { btn: "togglePersonajes", content: "personajesContent", labelOn: "Ocultar ilustración", labelOff: "Ilustración" },
         { btn: "toggleInfografias", content: "infografiasContent", labelOn: "Ocultar diagramación", labelOff: "Diagramación" },
     ];
+
+    // 🔥 Al cargar: ocultar todas
+    sections.forEach(s => {
+        document.getElementById(s.content).classList.remove("show", "slider-editorial");
+    });
 
     sections.forEach(section => {
         const button = document.getElementById(section.btn);
@@ -645,7 +658,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", () => {
             const isOpen = content.classList.contains("show");
 
-            // Cerrar todo
+            // Cerrar todas
             sections.forEach(s => {
                 document.getElementById(s.content).classList.remove("show", "slider-editorial");
                 const b = document.getElementById(s.btn);
@@ -653,11 +666,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 b.classList.add("cta--ghost");
             });
 
-            // Reabrir si estaba cerrado
+            // Si estaba cerrada, abrimos la seleccionada
             if (!isOpen) {
                 content.classList.add("show");
 
-                // Solo Editorial activa slider horizontal especial
+                // Activar slider horizontal SOLO para editorial
                 if (section.btn === "toggleCartillas") {
                     content.classList.add("slider-editorial");
                 }
@@ -669,6 +682,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
+
 
 
 
