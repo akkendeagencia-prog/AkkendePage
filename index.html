@@ -671,46 +671,43 @@ document.getElementById('y').textContent = new Date().getFullYear();
 document.addEventListener("DOMContentLoaded", () => {
 
     const sections = [
-        { 
-            btnId: "toggleLogos", 
-            contentId: "logosContent",
-            labelOff: "Logos",
-            labelOn: "Ocultar logos"
-        },
-        { 
-            btnId: "toggleCartillas", 
-            contentId: "cartillasContent",
-            labelOff: "Editorial",
-            labelOn: "Ocultar editorial"
-        },
-        { 
-            btnId: "togglePersonajes", 
-            contentId: "personajesContent",
-            labelOff: "Ilustración",
-            labelOn: "Ocultar ilustración"
-        },
-        { 
-            btnId: "toggleInfografias", 
-            contentId: "infografiasContent",
-            labelOff: "Diagramación",
-            labelOn: "Ocultar diagramación"
-        }
+        { btnId: "toggleLogos", contentId: "logosContent", labelOff: "Logos", labelOn: "Ocultar logos" },
+        { btnId: "toggleCartillas", contentId: "cartillasContent", labelOff: "Editorial", labelOn: "Ocultar editorial" },
+        { btnId: "togglePersonajes", contentId: "personajesContent", labelOff: "Ilustración", labelOn: "Ocultar ilustración" },
+        { btnId: "toggleInfografias", contentId: "infografiasContent", labelOff: "Diagramación", labelOn: "Ocultar diagramación" }
     ];
 
-    sections.forEach(sec => {
-        const btn = document.getElementById(sec.btnId);
-        const content = document.getElementById(sec.contentId);
+    let activeSection = null; // <--- Guarda qué sección está abierta
+
+    sections.forEach(section => {
+        const btn = document.getElementById(section.btnId);
+        const content = document.getElementById(section.contentId);
 
         btn.addEventListener("click", () => {
-            
-            // Alternar visibilidad
-            const visible = content.classList.toggle("show");
 
-            // Cambiar texto del botón
-            btn.textContent = visible ? sec.labelOn : sec.labelOff;
+            // Si esta sección está ACTIVA → se oculta
+            if (activeSection === section) {
+                content.classList.remove("show");
+                btn.textContent = section.labelOff;
+                activeSection = null;
+                return;
+            }
+
+            // Si hay otra sección abierta → se cierra y se reinicia su botón
+            if (activeSection !== null) {
+                const previousBtn = document.getElementById(activeSection.btnId);
+                const previousContent = document.getElementById(activeSection.contentId);
+
+                previousContent.classList.remove("show");
+                previousBtn.textContent = activeSection.labelOff;
+            }
+
+            // Abrir esta sección
+            content.classList.add("show");
+            btn.textContent = section.labelOn;
+            activeSection = section;
         });
     });
-
 });
 </script>
 
