@@ -145,6 +145,15 @@ body{
   gap:20px;
 }
 
+/* Estilo cuando el botón está activo (ocultando contenido) */
+.cta--active {
+    background: #fff !important;
+    color: var(--brand) !important;
+    border: 2px solid var(--brand) !important;
+    box-shadow: none !important;
+}
+
+
 .thumb {
   background:#fff;
   border-radius:var(--radius);
@@ -677,7 +686,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { btnId: "toggleInfografias", contentId: "infografiasContent", labelOff: "Diagramación", labelOn: "Ocultar diagramación" }
     ];
 
-    let activeSection = null; // <--- Guarda qué sección está abierta
+    let activeSection = null;
 
     sections.forEach(section => {
         const btn = document.getElementById(section.btnId);
@@ -689,27 +698,29 @@ document.addEventListener("DOMContentLoaded", () => {
             if (activeSection === section) {
                 content.classList.remove("show");
                 btn.textContent = section.labelOff;
+                btn.classList.remove("cta--active");
                 activeSection = null;
                 return;
             }
 
-            // Si hay otra sección abierta → se cierra y se reinicia su botón
+            // Si otra sección está abierta, se cierra y se le quita el estilo activo
             if (activeSection !== null) {
-                const previousBtn = document.getElementById(activeSection.btnId);
-                const previousContent = document.getElementById(activeSection.contentId);
-
-                previousContent.classList.remove("show");
-                previousBtn.textContent = activeSection.labelOff;
+                const prevBtn = document.getElementById(activeSection.btnId);
+                const prevContent = document.getElementById(activeSection.contentId);
+                prevContent.classList.remove("show");
+                prevBtn.textContent = activeSection.labelOff;
+                prevBtn.classList.remove("cta--active");
             }
 
-            // Abrir esta sección
+            // Abrir sección actual
             content.classList.add("show");
             btn.textContent = section.labelOn;
+            btn.classList.add("cta--active");
             activeSection = section;
         });
     });
 });
-</script>
+
 
 
 
