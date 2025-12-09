@@ -316,8 +316,8 @@ body{
 /* ───────────────────────────── */
 	
 #cartillasContent .thumb {
-  flex: 0 0 320px;       /* 👈 Cada tarjeta más grande */
-  height: 420px;         /* 👈 Más altura */
+  flex: 0 0 480px;       /* 👈 Cada tarjeta más grande */
+  height: 380px;         /* 👈 Más altura */
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -332,7 +332,8 @@ body{
 #cartillasContent .thumb img {
   width: auto;
   height: 85%;           /* 👈 Se adapta sin deformarse */
-  object-fit: contain;
+  object-fit: cover;
+	border-radius: 18px;
 }
 
 
