@@ -668,72 +668,65 @@ document.getElementById('y').textContent = new Date().getFullYear();
 
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+// Año del footer
+document.getElementById("y").textContent = new Date().getFullYear();
 
-    const sections = [
-        { btn: "toggleLogos", content: "logosContent", labelOn: "Ocultar logos", labelOff: "Logos" },
-        { btn: "toggleCartillas", content: "cartillasContent", labelOn: "Ocultar editorial", labelOff: "Editorial" },
-        { btn: "togglePersonajes", content: "personajesContent", labelOn: "Ocultar ilustración", labelOff: "Ilustración" },
-        { btn: "toggleInfografias", content: "infografiasContent", labelOn: "Ocultar diagramación", labelOff: "Diagramación" },
-    ];
+/* ─────────────────────────────── */
+/*   TOGGLE DE SECCIONES PORTAFOLIO */
+/* ─────────────────────────────── */
 
-    // Ocultar todos al cargar
-    sections.forEach(s => {
-        document.getElementById(s.content).classList.remove("show", "slider-editorial");
-    });
+const sections = {
+  logos: document.getElementById("logosContent"),
+  cartillas: document.getElementById("cartillasContent"),
+  personajes: document.getElementById("personajesContent"),
+  infografias: document.getElementById("infografiasContent")
+};
 
-    sections.forEach(section => {
-        const button = document.getElementById(section.btn);
-        const content = document.getElementById(section.content);
+function hideAll() {
+  Object.values(sections).forEach(sec => sec.classList.remove("show"));
+}
 
-        button.addEventListener("click", () => {
-            const isOpen = content.classList.contains("show");
+// Botones
+document.getElementById("toggleLogos").onclick = () => {
+  hideAll();
+  sections.logos.classList.add("show");
+};
 
-            // Cerrar todas antes de abrir otra
-            sections.forEach(s => {
-                const c = document.getElementById(s.content);
-                const b = document.getElementById(s.btn);
+document.getElementById("toggleCartillas").onclick = () => {
+  hideAll();
+  sections.cartillas.classList.add("show");
+};
 
-                c.classList.remove("show", "slider-editorial");
-                b.textContent = s.labelOff;
-                b.classList.add("cta--ghost");
-            });
+document.getElementById("togglePersonajes").onclick = () => {
+  hideAll();
+  sections.personajes.classList.add("show");
+};
 
-            // Si estaba cerrada, abrir la seleccionada
-            if (!isOpen) {
-                content.classList.add("show");
+document.getElementById("toggleInfografias").onclick = () => {
+  hideAll();
+  sections.infografias.classList.add("show");
+};
 
-                // Si es "Editorial", activar comportamiento de slider
-                if (section.btn === "toggleCartillas") {
-                    content.classList.add("slider-editorial");
-                }
+/* ─────────────────────────────── */
+/*   SLIDER EDITORIAL (flechas)    */
+/* ─────────────────────────────── */
 
-                button.textContent = section.labelOn;
-                button.classList.remove("cta--ghost");
-            }
-			document.addEventListener("DOMContentLoaded", () => {
+const slider = document.getElementById("editorialSlider");
+const btnLeft  = document.getElementById("arrowLeft");
+const btnRight = document.getElementById("arrowRight");
 
-  const slider = document.getElementById("editorialSlider");
-  const btnLeft = document.getElementById("arrowLeft");
-  const btnRight = document.getElementById("arrowRight");
+// Cantidad a desplazar por clic
+const scrollAmount = 650; // puedes ajustar
 
-  // Distancia de scroll (tamaño de una tarjeta)
-  const scrollAmount = 650 + 22; // 650 ancho + 22 de gap
+btnLeft.onclick = () => {
+  slider.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+};
 
-  btnLeft.addEventListener("click", () => {
-    slider.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-  });
-
-  btnRight.addEventListener("click", () => {
-    slider.scrollBy({ left: scrollAmount, behavior: "smooth" });
-  });
-
-});
-        });
-    });
-
-});
+btnRight.onclick = () => {
+  slider.scrollBy({ left: scrollAmount, behavior: "smooth" });
+};
 </script>
+
 
 
 </body>
