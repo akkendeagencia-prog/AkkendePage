@@ -668,64 +668,63 @@ document.getElementById('y').textContent = new Date().getFullYear();
 
 
 <script>
-// Año del footer
-document.getElementById("y").textContent = new Date().getFullYear();
+document.addEventListener("DOMContentLoaded", () => {
 
-/* ─────────────────────────────── */
-/*   TOGGLE DE SECCIONES PORTAFOLIO */
-/* ─────────────────────────────── */
+    const wrapper = document.querySelector("#portafolio .wrap");  // contenedor completo del portafolio
+    const buttonsContainer = document.querySelector(".portfolio-buttons");
 
-const sections = {
-  logos: document.getElementById("logosContent"),
-  cartillas: document.getElementById("cartillasContent"),
-  personajes: document.getElementById("personajesContent"),
-  infografias: document.getElementById("infografiasContent")
-};
+    const sections = [
+        { btn: "toggleLogos", content: "logosContent", labelOn: "Ocultar logos", labelOff: "Logos" },
+        { btn: "toggleCartillas", content: "cartillasContent", labelOn: "Ocultar editorial", labelOff: "Editorial" },
+        { btn: "togglePersonajes", content: "personajesContent", labelOn: "Ocultar ilustración", labelOff: "Ilustración" },
+        { btn: "toggleInfografias", content: "infografiasContent", labelOn: "Ocultar diagramación", labelOff: "Diagramación" },
+    ];
 
-function hideAll() {
-  Object.values(sections).forEach(sec => sec.classList.remove("show"));
-}
+    // Ocultar todos al cargar
+    sections.forEach(s => {
+        document.getElementById(s.content).classList.remove("show", "slider-editorial");
+    });
 
-// Botones
-document.getElementById("toggleLogos").onclick = () => {
-  hideAll();
-  sections.logos.classList.add("show");
-};
+    sections.forEach(section => {
+        const button = document.getElementById(section.btn);
+        const content = document.getElementById(section.content);
 
-document.getElementById("toggleCartillas").onclick = () => {
-  hideAll();
-  sections.cartillas.classList.add("show");
-};
+        button.addEventListener("click", () => {
+            const isOpen = content.classList.contains("show");
 
-document.getElementById("togglePersonajes").onclick = () => {
-  hideAll();
-  sections.personajes.classList.add("show");
-};
+            // Cerrar todas antes de abrir otra
+            sections.forEach(s => {
+                const c = document.getElementById(s.content);
+                const b = document.getElementById(s.btn);
 
-document.getElementById("toggleInfografias").onclick = () => {
-  hideAll();
-  sections.infografias.classList.add("show");
-};
+                c.classList.remove("show", "slider-editorial");
+                b.textContent = s.labelOff;
+                b.classList.add("cta--ghost");
+            });
 
-/* ─────────────────────────────── */
-/*   SLIDER EDITORIAL (flechas)    */
-/* ─────────────────────────────── */
+            // Siempre mostrar contenedor de botones al cerrar
+            buttonsContainer.style.display = "flex";
 
-const slider = document.getElementById("editorialSlider");
-const btnLeft  = document.getElementById("arrowLeft");
-const btnRight = document.getElementById("arrowRight");
+            // Si estaba cerrada, abrirla
+            if (!isOpen) {
+                content.classList.add("show");
 
-// Cantidad a desplazar por clic
-const scrollAmount = 650; // puedes ajustar
+                if (section.btn === "toggleCartillas") {
+                    content.classList.add("slider-editorial");
+                }
 
-btnLeft.onclick = () => {
-  slider.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-};
+                button.textContent = section.labelOn;
+                button.classList.remove("cta--ghost");
 
-btnRight.onclick = () => {
-  slider.scrollBy({ left: scrollAmount, behavior: "smooth" });
-};
+                // 🔥 OCULTA TODA LA SECCIÓN DEL PORTAFOLIO (botones y todo lo demás)
+                buttonsContainer.style.display = "none";
+            }
+        });
+    });
+
+});
 </script>
+
 
 
 
