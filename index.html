@@ -171,34 +171,44 @@ body{
   font-size:.85rem;
   color:var(--muted);
 }
-/* --- Editorial: 4 por fila --- */
-#cartillasContent {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 👈 4 columnas fijas */
-  gap: 22px;
-  margin-top: 20px;
-}
-
-/* Cada tarjeta con misma altura */
-#cartillasContent .thumb {
-  height: 260px;       /* 👈 MISMA altura para todos */
-  padding: 14px;
-  border-radius: 12px;
-  background: #ffffff;
+/* ───────────────────────────── */
+/* SLIDER HORIZONTAL EDITORIAL */
+.slider-horizontal {
   display: flex;
-  align-items: center;
+  gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px;
+}
+
+.slider-horizontal::-webkit-scrollbar {
+  height: 8px;
+}
+
+.slider-horizontal::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.slider-horizontal .thumb {
+  flex: 0 0 320px;
+  height: 420px;
+  scroll-snap-align: start;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
-/* Imagen a su tamaño original pero adaptada a la altura */
-#cartillasContent .thumb img {
-  height: 100%;         /* 👈 usa la altura disponible */
-  width: auto;          /* 👈 conserva proporción */
-  object-fit: contain;  /* 👈 no corta ni deforma */
+.slider-horizontal .thumb img {
+  width: auto;
+  height: 85%;
+  object-fit: contain;
 }
-
-
-
 
 /* Sobre */
 .about{
@@ -272,12 +282,57 @@ body{
     max-height .45s ease,
     transform .45s ease;
 }
+	/* Evita que el toggle bloquee el scroll horizontal del slider */
+.slider-editorial {
+  max-height: none !important;
+  overflow: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  padding-top: 10px !important;
+}
+.slider-container {
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.slider-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.slider-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
 
 .toggle-section.show {
   opacity: 1;
   max-height: 5000px; /* suficiente para cualquier contenido */
   transform: translateY(0);
 }
+/* ───────────────────────────── */
+/*   EDITORIAL TIPO SLIDER       */
+/* ───────────────────────────── */
+	
+#cartillasContent .thumb {
+  flex: 0 0 320px;       /* 👈 Cada tarjeta más grande */
+  height: 420px;         /* 👈 Más altura */
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+#cartillasContent .thumb img {
+  width: auto;
+  height: 85%;           /* 👈 Se adapta sin deformarse */
+  object-fit: contain;
+}
+
 
 </style>
 </head>
@@ -490,20 +545,26 @@ body{
   </div>
 </div>
 </div>
-<div id="cartillasContent" class="toggle-section">
-  <p class="sec-sub">Contenido editorial aquí.</p>
-	<div class="thumb"><img src="img/editorial/Asoamazonia_-.jpg" alt="Asoamazonia"><p>Asoamazonia</p></div>
+
+<p class="sec-sub">Contenido editorial aquí.</p>
+<!-- EDITORIAL -->
+<div id="cartillasContent" class="toggle-section slider-editorial">
+	<div class="slider-container">
+  		<div class="slider-horizontal">
+    <div class="thumb"><img src="img/editorial/Asoamazonia_-.jpg" alt="Asoamazonia"><p>Asoamazonia</p></div>
     <div class="thumb"><img src="img/editorial/CICAM-Cartilla_-.jpg" alt="CICAM"><p>CICAM</p></div>
     <div class="thumb"><img src="img/editorial/CentinelasAmbientales-Cartilla_-.jpg" alt="Centinelas Ambientales"><p>Centinelas Ambientales</p></div>
-    <div class="thumb"><img src="img/editorial/Cómo-Mejorar-el-Uso-del-Español-Hablado-Libro_-.jpg" alt="Cómo-Mejorar-el-Uso-del-Español-Hablado-Libro"><p>Cómo Mejorar el Uso del Español Hablado Libro</p></div>
-	<div class="thumb"><img src="img/editorial/Diagnóstico-y-Estudio-de-Mercado-Oferta-Productiva-Piedemonte-Amazónico-y-Costa-Nariñense.jpg" alt="Diagnóstico-y-Estudio-de-Mercado-Oferta-Productiva-Piedemonte-Amazónico-y-Costa-Nariñense"><p>Diagnóstico y Estudio de Mercado Oferta Productiva Piedemonte Amazónico y Costa Nariñense</p></div>
-	<div class="thumb"><img src="img/editorial/FacturaUsuarioASVALLE_-.jpg" alt="FacturaUsuarioASVALLE"><p>Factura Usuario ASVALLE</p></div>
-	<div class="thumb"><img src="img/editorial/FundaciónCultural-del-Putumayo-Portafolio_-.jpg" alt="FundaciónCultural-del-Putumayo-Portafolio"><p>Fundación Cultural del Putumayo Portafolio</p></div>
-	<div class="thumb"><img src="img/editorial/He-Visto-la-Muerte-Libro.jpg" alt="He-Visto-la-Muerte-Libro"><p>He Visto la Muerte Libro</p></div>
-	<div class="thumb"><img src="img/editorial/Oferta-y-Demanda-en-Cadenas-de-Producción-Sostenibles-Cartilla.jpg" alt="Oferta-y-Demanda-en-Cadenas-de-Producción-Sostenibles-Cartilla"><p>Oferta y Demanda en Cadenas de Producción Sostenibles Cartilla</p></div>
-	<div class="thumb"><img src="img/editorial/Plan-de-Competitividad-Municipio-de-Sibundoy-Diagnóstico_-.jpg" alt="Plan de Competitividad Municipio de Sibundoy Diagnóstico"><p>Plan de Competitividad Municipio de Sibundoy Diagnóstico</p></div>
-	<div class="thumb"><img src="img/editorial/Sticker-Usuarios-Empresa-de-Aseo-2.jpg" alt="Sticker Usuarios Empresa de Aseo"><p>Sticker Usuarios Empresa de Aseo</p></div>
-	<div class="thumb"><img src="img/editorial/Sticker-Usuarios-Empresa-de-Aseo.jpg" alt="Sticker Usuarios Empresa de Aseo"><p>Sticker Usuarios Empresa de Aseo</p></div>
+    <div class="thumb"><img src="img/editorial/Cómo-Mejorar-el-Uso-del-Español-Hablado-Libro_-.jpg" alt="Libro español"><p>Libro español</p></div>
+    <div class="thumb"><img src="img/editorial/Diagnóstico-y-Estudio-de-Mercado-Oferta-Productiva-Piedemonte-Amazónico-y-Costa-Nariñense.jpg" alt="Diagnóstico"><p>Diagnóstico</p></div>
+    <div class="thumb"><img src="img/editorial/FacturaUsuarioASVALLE_-.jpg" alt="Factura"><p>Factura ASVALLE</p></div>
+    <div class="thumb"><img src="img/editorial/FundaciónCultural-del-Putumayo-Portafolio_-.jpg" alt="Portafolio"><p>Portafolio</p></div>
+    <div class="thumb"><img src="img/editorial/He-Visto-la-Muerte-Libro.jpg" alt="He visto la muerte"><p>He visto la muerte</p></div>
+    <div class="thumb"><img src="img/editorial/Oferta-y-Demanda-en-Cadenas-de-Producción-Sostenibles-Cartilla.jpg" alt="Oferta y demanda"><p>Oferta y demanda</p></div>
+    <div class="thumb"><img src="img/editorial/Plan-de-Competitividad-Municipio-de-Sibundoy-Diagnóstico_-.jpg" alt="Competitividad"><p>Competitividad</p></div>
+    <div class="thumb"><img src="img/editorial/Sticker-Usuarios-Empresa-de-Aseo-2.jpg" alt="Sticker"><p>Sticker Aseo</p></div>
+    <div class="thumb"><img src="img/editorial/Sticker-Usuarios-Empresa-de-Aseo.jpg" alt="Sticker"><p>Sticker Aseo</p></div>
+  </div>
+</div>
 </div>
 
 <div id="personajesContent" class="toggle-section">
@@ -567,6 +628,7 @@ body{
 document.getElementById('y').textContent = new Date().getFullYear();
 </script>
 
+
 <script>
 // Todas las secciones y botones
 const sections = {
@@ -596,8 +658,7 @@ const sections = {
     }
 };
 
-
-// Cierra TODAS las secciones menos la activa
+// Cierra todas las secciones menos la activa
 function closeAllExcept(activeKey) {
     for (const key in sections) {
         if (key === activeKey) continue;
@@ -612,33 +673,64 @@ function closeAllExcept(activeKey) {
     }
 }
 
-
 // Activa cada botón con cierre automático del resto
 for (const key in sections) {
     const { btn, content, labelOn, labelOff } = sections[key];
     const button = document.getElementById(btn);
-    const contentDiv = document.getElementById(content);
 
     button.addEventListener("click", () => {
-        // Si ya estaba abierto → cerrarlo
-        if (contentDiv.classList.contains("show")) {
-            contentDiv.classList.remove("show");
-            button.textContent = labelOn;
-            button.classList.remove("cta--ghost");
-            return;
+    const contentEl = document.getElementById(content);
+    const isOpen = contentEl.classList.contains("show");
+
+    closeAllExcept(key);
+
+    if (!isOpen) {
+        contentEl.classList.add("show");
+
+        if (key === "toggleCartillas") {
+            contentEl.classList.add("slider-editorial");
         }
+    } else {
+        contentEl.classList.remove("show");
 
-        // 1. Cerrar todas las demás secciones
-        closeAllExcept(key);
+        if (key === "toggleCartillas") {
+            contentEl.classList.remove("slider-editorial");
+        }
+    }
 
-        // 2. Abrir la actual
-        contentDiv.classList.add("show");
-        button.textContent = labelOff;
-        button.classList.add("cta--ghost");
+    button.textContent = isOpen ? labelOn : labelOff;
+    button.classList.toggle("cta--ghost", !isOpen);
     });
 }
-</script>
 
+
+        closeAllExcept(key);
+
+if (!isOpen) {
+    contentEl.classList.add("show");
+
+    // Si es la sección editorial, mantenemos la clase especial
+    if (content === "cartillasContent") {
+        contentEl.classList.add("slider-editorial");
+    }
+
+    button.textContent = labelOff;
+    button.classList.add("cta--ghost");
+} else {
+    contentEl.classList.remove("show");
+
+    if (content === "cartillasContent") {
+        contentEl.classList.remove("slider-editorial");
+    }
+
+    button.textContent = labelOn;
+    button.classList.remove("cta--ghost");
+}
+
+    });
+}
+
+</script>
 
 </body>
 </html>
