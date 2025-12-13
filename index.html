@@ -10,157 +10,380 @@
 
 <style>
 :root{
-  --brand:#8B004B;
+  --brand:#8B004B;        /* Bordó Akkende */
   --text:#3a3a3a;
   --muted:#707070;
-  --bg:#fafafa;
+  --bg:#FAFAFA;
   --white:#fff;
   --shadow:0 10px 30px rgba(0,0,0,.08);
   --radius:18px;
 }
-
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  margin:0;
-  font-family:Poppins,system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto;
+  color:var(--text); background:var(--bg);
+}
+/* Botones del portafolio: todos del mismo ancho */
+.portfolio-buttons .cta {
+  min-width: 150px;            /* ancho mínimo basado en el más largo */
+  text-align: center;
+  flex: 1;                     /* todos ocupan el mismo espacio */
+  max-width: 200px;            /* evita que se estiren demasiado */
 }
 
-/* ───────── BOTONES ───────── */
+/* Navegación */
+.nav{
+  position:sticky; top:0; z-index:50; background:var(--white);
+  border-bottom:1px solid #eee; backdrop-filter:saturate(180%) blur(6px);
+}
+.nav__inner{
+  max-width:1180px; margin:auto; display:flex; align-items:center; gap:18px;
+  padding:12px 20px;
+}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none}
+.brand__logo {
+  display: flex;
+  align-items: center;
+}
+
+.brand__name{font-weight:700; color:var(--brand); letter-spacing:.2px}
+.nav__links{margin-left:auto; display:flex; gap:18px; flex-wrap:wrap}
+.nav__links a{
+  text-decoration:none; color:var(--text); font-weight:600; font-size:.95rem;
+}
+.nav__links a:hover{color:var(--brand)}
+
+/* Secciones genéricas */
+.section{padding:70px 20px}
+.wrap{max-width:1180px; margin:auto}
+
+/* Hero */
+.hero{
+  padding:90px 20px 60px; background:linear-gradient(180deg, #fff 0%, #fff 55%, #fafafa 100%);
+}
+.hero__grid{
+  display:grid; grid-template-columns:1.2fr .8fr; gap:34px; align-items:center;
+}
+.hero h1{
+  font-size:clamp(32px, 5vw, 54px); line-height:1.05; margin:0 0 12px;
+  color:#1d1d1d;
+}
+.hero__tag{
+  display:inline-block; background:rgba(139,0,75,.08); color:var(--brand);
+  padding:6px 12px; border-radius:999px; font-weight:600; font-size:.9rem; margin-bottom:14px;
+}
+.hero p{color:var(--muted); font-size:1.05rem; margin:0 0 18px}
 .cta{
-  padding:12px 22px;
-  border-radius:12px;
-  border:2px solid var(--brand);
-  background:var(--brand);
-  color:#fff;
-  font-weight:700;
-  cursor:pointer;
-}
-.cta--ghost{
-  background:#fff;
-  color:var(--brand);
-}
-.cta--active{
-  background:#fff;
-  color:var(--brand);
+  display:inline-block; 
+  background:var(--brand); 
+  color:#fff; 
+  text-decoration:none;
+  padding:12px 20px; 
+  border-radius:12px; 
+  font-weight:700; 
+  box-shadow:var(--shadow);
+	border:none;
+	font-size:1rem;
 }
 
-/* ───────── PORTAFOLIO BUTTONS ───────── */
-.portfolio-buttons{
-  display:flex;
-  gap:16px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
-.portfolio-buttons .cta{
-  min-width:150px;
-  max-width:200px;
-  flex:1;
+.cta--ghost {
+  background: #fff;               /* fondo blanco */
+  color: var(--brand);            /* texto bordó */
+  border: 2px solid var(--brand); /* borde bordó */
 }
 
-/* ───────── TOGGLE SECTIONS ───────── */
-.toggle-section{
-  display:none;
+.hero__card{
+  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:22px;
 }
-.toggle-section.show{
-  display:block;
-  animation:fade .35s ease;
+.hero__list{list-style:none; padding:0; margin:16px 0 0}
+.hero__list li{display:flex; gap:10px; margin:10px 0; color:#4a4a4a}
+.badge{font-size:.8rem; color:#888}
+
+/* Sección servicios */
+.sec-title{
+  text-align:center; margin-bottom:10px; font-size:clamp(24px,3.6vw,36px);
+  color:#1d1d1d;
 }
-@keyframes fade{
-  from{opacity:0; transform:translateY(-10px)}
-  to{opacity:1; transform:none}
+.sec-sub{ text-align:center; color:var(--muted); margin:0 auto 26px; max-width:760px}
+.grid{
+  display:grid; gap:20px; grid-template-columns:repeat(3, 1fr);
+}
+.card{
+  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.card:hover{transform:translateY(-6px); box-shadow:0 16px 34px rgba(0,0,0,.12)}
+.card h3{margin:6px 0 8px; color:#1d1d1d}
+.card p{margin:0; color:#5a5a5a}
+
+/* Paquetes */
+.pricing{ grid-template-columns:repeat(3, 1fr); }
+.tier .price{font-size:32px; font-weight:800; color:var(--brand); margin:6px 0 12px}
+.tier ul{margin:0; padding-left:18px; color:#4a4a4a}
+.tier .cta{margin-top:32px}
+.tier {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* reparte el espacio */
+  align-items: center;            /* centra el contenido horizontal */
+  height: 100%;                   /* asegura que todas las cards tengan la misma altura */
 }
 
-/* ───────── GRID LOGOS ───────── */
-.portfolio.grid{
+.tier .cta {
+  margin-top: auto;      /* empuja el botón hacia abajo */
+  align-self: center;    /* centra el botón horizontalmente */
+}
+
+.tier ul {
+  margin-bottom: 40px;   /* más aire debajo del listado */
+}
+
+.tier .badge {
+  margin-top: 10px;      /* espacio entre disclaimers y el botón */
+  margin-bottom: 26px;   /* asegura aire antes del botón */
+}
+.tier {
+  padding-bottom: 30px !important;  /* obliga igual espacio bajo el botón */
+}
+
+
+/* Portafolio */
+/* Portafolio */
+.portfolio.grid {
+  margin-top:20px;
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+  grid-template-columns: repeat(5, 1fr); /* 👈 5 logos por línea */
   gap:20px;
 }
-.thumb{
+
+/* Estilo cuando el botón está activo (ocultando contenido) */
+.cta--active {
+    background: #fff !important;
+    color: var(--brand) !important;
+    border: 2px solid var(--brand) !important;
+    box-shadow: none !important;
+}
+
+
+.thumb {
   background:#fff;
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  height:220px;
+  padding:10px;
   display:flex;
   flex-direction:column;
-  align-items:center;
-  justify-content:center;
+  justify-content:space-between; /* texto abajo */
+  align-items:center;            /* centra logo horizontal */
   text-align:center;
+  height:220px;                  /* 👈 ajusta la altura fija */
 }
-.thumb img{
-  max-width:120px;
-  max-height:120px;
-  object-fit:contain;
+
+.thumb img {
+  max-width:120px;   /* 👈 tamaño máximo del logo */
+  max-height:120px;  /* 👈 altura máxima */
+  object-fit:contain; 
+  margin:auto;       /* centra vertical */
+  flex-grow:1;       /* ocupa espacio central */
 }
-.thumb p{
+
+.thumb p {
   margin-top:8px;
   font-size:.85rem;
   color:var(--muted);
 }
-
-/* ───────── SLIDER BASE ───────── */
-.slider{
-  display:flex;
-  gap:22px;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  padding:10px;
-}
-.slider::-webkit-scrollbar{height:8px}
-.slider::-webkit-scrollbar-thumb{
-  background:#ccc;
-  border-radius:4px;
-}
-.slider .thumb{
-  scroll-snap-align:start;
+/* ───────────────────────────── */
+/* SLIDER HORIZONTAL EDITORIAL */
+.slider-horizontal {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px;
 }
 
-/* ───────── EDITORIAL ───────── */
-#cartillasContent .thumb{
-  flex:0 0 650px;
-  height:650px;
-}
-#cartillasContent img{
-  max-width:80%;
-  max-height:80%;
+.slider-horizontal::-webkit-scrollbar {
+  height: 8px;
 }
 
-/* ───────── ILUSTRACIÓN ───────── */
-#personajesContent .thumb{
-  flex:0 0 720px;
-  height:520px;
-}
-#personajesContent img{
-  max-width:100%;
-  max-height:100%;
+.slider-horizontal::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
 
-/* ───────── SLIDER ARROWS ───────── */
-.slider-wrapper{
-  position:relative;
+
+/* ILUSTRACIÓN – más grande y protagonista */
+#personajesContent .slider-horizontal .thumb {
+  flex: 0 0 720px;   /* 👈 más ancho que editorial */
+  height: 520px;     /* 👈 menos alto para personajes */
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.slider-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  border:none;
-  background:#fff;
-  color:var(--brand);
-  font-size:24px;
-  box-shadow:0 4px 15px rgba(0,0,0,.15);
-  cursor:pointer;
+
+#personajesContent .slider-horizontal .thumb img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* nunca se deforma */
 }
-.slider-arrow.left{left:6px}
-.slider-arrow.right{right:6px}
-.slider-arrow:hover{
-  background:var(--brand);
-  color:#fff;
+
+
+
+
+/* FLECHAS DEL SLIDER */
+.slider-arrows {
+  position: relative;
 }
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--brand);
+  z-index: 20;
+}
+
+.slider-arrow:hover {
+  background: var(--brand);
+  color: white;
+}
+
+.slider-arrow.left { left: 6px; }
+.slider-arrow.right { right: 6px; }
+
+/* Sobre */
+.about{
+  display:grid; gap:28px; grid-template-columns:1.1fr .9fr; align-items:center;
+}
+.kicker{color:var(--brand); font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:.8rem}
+.story{color:#4a4a4a; line-height:1.7}
+
+/* Contacto */
+.contacto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.contacto-container {
+  text-align: center; /* centra título y botón */
+}
+
+.btn-contacto {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: var(--brand);
+  color: #fff !important;   /* 👈 Esto fuerza el blanco */
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.3s ease;
+  margin-top: 20px;
+}
+
+
+.btn-contacto:hover {
+  background-color: #a0004d;
+  color: #fff !important;   /* 👈 también blanco en hover */
+}
+
+
+/* Links de email y WhatsApp */
+.contacto-container a {
+  color: var(--brand);
+  text-decoration: none;   /* sin subrayado */
+  font-weight: 500;
+}
+
+.contacto-container a:hover {
+  text-decoration: underline;
+}
+/* ─────────────────────────────── */
+/*   BOTONES HORIZONTALES PORTAFOLIO */
+/* ─────────────────────────────── */
+.portfolio-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0 35px;
+  flex-wrap: wrap;
+}
+
+/* Animación slide + fade */
+.toggle-section {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition:
+    opacity .4s ease,
+    max-height .45s ease,
+    transform .45s ease;
+}
+
+.slider-container {
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.slider-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.slider-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.toggle-section.show {
+  opacity: 1;
+  max-height: 5000px; /* Para permitir contenido largo */
+  transform: translateY(0);
+  display: block;
+}
+
+/*────────────────────── */
+/*   EDITORIAL TIPO SLIDER       */
+/* ───────────────────────────── */
+	
+/* EDITORIAL – Imágenes grandes manteniendo proporción */
+#cartillasContent .thumb {
+  flex: 0 0 650px;   /* tamaño del cuadro */
+  height: 650px;     /* altura del cuadro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+	  background: white;
+  border-radius: 18px;
+	box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#cartillasContent .thumb img {
+  max-height: 80%;   /* la imagen crece hasta 90% de la tarjeta */
+  max-width: 80%;    /* evita que se salga horizontalmente */
+  width: auto;       /* mantiene proporción */
+  height: auto;      /* mantiene proporción */
+  object-fit: contain; /* muy importante: NO deforma */
+}
+
+
 </style>
 </head>
 <body>
@@ -379,11 +602,11 @@ body{
 	<p class="sec-sub">Contenido editorial aquí.</p>
 <div class="slider-container slider-arrows">
 
-<div class="slider-wrapper">
-  <button class="slider-arrow left">‹</button>
-  <button class="slider-arrow right">›</button>
+<button class="slider-arrow left" aria-label="Anterior">‹</button>
+<button class="slider-arrow right" aria-label="Siguiente">›</button>
 
-  <div class="slider" id="editorialSlider">
+
+  <div class="slider-horizontal" id="editorialSlider">
 
     <div class="thumb"><img src="img/editorial/Asoamazonia_-.jpg" alt="Asoamazonia"><p>Asoamazonia</p></div>
     <div class="thumb"><img src="img/editorial/CICAM-Cartilla_-.jpg" alt="CICAM"><p>CICAM</p></div>
@@ -400,17 +623,17 @@ body{
   </div>
 </div>
 </div>
-</div>
 
 <div id="personajesContent" class="toggle-section">
   <p class="sec-sub">Ilustraciones y personajes desarrollados para distintas marcas.</p>
 
-<div class="slider-wrapper">
-  <button class="slider-arrow left">‹</button>
-  <button class="slider-arrow right">›</button>
+  <div class="slider-container slider-arrows">
 
-  <div class="slider" id="ilustracionSlider">
+<button class="slider-arrow left" aria-label="Anterior">‹</button>
+<button class="slider-arrow right" aria-label="Siguiente">›</button>
 
+
+    <div class="slider-horizontal" id="ilustracionSlider">
       <div class="thumb"><img src="img/ilustracion/Niño-Niña-mascota-ASVALLE.png" alt="ASVALLE"><p>ASVALLE</p></div>
       <div class="thumb"><img src="img/ilustracion/Personaje-Niña-Centinelas-Ambientales-2.png" alt="CICAM"><p>CICAM</p></div>
       <div class="thumb"><img src="img/ilustracion/Personaje-Niña-Centinelas-Ambientales.png" alt="Centinelas"><p>Centinelas Ambientales</p></div>
@@ -482,38 +705,118 @@ document.getElementById('y').textContent = new Date().getFullYear();
 
 
 <script>
-/* Año */
-document.getElementById('y').textContent = new Date().getFullYear();
+document.addEventListener("DOMContentLoaded", () => {
+ const ilustracionSlider = document.getElementById("ilustracionSlider");
+  if (!ilustracionSlider) return;
 
-/* ───────── TOGGLE PORTAFOLIO ───────── */
-const buttons = document.querySelectorAll('.portfolio-buttons .cta');
-const sections = document.querySelectorAll('.toggle-section');
+  const images = ilustracionSlider.querySelectorAll("img");
+  if (images.length === 0) return;
 
-buttons.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const target = btn.id.replace('toggle','') + 'Content';
-    const section = document.getElementById(target);
-    const isOpen = section.classList.contains('show');
+  const firstImage = images[0];
 
-    sections.forEach(s=>s.classList.remove('show'));
-    buttons.forEach(b=>b.classList.remove('cta--active'));
+  const syncHeights = () => {
+    const referenceHeight = firstImage.offsetHeight;
+    if (referenceHeight === 0) return;
 
-    if(!isOpen){
-      section.classList.add('show');
-      btn.classList.add('cta--active');
-    }
+    images.forEach(img => {
+      img.style.height = referenceHeight + "px";
+		img.style.maxHeight = "500px";
+    });
+  };
+
+  // Si la primera imagen ya cargó
+  if (firstImage.complete) {
+    syncHeights();
+  } else {
+    firstImage.onload = syncHeights;
+  }
+
+  // Recalcular si cambia el tamaño de la ventana
+  window.addEventListener("resize", syncHeights);
+    /* ────────────────────────────────
+       SISTEMA DE BOTONES Y SECCIONES
+    ───────────────────────────────── */
+
+    const sections = [
+        { btnId: "toggleLogos", contentId: "logosContent", labelOff: "Logos", labelOn: "Ocultar logos" },
+        { btnId: "toggleCartillas", contentId: "cartillasContent", labelOff: "Editorial", labelOn: "Ocultar editorial" },
+        { btnId: "togglePersonajes", contentId: "personajesContent", labelOff: "Ilustración", labelOn: "Ocultar ilustración" },
+        { btnId: "toggleInfografias", contentId: "infografiasContent", labelOff: "Diagramación", labelOn: "Ocultar diagramación" }
+    ];
+
+    const closeAll = () => {
+        sections.forEach(s => {
+            const btn = document.getElementById(s.btnId);
+            const content = document.getElementById(s.contentId);
+            btn.classList.remove("cta--active");
+            btn.textContent = s.labelOff;
+            content.classList.remove("show");
+        });
+    };
+
+    sections.forEach(s => {
+        const btn = document.getElementById(s.btnId);
+        const content = document.getElementById(s.contentId);
+
+        btn.addEventListener("click", () => {
+            const isOpen = content.classList.contains("show");
+            closeAll();
+            if (!isOpen) {
+                content.classList.add("show");
+                btn.classList.add("cta--active");
+                btn.textContent = s.labelOn;
+            }
+        });
+    });
+
+    /* ────────────────────────────────
+          SLIDER HORIZONTAL EDITORIAL
+    ───────────────────────────────── */
+
+    const slider = document.getElementById("editorialSlider");
+    const arrowLeft = document.getElementById("arrowLeft");
+    const arrowRight = document.getElementById("arrowRight");
+
+    arrowLeft.addEventListener("click", () => {
+        slider.scrollBy({
+            left: -500,
+            behavior: "smooth"
+        });
+    });
+
+	   /* ────────────────────────────────
+          SLIDER HORIZONTAL ILUSTRACIÓN
+    ───────────────────────────────── */
+
+	const sliderIlus = document.getElementById("ilustracionSlider");
+  	const arrowLeftIlus = document.getElementById("arrowLeftIlus");
+  	const arrowRightIlus = document.getElementById("arrowRightIlus");
+
+if (sliderIlus && arrowLeftIlus && arrowRightIlus) {
+  arrowLeftIlus.addEventListener("click", () => {
+    sliderIlus.scrollBy({ left: -500, behavior: "smooth" });
   });
-});
 
-/* ───────── SLIDERS ───────── */
-document.querySelectorAll('.slider-wrapper').forEach(wrapper=>{
-  const slider = wrapper.querySelector('.slider');
-  wrapper.querySelector('.left').onclick = () =>
-    slider.scrollBy({left:-500, behavior:'smooth'});
-  wrapper.querySelector('.right').onclick = () =>
-    slider.scrollBy({left:500, behavior:'smooth'});
+  arrowRightIlus.addEventListener("click", () => {
+    sliderIlus.scrollBy({ left: 500, behavior: "smooth" });
+  });
+}
+
+
+  arrowRightIlus.addEventListener("click", () => {
+    sliderIlus.scrollBy({
+      left: 500,
+      behavior: "smooth"
+        });
+    });
+
 });
 </script>
+
+
+
+
+
 
 
 </body>
