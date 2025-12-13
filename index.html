@@ -1,21 +1,852 @@
-<!-- BOTONES -->
-<div class="portfolio-buttons">
-  <button class="cta" data-target="editorial">Editorial</button>
-  <button class="cta" data-target="ilustracion">Ilustración</button>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Akkende · Diseño que comunica</title>
+
+<!-- Tipografía -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --brand:#8B004B;        /* Bordó Akkende */
+  --text:#3a3a3a;
+  --muted:#707070;
+  --bg:#FAFAFA;
+  --white:#fff;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto;
+  color:var(--text); background:var(--bg);
+}
+/* Botones del portafolio: todos del mismo ancho */
+.portfolio-buttons .cta {
+  min-width: 150px;            /* ancho mínimo basado en el más largo */
+  text-align: center;
+  flex: 1;                     /* todos ocupan el mismo espacio */
+  max-width: 200px;            /* evita que se estiren demasiado */
+}
+
+/* Navegación */
+.nav{
+  position:sticky; top:0; z-index:50; background:var(--white);
+  border-bottom:1px solid #eee; backdrop-filter:saturate(180%) blur(6px);
+}
+.nav__inner{
+  max-width:1180px; margin:auto; display:flex; align-items:center; gap:18px;
+  padding:12px 20px;
+}
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none}
+.brand__logo {
+  display: flex;
+  align-items: center;
+}
+
+.brand__name{font-weight:700; color:var(--brand); letter-spacing:.2px}
+.nav__links{margin-left:auto; display:flex; gap:18px; flex-wrap:wrap}
+.nav__links a{
+  text-decoration:none; color:var(--text); font-weight:600; font-size:.95rem;
+}
+.nav__links a:hover{color:var(--brand)}
+
+/* Secciones genéricas */
+.section{padding:70px 20px}
+.wrap{max-width:1180px; margin:auto}
+
+/* Hero */
+.hero{
+  padding:90px 20px 60px; background:linear-gradient(180deg, #fff 0%, #fff 55%, #fafafa 100%);
+}
+.hero__grid{
+  display:grid; grid-template-columns:1.2fr .8fr; gap:34px; align-items:center;
+}
+.hero h1{
+  font-size:clamp(32px, 5vw, 54px); line-height:1.05; margin:0 0 12px;
+  color:#1d1d1d;
+}
+.hero__tag{
+  display:inline-block; background:rgba(139,0,75,.08); color:var(--brand);
+  padding:6px 12px; border-radius:999px; font-weight:600; font-size:.9rem; margin-bottom:14px;
+}
+.hero p{color:var(--muted); font-size:1.05rem; margin:0 0 18px}
+.cta{
+  display:inline-block; 
+  background:var(--brand); 
+  color:#fff; 
+  text-decoration:none;
+  padding:12px 20px; 
+  border-radius:12px; 
+  font-weight:700; 
+  box-shadow:var(--shadow);
+	border:none;
+	font-size:1rem;
+}
+
+.cta--ghost {
+  background: #fff;               /* fondo blanco */
+  color: var(--brand);            /* texto bordó */
+  border: 2px solid var(--brand); /* borde bordó */
+}
+
+.hero__card{
+  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow);
+  padding:22px;
+}
+.hero__list{list-style:none; padding:0; margin:16px 0 0}
+.hero__list li{display:flex; gap:10px; margin:10px 0; color:#4a4a4a}
+.badge{font-size:.8rem; color:#888}
+
+/* Sección servicios */
+.sec-title{
+  text-align:center; margin-bottom:10px; font-size:clamp(24px,3.6vw,36px);
+  color:#1d1d1d;
+}
+.sec-sub{ text-align:center; color:var(--muted); margin:0 auto 26px; max-width:760px}
+.grid{
+  display:grid; gap:20px; grid-template-columns:repeat(3, 1fr);
+}
+.card{
+  background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.card:hover{transform:translateY(-6px); box-shadow:0 16px 34px rgba(0,0,0,.12)}
+.card h3{margin:6px 0 8px; color:#1d1d1d}
+.card p{margin:0; color:#5a5a5a}
+
+/* Paquetes */
+.pricing{ grid-template-columns:repeat(3, 1fr); }
+.tier .price{font-size:32px; font-weight:800; color:var(--brand); margin:6px 0 12px}
+.tier ul{margin:0; padding-left:18px; color:#4a4a4a}
+.tier .cta{margin-top:32px}
+.tier {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* reparte el espacio */
+  align-items: center;            /* centra el contenido horizontal */
+  height: 100%;                   /* asegura que todas las cards tengan la misma altura */
+}
+
+.tier .cta {
+  margin-top: auto;      /* empuja el botón hacia abajo */
+  align-self: center;    /* centra el botón horizontalmente */
+}
+
+.tier ul {
+  margin-bottom: 40px;   /* más aire debajo del listado */
+}
+
+.tier .badge {
+  margin-top: 10px;      /* espacio entre disclaimers y el botón */
+  margin-bottom: 26px;   /* asegura aire antes del botón */
+}
+.tier {
+  padding-bottom: 30px !important;  /* obliga igual espacio bajo el botón */
+}
+
+
+/* Portafolio */
+/* Portafolio */
+.portfolio.grid {
+  margin-top:20px;
+  display:grid;
+  grid-template-columns: repeat(5, 1fr); /* 👈 5 logos por línea */
+  gap:20px;
+}
+
+/* Estilo cuando el botón está activo (ocultando contenido) */
+.cta--active {
+    background: #fff !important;
+    color: var(--brand) !important;
+    border: 2px solid var(--brand) !important;
+    box-shadow: none !important;
+}
+
+
+.thumb {
+  background:#fff;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between; /* texto abajo */
+  align-items:center;            /* centra logo horizontal */
+  text-align:center;
+  height:220px;                  /* 👈 ajusta la altura fija */
+}
+
+.thumb img {
+  max-width:120px;   /* 👈 tamaño máximo del logo */
+  max-height:120px;  /* 👈 altura máxima */
+  object-fit:contain; 
+  margin:auto;       /* centra vertical */
+  flex-grow:1;       /* ocupa espacio central */
+}
+
+.thumb p {
+  margin-top:8px;
+  font-size:.85rem;
+  color:var(--muted);
+}
+/* ───────────────────────────── */
+/* SLIDER HORIZONTAL EDITORIAL */
+.slider-horizontal {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px;
+}
+
+.slider-horizontal::-webkit-scrollbar {
+  height: 8px;
+}
+
+.slider-horizontal::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+
+/* ILUSTRACIÓN – más grande y protagonista */
+#personajesContent .slider-horizontal .thumb {
+  flex: 0 0 720px;   /* 👈 más ancho que editorial */
+  height: 520px;     /* 👈 menos alto para personajes */
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#personajesContent .slider-horizontal .thumb img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* nunca se deforma */
+}
+
+
+
+
+/* FLECHAS DEL SLIDER */
+.slider-arrows {
+  position: relative;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.9);
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--brand);
+  z-index: 20;
+}
+
+.slider-arrow:hover {
+  background: var(--brand);
+  color: white;
+}
+
+.slider-arrow.left { left: 6px; }
+.slider-arrow.right { right: 6px; }
+
+/* Sobre */
+.about{
+  display:grid; gap:28px; grid-template-columns:1.1fr .9fr; align-items:center;
+}
+.kicker{color:var(--brand); font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:.8rem}
+.story{color:#4a4a4a; line-height:1.7}
+
+/* Contacto */
+.contacto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.contacto-container {
+  text-align: center; /* centra título y botón */
+}
+
+.btn-contacto {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: var(--brand);
+  color: #fff !important;   /* 👈 Esto fuerza el blanco */
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.3s ease;
+  margin-top: 20px;
+}
+
+
+.btn-contacto:hover {
+  background-color: #a0004d;
+  color: #fff !important;   /* 👈 también blanco en hover */
+}
+
+
+/* Links de email y WhatsApp */
+.contacto-container a {
+  color: var(--brand);
+  text-decoration: none;   /* sin subrayado */
+  font-weight: 500;
+}
+
+.contacto-container a:hover {
+  text-decoration: underline;
+}
+/* ─────────────────────────────── */
+/*   BOTONES HORIZONTALES PORTAFOLIO */
+/* ─────────────────────────────── */
+.portfolio-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px 0 35px;
+  flex-wrap: wrap;
+}
+
+/* Animación slide + fade */
+.toggle-section {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition:
+    opacity .4s ease,
+    max-height .45s ease,
+    transform .45s ease;
+}
+
+.slider-container {
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.slider-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.slider-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.toggle-section.show {
+  opacity: 1;
+  max-height: 5000px; /* Para permitir contenido largo */
+  transform: translateY(0);
+  display: block;
+}
+
+/*────────────────────── */
+/*   EDITORIAL TIPO SLIDER       */
+/* ───────────────────────────── */
+	
+/* EDITORIAL – Imágenes grandes manteniendo proporción */
+#cartillasContent .thumb {
+  flex: 0 0 650px;   /* tamaño del cuadro */
+  height: 650px;     /* altura del cuadro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+	  background: white;
+  border-radius: 18px;
+	box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+#cartillasContent .thumb img {
+  max-height: 80%;   /* la imagen crece hasta 90% de la tarjeta */
+  max-width: 80%;    /* evita que se salga horizontalmente */
+  width: auto;       /* mantiene proporción */
+  height: auto;      /* mantiene proporción */
+  object-fit: contain; /* muy importante: NO deforma */
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__inner">
+	<a class="brand" href="#inicio">
+  		<img src="img/AkkendePNG.png" alt="Akkende" style="height:40px; object-fit:contain;">
+	</a>
+
+
+    <div class="nav__links">
+      <a href="#servicios">Servicios</a>
+      <a href="#paquetes">Paquetes</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="inicio" class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="hero__tag">Diseño que comunica • Marketing que conecta</span>
+      <h1>Diseño profesional para marcas que quieren destacar hoy y crecer mañana</h1>
+      <p>Nos enfocamos en <strong>branding e identidad visual</strong> y lo complementamos con <strong>diseño publicitario</strong> y contenido para redes. Creatividad humana + herramientas de IA para prototipar rápido y entregar con calidad.</p>
+      <div>
+        <a class="cta" href="#contacto">Solicitar propuesta</a>
+        <a class="cta cta--ghost" href="#portafolio">Ver portafolio</a>
+      </div>
+      <div class="badge" style="margin-top:10px">Colombia · Atención personalizada</div>
+    </div>
+
+    <div class="hero__card">
+      <strong>Lo que hacemos</strong>
+      <ul class="hero__list">
+        <li>• Identidad visual y manual de marca</li>
+        <li>• Diseño publicitario (digital e impreso)</li>
+        <li>• Piezas para redes sociales y reels</li>
+        <li>• Asesoría en marketing visual</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="section">
+  <div class="wrap">
+    <h2 class="sec-title">Servicios</h2>
+    <p class="sec-sub">Branding primero; listos para escalar a marketing cuando tu marca esté sólida.</p>
+
+    <div class="grid">
+      <article class="card">
+        <h3>Branding & Identidad Visual</h3>
+        <p>Logo, paleta, tipografías y guía de estilo. Entrega lista para usar en web, redes e impresión.</p>
+      </article>
+      <article class="card">
+        <h3>Diseño Publicitario</h3>
+        <p>Banners, flyers, catálogos y campañas visuales con foco en claridad y recordación.</p>
+      </article>
+      <article class="card">
+        <h3>Redes: Piezas & Creatividad</h3>
+        <p>Plantillas y piezas mensuales para mantener una presencia coherente y atractiva.</p>
+      </article>
+      <article class="card">
+        <h3>Motion & Reels</h3>
+        <p>Microanimaciones y videos cortos para mejorar alcance e interacción.</p>
+      </article>
+      <article class="card">
+        <h3>Consultoría Visual</h3>
+        <p>Diagnóstico y plan de acción: cómo verse y comunicarse para vender mejor.</p>
+      </article>
+      <article class="card">
+        <h3>IA como Aliada</h3>
+        <p>Prototipado ágil con supervisión creativa humana para acelerar tiempos sin perder calidad.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PAQUETES -->
+<section id="paquetes" class="section">
+  <div class="wrap">
+    <h2 class="sec-title">Paquetes para Emprendedores</h2>
+    <p class="sec-sub">Opciones claras para arrancar y crecer. Puedes personalizar cualquier plan.</p>
+
+    <div class="grid pricing">
+      <article class="card tier">
+        <h3>Despega</h3>
+        <div class="price">Branding inicial</div>
+        <ul>
+          <li>Logo (3 propuestas + revisiones)</li>
+          <li>Paleta & tipografías</li>
+          <li>Manual básico de marca (PDF)</li>
+          <li>5 plantillas para redes</li>
+          <li>Asesoría 1 hora</li>
+        </ul>
+        <a class="cta" href="#contacto">Quiero este</a>
+      </article>
+
+      <article class="card tier" style="border:2px solid var(--brand)">
+        <h3>Presencia Digital</h3>
+        <div class="price">Branding + Redes</div>
+        <ul>
+          <li>Todo en “Despega”</li>
+          <li>Estrategia inicial de contenidos</li>
+          <li>12 publicaciones + copies (1 mes)</li>
+          <li>Optimización de perfiles</li>
+          <li>1 campaña básica en Meta Ads*</li>
+        </ul>
+        <p class="badge">*Inversión publicitaria no incluida</p>
+        <a class="cta" href="#contacto">Empezar</a>
+      </article>
+
+      <article class="card tier">
+        <h3>Acelera Ventas</h3>
+        <div class="price">Branding + Redes + Ads</div>
+        <ul>
+          <li>Todo en “Presencia Digital”</li>
+          <li>2 campañas avanzadas (Meta o Google)</li>
+          <li>20 publicaciones/mes + 4 reels</li>
+          <li>Reporte mensual de resultados</li>
+          <li>Sesión estratégica mensual</li>
+        </ul>
+        <a class="cta" href="#contacto">Hablemos</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PORTAFOLIO -->
+<section id="portafolio" class="section">
+  <div class="wrap">
+    <h2 class="sec-title">Portafolio</h2>
+	<div class="portfolio-buttons">
+	  <button id="toggleLogos" class="cta">Logos</button>
+	  <button id="toggleCartillas" class="cta">Editorial</button>
+	  <button id="togglePersonajes" class="cta">Ilustración</button>
+	  <button id="toggleInfografias" class="cta">Diagramación</button>
+	</div>
+
+
+<div id="logosContent" class="toggle-section">
+	 <p class="sec-sub">Algunos de los logos que hemos diseñado para distintas organizaciones.</p>
+    <!-- 1. Sector ambiental y sostenible -->
+    <h3>🌱 Empresas del sector ambiental y sostenible</h3>
+    <div class="portfolio grid">
+      <div class="thumb"><img src="img/Logo-AguaVívela.png" alt="Agua Vívela"><p>Agua Vívela</p></div>
+      <div class="thumb"><img src="img/Logo-Asoamazonia.png" alt="Asoamazonía"><p>Asoamazonía</p></div>
+      <div class="thumb"><img src="img/a-Logo-Asvalle.png" alt="Asvalle"><p>Asvalle</p></div>
+      <div class="thumb"><img src="img/Logo-Balastreras-y-Triturados.png" alt="Balastreras y Triturados"><p>Balastreras y Triturados</p></div>
+	 <div class="thumb"><img src="img/a-Logo-Asofrisan.png" alt="Asofrisan"><p>Asofrisan</p></div>
+		<div class="thumb"><img src="img/Logo-Indi Iako.png" alt="Indi Iako"><p>Indi Iako</p></div>
+		<div class="thumb"><img src="img/a-Logo-CentinelasAmbientales.png" alt="Centinelas Ambientales"><p>Centinelas Ambientales</p></div>
+		<div class="thumb"><img src="img/Logo-Áchika.png" alt="Áchika"><p>Áchika</p></div>
+		<div class="thumb"><img src="img/a-Logo-Sucurí.png" alt="Sucurí"><p>Sucurí</p></div>
+		<div class="thumb"><img src="img/Logo-PlanetBio.png" alt="Planet Bio"><p>Planet Bio</p></div>
+		<div class="thumb"><img src="img/LogoSurVerde.png" alt="Sur Verde"><p>Sur Verde</p></div>
+    </div>
+
+    <!-- 2. Salud, ciencia y bienestar -->
+    <h3>🧬 Salud, ciencia y bienestar</h3>
+    <div class="portfolio grid">
+      <div class="thumb"><img src="img/Logo-CorazónVisible.png" alt="Corazón Visible"><p>Corazón Visible</p></div>
+      <div class="thumb"><img src="img/Logo-Cosmaisol.png" alt="Cosmaisol"><p>Cosmaisol</p></div>
+		<div class="thumb"><img src="img/a-Logo-Med&House.png" alt="Med&House"><p>Med&House</p></div>
+		<div class="thumb"><img src="img/a-Logo-Ladipets.png" alt="Ladipets"><p>Ladipets</p></div>
+      <div class="thumb"><img src="img/Logo-Ayén.png" alt="Ayén"><p>Ayén</p></div>
+    	<div class="thumb"><img src="img/Logo-Paillahuen.png" alt="Paillahuen"><p>Paillahuen</p></div>
+	<div class="thumb"><img src="img/a-Logo-CatheringSolarte.png" alt="Paillahuen"><p>Paillahuen</p></div>
+	</div>
+
+    <!-- 3. Educación y conocimiento -->
+    <h3>📚 Educación y conocimiento</h3>
+    <div class="portfolio grid">
+      <div class="thumb"><img src="img/Logo-IRCAM.png" alt="IRCAM"><p>IRCAM</p></div>
+      <div class="thumb"><img src="img/Logo-MInga-GrupoInvestigación.png" alt="Minga Grupo de Investigación"><p>Minga Grupo de Investigación</p></div>
+      <div class="thumb"><img src="img/a-Logo-ITP.png" alt="ITP"><p>ITP</p></div>
+    </div>
+
+    <!-- 4. Servicios y negocios -->
+    <h3>💼 Empresas de servicios y negocios</h3>
+    <div class="portfolio grid">
+      <div class="thumb"><img src="img/Logo-HouseLawyers.png" alt="House Lawyers"><p>House Lawyers</p></div>
+      <div class="thumb"><img src="img/Logo-JT-Ingeniería.png" alt="JT Ingeniería"><p>JT Ingeniería</p></div>
+      <div class="thumb"><img src="img/Logo-Oficopias.png" alt="Oficopias"><p>Oficopias</p></div>
+		<div class="thumb"><img src="img/Logo-Orix.png" alt="Orix Parallel Design"><p>Orix Parallel Design</p></div>
+    	<div class="thumb"><img src="img/a-Logo-LuisArturoPortillaLópez.png" alt="Luis Arturo Portilla López"><p>Luis Arturo Portilla López</p></div>
+		<div class="thumb"><img src="img/LogoPuntoLocura.png" alt="Punto Locura"><p>Punto Locura</p></div>
+		<div class="thumb"><img src="img/Logo-Tabanokan.png" alt="Tabanokan"><p>Tabanokan</p></div>
+	     <div class="thumb"><img src="img/Logo-LaKaye.png" alt="La Kaye"><p>La Kaye</p></div>
+		<div class="thumb"><img src="img/a-Logo-Quanto.png" alt="Quanto"><p>Quanto</p></div>
+	</div>
+
+    <!-- 5. Cultura, arte y entretenimiento -->
+    <h3>🎨 Cultura, arte y entretenimiento</h3>
+    <div class="portfolio grid">
+		<div class="thumb"><img src="img/Logo-LaÚnik.png" alt="La Únik"><p>La Únik</p></div>
+		<div class="thumb"><img src="img/a-Logo-Upa.png" alt="Upa"><p>Upa</p></div>
+		<div class="thumb"><img src="img/Logo-SachamatesTypo.png" alt="Sachamates Typo"><p>Sachamates Typo</p></div>
+     	<div class="thumb"><img src="img/a-LogoSachamates2022.png" alt="Sachamates 2022"><p>Sachamates 2022</p></div>
+		<div class="thumb"><img src="img/Logo-Plumarte.png" alt="Plumarte"><p>Plumarte</p></div>
+		<div class="thumb"><img src="img/Logo-SibundoyArtesano.png" alt="Sibundoy Artesano"><p>Sibundoy Artesano</p></div>
+         <div class="thumb"><img src="img/Logo-Grandes-del-Vallenato.png" alt="Grandes del Vallenato"><p>Grandes del Vallenato</p></div>
+	</div>
+  </div>
 </div>
+</div>
+
 
 <!-- EDITORIAL -->
-<div id="editorial" class="toggle-section editorial">
-  <div class="slider">
-    <div class="thumb"><img src="img/editorial/ejemplo1.jpg"></div>
-    <div class="thumb"><img src="img/editorial/ejemplo2.jpg"></div>
+<div id="cartillasContent" class="toggle-section">
+	<p class="sec-sub">Contenido editorial aquí.</p>
+<div class="slider-container slider-arrows">
+
+<button class="slider-arrow left" aria-label="Anterior">‹</button>
+<button class="slider-arrow right" aria-label="Siguiente">›</button>
+
+
+  <div class="slider-horizontal" id="editorialSlider">
+
+    <div class="thumb"><img src="img/editorial/Asoamazonia_-.jpg" alt="Asoamazonia"><p>Asoamazonia</p></div>
+    <div class="thumb"><img src="img/editorial/CICAM-Cartilla_-.jpg" alt="CICAM"><p>CICAM</p></div>
+    <div class="thumb"><img src="img/editorial/CentinelasAmbientales-Cartilla_-.jpg" alt="Centinelas Ambientales"><p>Centinelas Ambientales</p></div>
+    <div class="thumb"><img src="img/editorial/Cómo-Mejorar-el-Uso-del-Español-Hablado-Libro_-.jpg" alt="Libro español"><p>Libro español</p></div>
+    <div class="thumb"><img src="img/editorial/Diagnóstico-y-Estudio-de-Mercado-Oferta-Productiva-Piedemonte-Amazónico-y-Costa-Nariñense.jpg" alt="Diagnóstico"><p>Diagnóstico</p></div>
+    <div class="thumb"><img src="img/editorial/FacturaUsuarioASVALLE_-.jpg" alt="Factura"><p>Factura ASVALLE</p></div>
+    <div class="thumb"><img src="img/editorial/FundaciónCultural-del-Putumayo-Portafolio_-.jpg" alt="Portafolio"><p>Portafolio</p></div>
+    <div class="thumb"><img src="img/editorial/He-Visto-la-Muerte-Libro.jpg" alt="He visto la muerte"><p>He visto la muerte</p></div>
+    <div class="thumb"><img src="img/editorial/Oferta-y-Demanda-en-Cadenas-de-Producción-Sostenibles-Cartilla.jpg" alt="Oferta y demanda"><p>Oferta y demanda</p></div>
+    <div class="thumb"><img src="img/editorial/Plan-de-Competitividad-Municipio-de-Sibundoy-Diagnóstico_-.jpg" alt="Competitividad"><p>Competitividad</p></div>
+    <div class="thumb"><img src="img/editorial/Sticker-Usuarios-Empresa-de-Aseo-2.jpg" alt="Sticker"><p>Sticker Aseo</p></div>
+    <div class="thumb"><img src="img/editorial/Sticker-Usuarios-Empresa-de-Aseo.jpg" alt="Sticker"><p>Sticker Aseo</p></div>
+  </div>
+</div>
+</div>
+
+<div id="personajesContent" class="toggle-section">
+  <p class="sec-sub">Ilustraciones y personajes desarrollados para distintas marcas.</p>
+
+  <div class="slider-container slider-arrows">
+
+<button class="slider-arrow left" aria-label="Anterior">‹</button>
+<button class="slider-arrow right" aria-label="Siguiente">›</button>
+
+
+    <div class="slider-horizontal" id="ilustracionSlider">
+
+      <div class="thumb">
+        <img src="img/ilustracion/Niño-Niña-mascota-ASVALLE.png" alt="ASVALLE">
+        <p>ASVALLE</p>
+      </div>
+
+      <div class="thumb">
+        <img src="img/ilustracion/Personaje-Niña-Centinelas-Ambientales-2.png" alt="CICAM">
+        <p>CICAM</p>
+      </div>
+
+      <div class="thumb">
+        <img src="img/ilustracion/Personaje-Niña-Centinelas-Ambientales.png" alt="Centinelas">
+        <p>Centinelas Ambientales</p>
+      </div>
+
+      <div class="thumb">
+        <img src="img/ilustracion/Personaje-Niño-Centinelas-Ambientales-2.png" alt="Personaje niño">
+        <p>Personaje niño</p>
+      </div>
+
+      <div class="thumb">
+        <img src="img/ilustracion/Personaje-Niño-Centinelas-Ambientales.png" alt="Personaje niño">
+        <p>Personaje niño</p>
+      </div>
+
+      <div class="thumb">
+        <img src="img/ilustracion/Valla-publicitaria-ASVALLE.jpg" alt="Valla ASVALLE">
+        <p>Valla ASVALLE</p>
+      </div>
+
+      <div class="thumb">
+        <img src="img/ilustracion/Valla-publicitaria-Petronova.jpg" alt="Valla Petronova">
+        <p>Valla Petronova</p>
+      </div>
+
+    </div>
   </div>
 </div>
 
-<!-- ILUSTRACIÓN -->
-<div id="ilustracion" class="toggle-section ilustracion">
-  <div class="slider">
-    <div class="thumb"><img src="img/ilustracion/ejemplo1.png"></div>
-    <div class="thumb"><img src="img/ilustracion/ejemplo2.png"></div>
-  </div>
+	
+<div id="infografiasContent" class="toggle-section">
+  <p class="sec-sub">Contenido de diagramación aquí.</p>
 </div>
+
+</section>
+
+
+<!-- SOBRE -->
+<section id="sobre" class="section">
+  <div class="wrap about">
+    <div>
+      <div class="kicker">Nuestra historia</div>
+      <h2 class="sec-title" style="text-align:left">Akkende</h2>
+      <p class="story">
+        Akkende nació con una idea simple: el diseño no es solo estética; es comunicación que conecta.
+        En una industria transformada por la tecnología, unimos <strong>creatividad humana</strong> con
+        <strong>herramientas de IA</strong> para entregar identidad, claridad y velocidad.
+        Empezamos por donde todo comienza: <strong>branding sólido</strong>. Luego, escalamos hacia campañas
+        y marketing cuando tu marca está lista para crecer.
+      </p>
+    </div>
+    <div class="panel">
+      <strong>Quiénes somos y qué tenemos</strong>
+      <ul class="hero__list">
+        <li>• Experiencia en diseño & marketing</li>
+        <li>• Dominio de tendencias y herramientas digitales</li>
+        <li>• Portafolio y casos de éxito</li>
+        <li>• Red de aliados creativos</li>
+      </ul>
+      <div class="badge">Atención personalizada · Seguimiento y reportes · Soporte postventa</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="contacto">
+  <div class="contacto-container">
+    <h2>Contacto</h2>
+    <p>Cuéntanos tu idea y armamos una propuesta a tu medida.</p>
+    <p><strong>Email:</strong> <a href="mailto:akkendeagencia@gmail.com">akkendeagencia@gmail.com</a></p>
+    <p><strong>WhatsApp:</strong> <a href="https://wa.me/573132117013" target="_blank">+57 3132117013</a></p>
+    <p><strong>Ubicación:</strong> Colombia</p>
+    <a href="https://wa.me/573132117013" target="_blank" class="btn-contacto">
+      Comencemos
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  © <span id="y"></span> Akkende · Diseño que comunica, marketing que conecta
+</footer>
+
+<script>
+// Año del footer
+document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+ const ilustracionSlider = document.getElementById("ilustracionSlider");
+  if (!ilustracionSlider) return;
+
+  const images = ilustracionSlider.querySelectorAll("img");
+  if (images.length === 0) return;
+
+  const firstImage = images[0];
+
+  const syncHeights = () => {
+    const referenceHeight = firstImage.offsetHeight;
+    if (referenceHeight === 0) return;
+
+    images.forEach(img => {
+      img.style.height = referenceHeight + "px";
+		img.style.maxHeight = "500px";
+    });
+  };
+
+  // Si la primera imagen ya cargó
+  if (firstImage.complete) {
+    syncHeights();
+  } else {
+    firstImage.onload = syncHeights;
+  }
+
+  // Recalcular si cambia el tamaño de la ventana
+  window.addEventListener("resize", syncHeights);
+    /* ────────────────────────────────
+       SISTEMA DE BOTONES Y SECCIONES
+    ───────────────────────────────── */
+
+    const sections = [
+        { btnId: "toggleLogos", contentId: "logosContent", labelOff: "Logos", labelOn: "Ocultar logos" },
+        { btnId: "toggleCartillas", contentId: "cartillasContent", labelOff: "Editorial", labelOn: "Ocultar editorial" },
+        { btnId: "togglePersonajes", contentId: "personajesContent", labelOff: "Ilustración", labelOn: "Ocultar ilustración" },
+        { btnId: "toggleInfografias", contentId: "infografiasContent", labelOff: "Diagramación", labelOn: "Ocultar diagramación" }
+    ];
+
+    const closeAll = () => {
+        sections.forEach(s => {
+            const btn = document.getElementById(s.btnId);
+            const content = document.getElementById(s.contentId);
+            btn.classList.remove("cta--active");
+            btn.textContent = s.labelOff;
+            content.classList.remove("show");
+        });
+    };
+
+    sections.forEach(s => {
+        const btn = document.getElementById(s.btnId);
+        const content = document.getElementById(s.contentId);
+
+        btn.addEventListener("click", () => {
+            const isOpen = content.classList.contains("show");
+            closeAll();
+            if (!isOpen) {
+                content.classList.add("show");
+                btn.classList.add("cta--active");
+                btn.textContent = s.labelOn;
+            }
+        });
+    });
+
+    /* ────────────────────────────────
+          SLIDER HORIZONTAL EDITORIAL
+    ───────────────────────────────── */
+
+    const slider = document.getElementById("editorialSlider");
+    const arrowLeft = document.getElementById("arrowLeft");
+    const arrowRight = document.getElementById("arrowRight");
+
+    arrowLeft.addEventListener("click", () => {
+        slider.scrollBy({
+            left: -500,
+            behavior: "smooth"
+        });
+    });
+
+	   /* ────────────────────────────────
+          SLIDER HORIZONTAL ILUSTRACIÓN
+    ───────────────────────────────── */
+
+	const sliderIlus = document.getElementById("ilustracionSlider");
+  	const arrowLeftIlus = document.getElementById("arrowLeftIlus");
+  	const arrowRightIlus = document.getElementById("arrowRightIlus");
+
+if (sliderIlus && arrowLeftIlus && arrowRightIlus) {
+  arrowLeftIlus.addEventListener("click", () => {
+    sliderIlus.scrollBy({ left: -500, behavior: "smooth" });
+  });
+
+  arrowRightIlus.addEventListener("click", () => {
+    sliderIlus.scrollBy({ left: 500, behavior: "smooth" });
+  });
+}
+
+
+  arrowRightIlus.addEventListener("click", () => {
+    sliderIlus.scrollBy({
+      left: 500,
+      behavior: "smooth"
+        });
+    });
+
+});
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
