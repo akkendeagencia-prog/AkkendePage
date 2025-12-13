@@ -212,20 +212,6 @@ body{
   border-radius: 4px;
 }
 
-.slider-horizontal .thumb {
-  flex: 0 0 520px;
-  height: 380px;
-  scroll-snap-align: start;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 /* EDITORIAL */
 #cartillasContent .slider-horizontal .thumb img {
   width: 100%;
@@ -619,8 +605,9 @@ body{
 	<p class="sec-sub">Contenido editorial aquí.</p>
 <div class="slider-container slider-arrows">
 
-  <button class="slider-arrow left" id="arrowLeft">‹</button>
-  <button class="slider-arrow right" id="arrowRight">›</button>
+<button class="slider-arrow left" aria-label="Anterior">‹</button>
+<button class="slider-arrow right" aria-label="Siguiente">›</button>
+
 
   <div class="slider-horizontal" id="editorialSlider">
 
@@ -645,8 +632,9 @@ body{
 
   <div class="slider-container slider-arrows">
 
-    <button class="slider-arrow left" id="arrowLeftIlus">‹</button>
-    <button class="slider-arrow right" id="arrowRightIlus">›</button>
+<button class="slider-arrow left" aria-label="Anterior">‹</button>
+<button class="slider-arrow right" aria-label="Siguiente">›</button>
+
 
     <div class="slider-horizontal" id="ilustracionSlider">
 
@@ -764,6 +752,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     images.forEach(img => {
       img.style.height = referenceHeight + "px";
+		img.style.maxHeight = "500px";
     });
   };
 
@@ -823,13 +812,6 @@ document.addEventListener("DOMContentLoaded", () => {
     arrowLeft.addEventListener("click", () => {
         slider.scrollBy({
             left: -500,
-            behavior: "smooth"
-        });
-    });
-
-    arrowRight.addEventListener("click", () => {
-        slider.scrollBy({
-            left: 500,
             behavior: "smooth"
         });
     });
