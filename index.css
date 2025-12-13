@@ -1,0 +1,87 @@
+/* ───────── VARIABLES ───────── */
+:root{
+  --brand:#8B004B;
+  --radius:18px;
+  --shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+/* ───────── BOTONES ───────── */
+.portfolio-buttons{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  margin:30px 0;
+}
+
+.cta{
+  padding:12px 22px;
+  border-radius:12px;
+  border:2px solid var(--brand);
+  background:var(--brand);
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.cta--active{
+  background:#fff;
+  color:var(--brand);
+}
+
+/* ───────── SECCIONES ───────── */
+.toggle-section{
+  display:none;
+}
+
+.toggle-section.show{
+  display:block;
+}
+
+/* ───────── SLIDER BASE ───────── */
+.slider{
+  display:flex;
+  gap:24px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:20px 10px;
+}
+
+.slider::-webkit-scrollbar{
+  height:8px;
+}
+
+.slider::-webkit-scrollbar-thumb{
+  background:#ccc;
+  border-radius:4px;
+}
+
+/* ───────── TARJETAS ───────── */
+.thumb{
+  background:#fff;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  scroll-snap-align:start;
+}
+
+.thumb img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+/* ───────── EDITORIAL ───────── */
+.editorial .thumb{
+  flex:0 0 650px;
+  height:650px;
+  padding:20px;
+}
+
+/* ───────── ILUSTRACIÓN ───────── */
+.ilustracion .thumb{
+  flex:0 0 720px;
+  height:520px;
+  padding:30px;
+}
