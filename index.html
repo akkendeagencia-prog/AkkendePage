@@ -601,12 +601,10 @@ body{
 <div id="cartillasContent" class="toggle-section">
 	<p class="sec-sub">Contenido editorial aquí.</p>
 <div class="slider-container slider-arrows">
+  <button class="slider-arrow left">‹</button>
+  <button class="slider-arrow right">›</button>
 
-<button class="slider-arrow left" aria-label="Anterior">‹</button>
-<button class="slider-arrow right" aria-label="Siguiente">›</button>
-
-
-  <div class="slider-horizontal" id="editorialSlider">
+  <div class="slider-horizontal">
 
     <div class="thumb"><img src="img/editorial/Asoamazonia_-.jpg" alt="Asoamazonia"><p>Asoamazonia</p></div>
     <div class="thumb"><img src="img/editorial/CICAM-Cartilla_-.jpg" alt="CICAM"><p>CICAM</p></div>
@@ -627,13 +625,11 @@ body{
 <div id="personajesContent" class="toggle-section">
   <p class="sec-sub">Ilustraciones y personajes desarrollados para distintas marcas.</p>
 
-  <div class="slider-container slider-arrows">
+<div class="slider-container slider-arrows">
+  <button class="slider-arrow left">‹</button>
+  <button class="slider-arrow right">›</button>
 
-<button class="slider-arrow left" aria-label="Anterior">‹</button>
-<button class="slider-arrow right" aria-label="Siguiente">›</button>
-
-
-    <div class="slider-horizontal" id="ilustracionSlider">
+  <div class="slider-horizontal">
 
       <div class="thumb">
         <img src="img/ilustracion/Niño-Niña-mascota-ASVALLE.png" alt="ASVALLE">
@@ -734,24 +730,21 @@ document.getElementById('y').textContent = new Date().getFullYear();
 
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
- const ilustracionSlider = document.getElementById("ilustracionSlider");
-  if (!ilustracionSlider) return;
+document.querySelectorAll(".slider-arrows").forEach(wrapper => {
+  const slider = wrapper.querySelector(".slider-horizontal");
+  const left = wrapper.querySelector(".slider-arrow.left");
+  const right = wrapper.querySelector(".slider-arrow.right");
 
-  const images = ilustracionSlider.querySelectorAll("img");
-  if (images.length === 0) return;
+  if (!slider || !left || !right) return;
 
-  const firstImage = images[0];
+  left.addEventListener("click", () => {
+    slider.scrollBy({ left: -600, behavior: "smooth" });
+  });
 
-  const syncHeights = () => {
-    const referenceHeight = firstImage.offsetHeight;
-    if (referenceHeight === 0) return;
-
-    images.forEach(img => {
-      img.style.height = referenceHeight + "px";
-		img.style.maxHeight = "500px";
-    });
-  };
+  right.addEventListener("click", () => {
+    slider.scrollBy({ left: 600, behavior: "smooth" });
+  });
+});
 
   // Si la primera imagen ya cargó
   if (firstImage.complete) {
