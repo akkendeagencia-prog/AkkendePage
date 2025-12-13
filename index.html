@@ -337,11 +337,6 @@ body{
     transform .45s ease;
 }
 
-.slider-container {
-  overflow-x: auto;
-  padding-bottom: 10px;
-}
-
 .slider-container::-webkit-scrollbar {
   height: 8px;
 }
@@ -353,10 +348,10 @@ body{
 
 .toggle-section.show {
   opacity: 1;
-  max-height: 5000px; /* Para permitir contenido largo */
+  max-height: 5000px;
   transform: translateY(0);
-  display: block;
 }
+
 
 /*────────────────────── */
 /*   EDITORIAL TIPO SLIDER       */
@@ -594,7 +589,6 @@ body{
 	</div>
   </div>
 </div>
-</div>
 
 
 <!-- EDITORIAL -->
@@ -726,10 +720,43 @@ body{
 <script>
 // Año del footer
 document.getElementById('y').textContent = new Date().getFullYear();
-</script>
 
+/* ────────────────────────────────
+   BOTONES PORTAFOLIO
+───────────────────────────────── */
+const sections = [
+  { btnId: "toggleLogos", contentId: "logosContent", labelOff: "Logos", labelOn: "Ocultar logos" },
+  { btnId: "toggleCartillas", contentId: "cartillasContent", labelOff: "Editorial", labelOn: "Ocultar editorial" },
+  { btnId: "togglePersonajes", contentId: "personajesContent", labelOff: "Ilustración", labelOn: "Ocultar ilustración" },
+  { btnId: "toggleInfografias", contentId: "infografiasContent", labelOff: "Diagramación", labelOn: "Ocultar diagramación" }
+];
 
-<script>
+const closeAll = () => {
+  sections.forEach(s => {
+    document.getElementById(s.btnId).classList.remove("cta--active");
+    document.getElementById(s.btnId).textContent = s.labelOff;
+    document.getElementById(s.contentId).classList.remove("show");
+  });
+};
+
+sections.forEach(s => {
+  const btn = document.getElementById(s.btnId);
+  const content = document.getElementById(s.contentId);
+
+  btn.addEventListener("click", () => {
+    const isOpen = content.classList.contains("show");
+    closeAll();
+    if (!isOpen) {
+      content.classList.add("show");
+      btn.classList.add("cta--active");
+      btn.textContent = s.labelOn;
+    }
+  });
+});
+
+/* ────────────────────────────────
+   SLIDERS HORIZONTALES (EDITORIAL + ILUSTRACIÓN)
+───────────────────────────────── */
 document.querySelectorAll(".slider-arrows").forEach(wrapper => {
   const slider = wrapper.querySelector(".slider-horizontal");
   const left = wrapper.querySelector(".slider-arrow.left");
@@ -745,101 +772,7 @@ document.querySelectorAll(".slider-arrows").forEach(wrapper => {
     slider.scrollBy({ left: 600, behavior: "smooth" });
   });
 });
-
-  // Si la primera imagen ya cargó
-  if (firstImage.complete) {
-    syncHeights();
-  } else {
-    firstImage.onload = syncHeights;
-  }
-
-  // Recalcular si cambia el tamaño de la ventana
-  window.addEventListener("resize", syncHeights);
-    /* ────────────────────────────────
-       SISTEMA DE BOTONES Y SECCIONES
-    ───────────────────────────────── */
-
-    const sections = [
-        { btnId: "toggleLogos", contentId: "logosContent", labelOff: "Logos", labelOn: "Ocultar logos" },
-        { btnId: "toggleCartillas", contentId: "cartillasContent", labelOff: "Editorial", labelOn: "Ocultar editorial" },
-        { btnId: "togglePersonajes", contentId: "personajesContent", labelOff: "Ilustración", labelOn: "Ocultar ilustración" },
-        { btnId: "toggleInfografias", contentId: "infografiasContent", labelOff: "Diagramación", labelOn: "Ocultar diagramación" }
-    ];
-
-    const closeAll = () => {
-        sections.forEach(s => {
-            const btn = document.getElementById(s.btnId);
-            const content = document.getElementById(s.contentId);
-            btn.classList.remove("cta--active");
-            btn.textContent = s.labelOff;
-            content.classList.remove("show");
-        });
-    };
-
-    sections.forEach(s => {
-        const btn = document.getElementById(s.btnId);
-        const content = document.getElementById(s.contentId);
-
-        btn.addEventListener("click", () => {
-            const isOpen = content.classList.contains("show");
-            closeAll();
-            if (!isOpen) {
-                content.classList.add("show");
-                btn.classList.add("cta--active");
-                btn.textContent = s.labelOn;
-            }
-        });
-    });
-
-    /* ────────────────────────────────
-          SLIDER HORIZONTAL EDITORIAL
-    ───────────────────────────────── */
-
-    const slider = document.getElementById("editorialSlider");
-    const arrowLeft = document.getElementById("arrowLeft");
-    const arrowRight = document.getElementById("arrowRight");
-
-    arrowLeft.addEventListener("click", () => {
-        slider.scrollBy({
-            left: -500,
-            behavior: "smooth"
-        });
-    });
-
-	   /* ────────────────────────────────
-          SLIDER HORIZONTAL ILUSTRACIÓN
-    ───────────────────────────────── */
-
-	const sliderIlus = document.getElementById("ilustracionSlider");
-  	const arrowLeftIlus = document.getElementById("arrowLeftIlus");
-  	const arrowRightIlus = document.getElementById("arrowRightIlus");
-
-if (sliderIlus && arrowLeftIlus && arrowRightIlus) {
-  arrowLeftIlus.addEventListener("click", () => {
-    sliderIlus.scrollBy({ left: -500, behavior: "smooth" });
-  });
-
-  arrowRightIlus.addEventListener("click", () => {
-    sliderIlus.scrollBy({ left: 500, behavior: "smooth" });
-  });
-}
-
-
-  arrowRightIlus.addEventListener("click", () => {
-    sliderIlus.scrollBy({
-      left: 500,
-      behavior: "smooth"
-        });
-    });
-
-});
 </script>
-
-
-
-
-
-
 
 </body>
 </html>
