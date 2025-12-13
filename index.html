@@ -226,11 +226,23 @@ body{
   align-items: center;
 }
 
-.slider-horizontal .thumb img {
+/* EDITORIAL */
+#cartillasContent .slider-horizontal .thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
+/* ILUSTRACIÓN */
+#personajesContent .slider-horizontal .thumb img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+
 /* FLECHAS DEL SLIDER */
 .slider-arrows {
   position: relative;
@@ -333,14 +345,7 @@ body{
     max-height .45s ease,
     transform .45s ease;
 }
-	/* Evita que el toggle bloquee el scroll horizontal del slider */
-.slider-editorial {
-  max-height: none !important;
-  overflow: visible !important;
-  opacity: 1 !important;
-  transform: none !important;
-  padding-top: 10px !important;
-}
+
 .slider-container {
   overflow-x: auto;
   padding-bottom: 10px;
@@ -804,12 +809,16 @@ document.addEventListener("DOMContentLoaded", () => {
   	const arrowLeftIlus = document.getElementById("arrowLeftIlus");
   	const arrowRightIlus = document.getElementById("arrowRightIlus");
 
+if (sliderIlus && arrowLeftIlus && arrowRightIlus) {
   arrowLeftIlus.addEventListener("click", () => {
-    sliderIlus.scrollBy({
-      left: -500,
-      behavior: "smooth"
-    });
+    sliderIlus.scrollBy({ left: -500, behavior: "smooth" });
   });
+
+  arrowRightIlus.addEventListener("click", () => {
+    sliderIlus.scrollBy({ left: 500, behavior: "smooth" });
+  });
+}
+
 
   arrowRightIlus.addEventListener("click", () => {
     sliderIlus.scrollBy({
