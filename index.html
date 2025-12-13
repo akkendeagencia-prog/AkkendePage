@@ -634,7 +634,7 @@ body{
 	<button class="slider-arrow left" id="arrowLeft">‹</button>
 	<button class="slider-arrow right" id="arrowRight">›</button>
 
-  <div class="slider-horizontal" id="editorialSlider">
+  <div class="slider-horizontal" id="ilustracionSlider">
 
     <div class="thumb"><img src="img/ilustracion/Niño-Niña-mascota-ASVALLE.png" alt="Asoamazonia"><p>Asoamazonia</p></div>
     <div class="thumb"><img src="img/ilustracion/Personaje-Niña-Centinelas-Ambientales-2.png" alt="CICAM"><p>CICAM</p></div>
@@ -749,6 +749,28 @@ document.addEventListener("DOMContentLoaded", () => {
     ───────────────────────────────── */
 
     const slider = document.getElementById("editorialSlider");
+    const arrowLeft = document.getElementById("arrowLeft");
+    const arrowRight = document.getElementById("arrowRight");
+
+    arrowLeft.addEventListener("click", () => {
+        slider.scrollBy({
+            left: -500,
+            behavior: "smooth"
+        });
+    });
+
+    arrowRight.addEventListener("click", () => {
+        slider.scrollBy({
+            left: 500,
+            behavior: "smooth"
+        });
+    });
+
+	   /* ────────────────────────────────
+          SLIDER HORIZONTAL ILUSTRACIÓN
+    ───────────────────────────────── */
+
+    const slider = document.getElementById("ilustracionSlider");
     const arrowLeft = document.getElementById("arrowLeft");
     const arrowRight = document.getElementById("arrowRight");
 
