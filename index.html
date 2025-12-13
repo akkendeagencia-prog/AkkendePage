@@ -231,6 +231,24 @@ body{
   object-fit: contain; /* nunca se deforma */
 }
 
+/* DIAGRAMACION */
+#infografiasContent .slider-horizontal .thumb {
+  flex: 0 0 720px;   /* 👈 más ancho que editorial */
+  height: 520px;     /* 👈 menos alto para personajes */
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#infografiasContent .slider-horizontal .thumb img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* nunca se deforma */
+}
+
 
 
 
@@ -638,6 +656,15 @@ body{
 	
 <div id="infografiasContent" class="toggle-section">
   <p class="sec-sub">Contenido de diagramación aquí.</p>
+	<div class="slider-container slider-arrows">
+  <button class="slider-arrow left">‹</button>
+  <button class="slider-arrow right">›</button>
+
+  <div class="slider-horizontal">
+      <div class="thumb"><img src="img/diagramacion/ASVALLE-GuíaDidácticaResiduos_-.jpg" alt="GuíaDidácticaResiduos"><p>Guía Didáctica Residuos</p></div>
+      <div class="thumb"><img src="img/diagramacion/ASVALLE-Infografía.jpg" alt="ASVALLE-Infografía"><p>ASVALLE-Infografía</p></div>
+    </div>
+  </div>
 </div>
 
 </section>
