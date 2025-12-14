@@ -233,7 +233,8 @@ body{
 
 /* DIAGRAMACION */
 #infografiasContent .slider-horizontal .thumb {
-  flex: 0 0 auto;   /* ANCHO */
+  flex: 0 0 1000px;   /* ANCHO */
+	height: 1000px;     /* ALTO */
   padding: 30px;
   display: flex;
   align-items: center;
@@ -245,8 +246,9 @@ body{
 }
 
 #infografiasContent .slider-horizontal .thumb img {
-  max-width: 800px;
-  max-height: 800px;
+  max-width: 90%;
+  max-height: 90%;
+  width: auto;
   height: auto;
   object-fit: contain; /* nunca se deforma */
 }
