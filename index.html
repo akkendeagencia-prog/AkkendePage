@@ -512,6 +512,7 @@ body{
       <div class="thumb video-thumb">
         <video src="img/carrusel/Carrusel-Logo.mp4"
                muted
+				autoplay
                loop
                playsinline></video>
         <p>Logo_Animado</p>
@@ -810,18 +811,6 @@ function stopVideos(container = document) {
     video.currentTime = 0;
   });
 }
-
-/* Hover play */
-document.querySelectorAll(".video-slider video").forEach(video => {
-  video.addEventListener("mouseenter", () => video.play());
-  video.addEventListener("mouseleave", () => {
-    video.pause();
-    video.currentTime = 0;
-  });
-  video.addEventListener("click", () => {
-    video.muted = !video.muted;
-  });
-});
 
 /* Año footer */
 document.getElementById('y').textContent = new Date().getFullYear();
