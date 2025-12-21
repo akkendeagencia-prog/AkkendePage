@@ -1,4 +1,4 @@
---------------------------- CSS ----------------------------------
+*/--------------------------- CSS ----------------------------------*/
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -468,8 +468,9 @@ body{
 
 
 
-	------------CARRUSEL-----------
-	<button id="toggleVideos" class="cta">Videos</button>
+	<!------------CARRUSEL-----------> 
+<button id="toggleVideos" class="cta">Videos</button>
+
 <div id="videosContent" class="toggle-section">
   <p class="sec-sub">Reels y piezas animadas desarrolladas para distintas marcas.</p>
 
@@ -478,10 +479,12 @@ body{
     <button class="slider-arrow right">›</button>
 
     <div class="slider-horizontal video-slider">
-
       <div class="thumb video-thumb">
-        <video src="videos/reel-1.mp4" muted loop playsinline></video>
-        <p>Reel ASVALLE</p>
+        <video src="img/carrusel/Carrusel-Logo.mp4"
+               muted
+               loop
+               playsinline></video>
+        <p>Logo_Animado</p>
       </div>
 
       <div class="thumb video-thumb">
@@ -769,10 +772,40 @@ body{
   © <span id="y"></span> Akkende · Diseño que comunica, marketing que conecta
 </footer>
 
-<script>
 
 /* ---------------------------------------- JS ------------------------------- */
-// Año del footer
+
+<script>
+/* ────────────────────────────────
+   AUTOPLAY + CONTROL DE VIDEOS
+───────────────────────────────── */
+function playVisibleVideos(container = document) {
+  container.querySelectorAll("video").forEach(video => {
+    video.muted = true;
+    video.play().catch(() => {});
+  });
+}
+
+function stopVideos(container = document) {
+  container.querySelectorAll("video").forEach(video => {
+    video.pause();
+    video.currentTime = 0;
+  });
+}
+
+/* Hover play */
+document.querySelectorAll(".video-slider video").forEach(video => {
+  video.addEventListener("mouseenter", () => video.play());
+  video.addEventListener("mouseleave", () => {
+    video.pause();
+    video.currentTime = 0;
+  });
+  video.addEventListener("click", () => {
+    video.muted = !video.muted;
+  });
+});
+
+/* Año footer */
 document.getElementById('y').textContent = new Date().getFullYear();
 
 /* ────────────────────────────────
@@ -782,11 +815,13 @@ const sections = [
   { btnId: "toggleLogos", contentId: "logosContent", labelOff: "Logos", labelOn: "Ocultar logos" },
   { btnId: "toggleCartillas", contentId: "cartillasContent", labelOff: "Editorial", labelOn: "Ocultar editorial" },
   { btnId: "togglePersonajes", contentId: "personajesContent", labelOff: "Ilustración", labelOn: "Ocultar ilustración" },
-  { btnId: "toggleInfografias", contentId: "infografiasContent", labelOff: "Diagramación", labelOn: "Ocultar diagramación" }
+  { btnId: "toggleInfografias", contentId: "infografiasContent", labelOff: "Diagramación", labelOn: "Ocultar diagramación" },
+  { btnId: "toggleVideos", contentId: "videosContent", labelOff: "Videos", labelOn: "Ocultar videos" }
 ];
 
 const closeAll = () => {
   sections.forEach(s => {
+    stopVideos(document.getElementById(s.contentId));
     document.getElementById(s.btnId).classList.remove("cta--active");
     document.getElementById(s.btnId).textContent = s.labelOff;
     document.getElementById(s.contentId).classList.remove("show");
@@ -800,16 +835,20 @@ sections.forEach(s => {
   btn.addEventListener("click", () => {
     const isOpen = content.classList.contains("show");
     closeAll();
+
     if (!isOpen) {
       content.classList.add("show");
       btn.classList.add("cta--active");
       btn.textContent = s.labelOn;
+
+      // ▶️ autoplay SOLO cuando es visible
+      playVisibleVideos(content);
     }
   });
 });
 
 /* ────────────────────────────────
-   SLIDERS HORIZONTALES (EDITORIAL + ILUSTRACIÓN)
+   SLIDERS HORIZONTALES
 ───────────────────────────────── */
 document.querySelectorAll(".slider-arrows").forEach(wrapper => {
   const slider = wrapper.querySelector(".slider-horizontal");
@@ -827,6 +866,7 @@ document.querySelectorAll(".slider-arrows").forEach(wrapper => {
   });
 });
 </script>
+
 
 </body>
 </html>
