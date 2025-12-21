@@ -463,6 +463,10 @@ body{
 .hero {
   padding-bottom: 60px; /* 👈 aire antes del carrusel */
 }
+/* Ocultar flechas SOLO en el carrusel del hero */
+#videoHero .slider-arrow {
+  display: none !important;
+}
 
 
 </style>
@@ -518,22 +522,21 @@ body{
 
 <!-- CARRUSEL -->
 <section id="videoHero" class="video-hero">
-
   <div class="slider-container slider-arrows">
     <button class="slider-arrow left">‹</button>
     <button class="slider-arrow right">›</button>
 
-      <div class="thumb video-thumb">
-        <video src="img/carrusel/Carrusel-Logo.mp4"
-               muted
-				autoplay
-               loop
-               playsinline></video>
-        <p></p>
-      </div>
+    <div class="thumb video-thumb">
+      <video src="img/carrusel/Carrusel-Logo.mp4"
+             muted
+             autoplay
+             loop
+             playsinline></video>
     </div>
+
   </div>
 </section>
+
 
 <!-- SERVICIOS -->
 <section id="servicios" class="section">
