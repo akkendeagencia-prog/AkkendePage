@@ -1,4 +1,4 @@
-<!--------------------------- CSS ---------------------------------->
+<!-- CSS -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -415,14 +415,46 @@ body{
   height: auto;      /* mantiene proporción */
   object-fit: contain; /* muy importante: NO deforma */
 }
+/* ───────────────────────────── */
+/*   HERO CARRUSEL DE VIDEO      */
+/* ───────────────────────────── */
+
+.video-hero {
+  padding: 60px 0 40px;
+  background: #fafafa;
+}
+
+.video-hero .sec-sub {
+  margin-bottom: 30px;
+}
+
+/* Cada slide usa el tamaño NATIVO del video */
+.video-hero .video-thumb {
+  flex: 0 0 auto;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  height: auto;
+}
+
+/* VIDEO RESPONSIVE SIN RECORTE */
+.video-hero video {
+  width: auto;
+  max-width: 90vw;
+  max-height: 70vh;
+  height: auto;
+  object-fit: contain; /* 👈 CLAVE */
+  border-radius: 18px;
+  background: #000;
+}
 
 
 </style>
 </head>
 <body>
 
-<!------------------------------------    HTML   ----------------------------------------->
-<!-- NAV -->
+<!-- HTML -->
+	<!-- NAV -->
 <nav class="nav">
   <div class="nav__inner">
 	<a class="brand" href="#inicio">
@@ -468,10 +500,8 @@ body{
 
 
 
-	<!------------CARRUSEL-----------> 
-<button id="toggleVideos" class="cta">Videos</button>
-
-<div id="videosContent" class="toggle-section">
+<!-- CARRUSEL -->
+<section id="videoHero" class="video-hero">
   <p class="sec-sub">Reels y piezas animadas desarrolladas para distintas marcas.</p>
 
   <div class="slider-container slider-arrows">
@@ -499,8 +529,7 @@ body{
 
     </div>
   </div>
-</div>
-
+</section>
 
 <!-- SERVICIOS -->
 <section id="servicios" class="section">
@@ -773,7 +802,7 @@ body{
 </footer>
 
 
-/* ---------------------------------------- JS ------------------------------- */
+<!-- JS -->
 
 <script>
 /* ────────────────────────────────
@@ -816,7 +845,6 @@ const sections = [
   { btnId: "toggleCartillas", contentId: "cartillasContent", labelOff: "Editorial", labelOn: "Ocultar editorial" },
   { btnId: "togglePersonajes", contentId: "personajesContent", labelOff: "Ilustración", labelOn: "Ocultar ilustración" },
   { btnId: "toggleInfografias", contentId: "infografiasContent", labelOff: "Diagramación", labelOn: "Ocultar diagramación" },
-  { btnId: "toggleVideos", contentId: "videosContent", labelOff: "Videos", labelOn: "Ocultar videos" }
 ];
 
 const closeAll = () => {
@@ -865,6 +893,21 @@ document.querySelectorAll(".slider-arrows").forEach(wrapper => {
     slider.scrollBy({ left: 600, behavior: "smooth" });
   });
 });
+
+
+/* ────────────────────────────────
+   AUTOPLAY HERO VIDEO AL CARGAR
+───────────────────────────────── */
+window.addEventListener("load", () => {
+  const hero = document.getElementById("videoHero");
+  if (!hero) return;
+
+  hero.querySelectorAll("video").forEach(video => {
+    video.muted = true;
+    video.play().catch(() => {});
+  });
+});
+
 </script>
 
 
