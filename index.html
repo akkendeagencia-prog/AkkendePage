@@ -422,12 +422,12 @@ body{
 .video-hero {
   padding: 0;
   margin: 0;
-  height: calc(100vh - 64px); /* altura real menos navbar */
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 
 
 .video-hero .slider-container {
@@ -443,12 +443,13 @@ body{
   box-shadow: none;
 }
 
-.video-hero video {
+..video-hero video {
   width: 100%;
-  height: 100%;
-  object-fit: contain;        /* 👈 NO recorta */
-  background: #000;
+  max-height: 80vh;      /* controla el tamaño visible */
+  object-fit: contain;
+  display: block;
 }
+
 
 /* Ajuste fino: menos espacio entre carrusel y servicios */
 #servicios {
