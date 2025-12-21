@@ -154,14 +154,14 @@ body{
 /* ───────────────────────────── */
 
 .video-slider .video-thumb {
-  flex: 0 0 auto;
-  width: 320px;      /* tamaño tipo reel */
-  height: 560px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
 }
+
 
 .video-slider video {
   width: 100%;
@@ -422,13 +422,9 @@ body{
 .video-hero {
   padding: 0;
   margin: 0;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: transparent; /* 👈 nada de negro */
+  display: block;
 }
-
-
 
 .video-hero .slider-container {
   width: 100%;
