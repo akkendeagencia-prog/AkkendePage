@@ -1,3 +1,4 @@
+--------------------------- CSS ----------------------------------
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -146,6 +147,29 @@ body{
 }
 .tier {
   padding-bottom: 30px !important;  /* obliga igual espacio bajo el botón */
+}
+
+/* ───────────────────────────── */
+/*   SLIDER DE VIDEO             */
+/* ───────────────────────────── */
+
+.video-slider .video-thumb {
+  flex: 0 0 auto;
+  width: 320px;      /* tamaño tipo reel */
+  height: 560px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.video-slider video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* look tipo Instagram */
+  border-radius: 12px;
+  background: #000;
+  cursor: pointer;
 }
 
 
@@ -397,6 +421,7 @@ body{
 </head>
 <body>
 
+/* ------------------------------------    HTML   ----------------------------------------- */
 <!-- NAV -->
 <nav class="nav">
   <div class="nav__inner">
@@ -440,6 +465,39 @@ body{
     </div>
   </div>
 </header>
+
+
+
+	------------CARRUSEL-----------
+	<button id="toggleVideos" class="cta">Videos</button>
+<div id="videosContent" class="toggle-section">
+  <p class="sec-sub">Reels y piezas animadas desarrolladas para distintas marcas.</p>
+
+  <div class="slider-container slider-arrows">
+    <button class="slider-arrow left">‹</button>
+    <button class="slider-arrow right">›</button>
+
+    <div class="slider-horizontal video-slider">
+
+      <div class="thumb video-thumb">
+        <video src="videos/reel-1.mp4" muted loop playsinline></video>
+        <p>Reel ASVALLE</p>
+      </div>
+
+      <div class="thumb video-thumb">
+        <video src="videos/reel-2.mp4" muted loop playsinline></video>
+        <p>Animación institucional</p>
+      </div>
+
+      <div class="thumb video-thumb">
+        <video src="videos/reel-3.mp4" muted loop playsinline></video>
+        <p>Motion redes</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
 <!-- SERVICIOS -->
 <section id="servicios" class="section">
@@ -712,6 +770,8 @@ body{
 </footer>
 
 <script>
+
+/* ---------------------------------------- JS ------------------------------- */
 // Año del footer
 document.getElementById('y').textContent = new Date().getFullYear();
 
