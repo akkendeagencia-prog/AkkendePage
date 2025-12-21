@@ -163,6 +163,7 @@ body{
 }
 
 
+
 .video-slider video {
   width: 100%;
   height: 100%;
@@ -439,12 +440,15 @@ body{
   box-shadow: none;
 }
 
-..video-hero video {
+.video-hero video {
   width: 100%;
-  max-height: 80vh;      /* controla el tamaño visible */
+  max-height: 80vh;
   object-fit: contain;
   display: block;
+  border-radius: 0;   /* 👈 sin esquinas */
+  background: transparent;
 }
+
 
 
 /* Ajuste fino: menos espacio entre carrusel y servicios */
@@ -511,7 +515,6 @@ body{
     <button class="slider-arrow left">‹</button>
     <button class="slider-arrow right">›</button>
 
-    <div class="slider-horizontal video-slider">
       <div class="thumb video-thumb">
         <video src="img/carrusel/Carrusel-Logo.mp4"
                muted
